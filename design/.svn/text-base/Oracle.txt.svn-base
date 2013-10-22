@@ -1,0 +1,23 @@
+ORACLE
+
+It is [...]
+
+Messages handled:
+
+	* ASK_NODES
+	
+		returns the coordinates (ip:port) of N alive nodes and sends a RECEIVE_NODES message to the 
+		coordinator node that sent the ASK_NODE request. 
+		
+		There are several selection policies to return nodes with different characteristics:
+		
+			- Round-Robin:
+				nodes are selected in a round-robin fashion, selecting N nodes starting from the current 
+				index, the index is then incremented and wraps around. 
+				
+			- Least-Loaded:
+				nodes are selected so that they are the N least loaded nodes currently in the system. 
+				The Oracle has a pretty good idea of this because nodes periodically propagate some 
+				metrics about their status, including their current load.
+				
+			- 

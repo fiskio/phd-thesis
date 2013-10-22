@@ -1,0 +1,12 @@
+\subsection*{System S}
+\label{sec:system_s}
+
+\begin{structure}
+	\item System Description
+	\item Ways of querying - spade declarative language
+	\item Operator placement - Amini extreme-scale
+	\item ...
+	\item Considerations
+\end{structure}
+
+System S: \cite{ss-spc} \cite{ss-spade} \cite{ss-scale_up} \cite{extreme-scale-sps}

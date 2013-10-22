@@ -1,0 +1,17 @@
+\chapter{Evaluation}
+\label{ch:evaluation}
+
+\timest{8}
+\\\\
+\pages{$\sim$25}
+
+\section{Evalutation}
+% evaluation goals
+% fairness, scalability, failure tolerance, etc...
+\begin{enumerate}
+        \item Evaluation with query type A
+        \item Evaluation with query type B
+\end{enumerate}
+\mnote{I will evaluate the data model in both cases, need to define it better}
+%\emph{8 weeks. This is the part that I forecast taking the longer. Deciding the evaluation experiments, implementing them and writing about the results is a very long process in my experience.}
+

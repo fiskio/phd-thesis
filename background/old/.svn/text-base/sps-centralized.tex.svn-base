@@ -1,0 +1,121 @@
+\section{Centralised Data Stream Processing Systems}
+\label{sec:sps-centralized}
+
+%dbms vs dsms
+Data stream processing systems (DSPS) compute real-time queries over constantly changing streams of data. A stream is a 
+possibly infinite sequence of tuples, or timestamped entities. Differently than traditional databases, where queries 
+are issued over stored data, in DSPSs queries are first submitted to the system, and results are generated continuosly
+as the new data enters the system in the form of streams. This allows the generation of real-time updated results based on the constantly changing available data streams.
+
+%sp characteristics
+DSMSs have been developed to process large volumes of stream data, generated in real-time with new
+values constantly being introduced in the system. Using a traditional approach of first storing the data and then
+issuing the queries over it is not appropriate in this case. The first reason is the amount of available
+data~\cite{aurora, 8-reqs}, which is usually very high and potentially too large to be stored entirely in the system. 
+Another reason not to store all
+the incoming data has to deal with its nature, often only a subset of the data streams are relevant to the application.
+Moreover, stream data is usually transient, with new values constantly updating old ones and rendering them irrelevant.
+Data stream processing is also tied to strict latency constraints. Processing data streams with a low
+latency in this case is very imortant and storing the data before processing it would introduce an unacceptable delay,
+due to the latency cost of storing and retrieving data on disk.
+
+Figure~\ref{fig:dbms+dsms} shows the two different architecture. The left image depicts a traditional DBMS. Queries are
+issued over previously stored data. Becuase the data is already in the system, it is possible to create indexes over it,
+in order to reduce the query execution time. Results are generated from data received by the system \emph{up to the
+time} when the query is issued. The picture on the right, instead, depicts a DSPS. Queries are issued over a constantly
+changing stream of data. Once the data enters the system, it is matched against the registered queries to generate the
+results. Results are generated from data received by the system \emph{starting from the time} when the query is issued.
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics[width=\textwidth]{img/dbms+dsms}
+	\caption{Comparison between a traditional Data Base Management System and a Data Stream Management System. On the
+left queries are issued over stored data, while on the right data flows through continuous queries.}
+	\label{fig:dbms+dsms}
+\end{figure}
+
+%apps
+Data stream processing can be applied in many applications domains. Large scale scientific experiments, like particle
+accelerators~\cite{lhc} or radio telescopes~\cite{starglobe-grid}, produce a very large amount of data, which needs to be processed in real-time. 
+It also have found application in the area of large-scale supply chain management~\cite{hifi}. In order to keep track of the
+movements of items among warehouses, goods can be tagged with RFID chips and be scanned whenever entering or exiting a 
+storage location. Analysing these readings in real-time allows to keep an updated picture of the availability of goods
+at different locations and ultimately can lead to a great reduction in logistical costs.
+Financial data processing is also a major domain for DSMSs~\cite{streambase-algo}. Streams of data coming from the financial markets, for
+example tracking the value of a particular stock, can be processed in real-time to make better decisions about trades.
+In this case, the low-latency characteristics of DSMSs are particularly useful as being able to make a trade even split
+seconds before a competitor is key for maximum profitability.
+Sensor networks also provide a good application domain for stream processing~\cite{stream-processing-challanges, gsn0,
+senseweb}. These sensors produce a constant stream 
+of measurements which is well suited to be processed in a DSMS. Similarly, network monitoring is also a field in which
+stream processing can be successfully applied. In this case the data streams are not produced sensing the physical
+world, but instead monitor more ephemeral quantities describing how data packets move within a network. In this regard
+DSPSs can be employed to monitor the spreading of an worm or in general the health of the network~\cite{dec-net-mon,
+phi}.
+
+\begin{comment}
+\subsection{Data Models}
+DSPSs are concerned with the processing of streams of data. These are possibly infinite sequences of timestamped
+entities, called \textit{tuples}. By definition~\cite{dsm-issues} tuples in a data stream are: \textit{real-time,
+continuous} and \textit{ordered}. Tuples in a stream are also characterised by a fixed relational schema, they are 
+always composed by the same set of attributes. The nature of this attributes is really of no concerned for the model.
+A data stream can represent a time series of measurements taken by a sensor, audio/video data, events and so on. 
+A more formal definition of streams and query languages will be presented in Chapter~\ref{ch:language}.
+
+Different approaches have been proposed for expressing queries over data streams. In the \textit{Boxes-and-Arrows}
+model, operators are depicted as black boxes, joined together by arrows representing the data streams flowing through
+them~\cite{aurora-and-medusa}. This is a very graphical and intuitive way of composing queries, even though it might become confusing when trying
+to express particularly complex queries. \\
+The de-facto standard in stream processing is to employ a more declarative approach. Building form the experience in
+traditional databases, in this model the user describe the desired results through an SQL-based language. The system
+then implements the query using a combination of processing operators and data streams flowing among them. This approach
+is usually more intuitive for complex queries as it allow the user to focus on the nature of the results and not on the
+query internal structure. The language used to express queries is usually CQL~\cite{cql} or one of its derivations like
+StreamSQL~\cite{streamsql}. A more detailed discussion of the data models and these languages can be found in Chapter~\ref{ch:model}. 
+\end{comment}
+
+\subsection{Approximate Processing}
+\label{sec:dsps-approx}
+Of particular interest for my research is the approximation techniques employed by these systems to cope with overload
+conditions. In a centralised DSPS all the computation is carried out by a single processing unit, so exploiting
+efficiently all the available resources is vital. 
+Resources are usually provisioned based on the average needs of the system, but the amount of needed resources can vary over time. 
+Even though these systems are designed with efficiency in mind, it is not uncommon for the system to run out of resources. 
+When that happen, the system has to resolve to \emph{approximate processing}.
+There are two primary reasons for which a DSMS may become
+overloaded: insufficient computing power or insufficient memory.
+
+\textit{CPU-limited} overload is cause by an excessive rate of incoming tuples. In this situation, the system doesn't
+have enough computing power and there is insufficient CPU time to process all the elements in the input element. In this
+case the system can overcome the overload situation by discarding a subset of the incoming tuples. This technique of
+discarding a part of the input takes the name of \textit{load-shedding}. It has been shown in~\cite{load-shedding} that 
+for many applications it is acceptable to gracefully degrade the quality of the results, by providing approximate 
+processing during load spikes. If the statistical distribution of values in a stream is know, for instance by sampling,
+probabilistic guarantees on the accuracy of sliding-window aggregation queries can be derived
+mathematically~\cite{load-shedding-aggregate}.
+
+
+\textit{Memory-limited} overload occurs when the total state for all the registered queries exceeds the available
+memory. In this case, the system has to reduce the memory usage by reducing the state kept by operators. 
+In general the system will try to minimize its memory footprint as much as possible employing a number of techniques.
+For instance it can exploit constraints on streams to reduce state, either by letting the user specify them or by
+inferring them at run-time. It can also share state among operators when they materialize nearly identical relations.
+It can also schedule operators intelligently in order to minimize the length of queues in memory~\cite{stream-chains}.
+While these techniques do not lower the quality of the processing, sometimes the memory usage might still exceed the
+limits of the systems. In this situation, the internal state of operators can be approximated. In the case of
+aggregation and join operators, the state can be reduced by employing sampling techniques, like using
+\emph{histograms}~\cite{histograms}. These are approximations to datasets, achieved by partitioning the data into
+subsets, which are in turn summarised by an aggregate functions. Every column in the histogram is a compact
+representation of one of these subsets. Another summarising technique that can be employed makes use of
+wavelet synopses~\cite{wavelets}. For set difference, set intersection and duplicate
+elimination operators Bloom filters can be employed~\cite{approx-bloom}. These are compact set representation that allow
+a fast way of testing whether an element is a member of the set. All these techniques trade memory use against precision, but can
+greatly help the system in overcoming or avoiding memory-limited overload conditions.
+
+In the scope of building our dependable stream processing system, all these approximation techniques can be useful. The
+main idea behind my work is that imperfect processing might still be meaningful in many contexts. In our system, when a
+node becomes overloaded, it will try to migrate some operators to another node. If no other node is available, or during
+the search phase, an overloaded node can employ these techniques to reduce its load and overcome the overload condition. 
+%systems
+\input{background/systems-csps}
+

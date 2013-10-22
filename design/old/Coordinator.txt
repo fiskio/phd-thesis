@@ -1,0 +1,68 @@
+COORDINATOR
+
+It is in charge of deploying and managing a query.
+
+
+ 1. askNodes()
+ 
+ 	It contacts the ORACLE and asks for N nodes. It reads N from a "partition file". 
+ 	* At this point everything is done in "Constants.java", need to read from a properties file. *
+ 	
+ 	Sends a ASK_NODES message to the ORACLE and waits for a reply.	
+
+ 
+ 2. receiveNodes()
+ 
+ 	This is triggered upon receipt of a RECEIVE_NODES message sent by the Oracle. The message contains
+ 	the coordinates (ip:port) of the processing nodes on which to deploy the query. It might be that 
+ 	not enough nodes are available at the moment, when this happens the Coordinator reports back to the 
+ 	user and terminates. //unhandled
+ 	
+ 	
+ 3. partitionQuery() 
+ 
+ 	This generate N partitions of the query, called subqueries, and assign a processing node to each. 
+ 	Each subquery is connected to the others so that a query tree is formed, installing RemoteReceiver 
+ 	and RemoteSender operators to communicate over the network.
+ 	
+ 	There are several policies to split a query:
+ 
+ 		- DummyPartition 
+ 			Simply don't partition
+ 			 
+ 		- MapReducePartition (missing)
+ 			Creates N-1 copies of the original queries, minus the terminal operator, which are the 
+ 			assigned to N-1 processing nodes (Map). The terminal operator is placed in the last node and
+ 			it collects and processed all the resulting tuples produced by the other nodes (Reduce).
+ 			
+ 			
+ 4. sendQuery()
+ 
+ 	Sends to each node a NEW_SUBQUERY message ...	
+ 	
+ 5. setCoordinator()
+ 
+ 	Sends to to each node a SET_COORDINATOR message to inform them about the location of the coordinator,
+ 	so that they know to whom they should report to. This can be also used to update the location of the
+ 	Coordinator in case it gets moved.
+ 	
+ 6. sendDeployment2Oracle()
+ 
+ 	Sends the query plan to the Oracle. It contains the location of each subquery (ip:port:cqid).
+ 	
+ 	
+ ** Missing part about MOVING a subquery **
+ 
+ 
+ --------------------------------------------------------------------------------------------------------
+ 
+ bounceGU() 
+ 
+ 	At interval times it updates the processing nodes and the Oracle about the current SIC value for the 
+ 	query. It sends a SET_NEW_GU to the nodes and a REPORT_QUERY_GU to the Oracle.
+ 	This is triggered by the receival of a REPORT_GU message, sent by a terminal node at interval time.
+ 	Terminal node sends current SIC value to the Coordinator, which bounces it back to the other processsing
+ 	nodes and to the Oracle.
+ 	
+ 	
+ 	

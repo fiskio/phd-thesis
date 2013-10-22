@@ -1,0 +1,14 @@
+\chapter{Background}
+\label{ch:background}
+
+\input{background/intro-background}
+
+\input{background/apps}
+
+\input{background/gsi}
+
+\input{background/sps-centralized}
+
+\input{background/sps-distributed}
+
+\input{background/dist-agg}

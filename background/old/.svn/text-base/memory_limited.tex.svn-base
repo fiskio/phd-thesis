@@ -1,0 +1,19 @@
+\subsection{Memory-limited overload}
+\label{sec:dsps-approx}
+
+\textit{Memory-limited} overload occurs when the total state for all the registered queries exceeds the available
+memory. In this case, the system has to reduce the memory usage by reducing the state kept by operators. 
+In general the system will try to minimize its memory footprint as much as possible employing a number of techniques.
+For instance it can exploit constraints on streams to reduce state, either by letting the user specify them or by
+inferring them at run-time. It can also share state among operators when they materialize nearly identical relations.
+It can also schedule operators intelligently in order to minimize the length of queues in memory~\cite{stream-chains}.
+While these techniques do not lower the quality of the processing, sometimes the memory usage might still exceed the
+limits of the systems. In this situation, the internal state of operators can be approximated. In the case of
+aggregation and join operators, the state can be reduced by employing sampling techniques, like using
+\emph{histograms}~\cite{histograms}. These are approximations to datasets, achieved by partitioning the data into
+subsets, which are in turn summarised by an aggregate functions. Every column in the histogram is a compact
+representation of one of these subsets. Another summarising technique that can be employed makes use of
+wavelet synopses~\cite{wavelets}. For set difference, set intersection and duplicate
+elimination operators Bloom filters can be employed~\cite{bloom}. These are compact set representation that allow
+a fast way of testing whether an element is a member of the set. All these techniques trade memory use against precision, but can
+greatly help the system in overcoming or avoiding memory-limited overload conditions.

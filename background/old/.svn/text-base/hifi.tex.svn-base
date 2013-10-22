@@ -1,0 +1,28 @@
+\subsection*{HiFi}
+\label{sec:hifi}
+
+HiFi~\cite{hifi} is a system designed to manage large supply chains, monitoring the availability and location of goods
+making use of RFID tags In the scope a national or international distribution network, keeping track of information
+throughout the whole supply chain is a difficult task. Nevertheless, it is widely recognized that an accurate and
+real-time monitoring of it can lead to great savings for a company. In this regard the envisioned solution is based on
+RFID technology. Every product going in and out a warehouse is monitored and tracked. Because of its nature, RFID
+technology is prone to errors. A tag might be scanned twice or not at all, and this poses even more burden on the
+monitoring infrastructure. HiFi employs a number of techniques to minimise this error, like data cleaning, detection of
+faulty receptors, conversion, calibration and so on. 
+
+The architecture of HiFi is referred to as \emph{high fan}, in which a high number of sources generates data which is
+hierarchically processed through successive aggregations, until it reaches the final user. Because of its shape this is
+also called a ``bowtie'' system. The reasons for its peculiar configuration are due to two main reasons. First, a
+flatter architecture would not be able to cope with the sheer amount of raw data produced by the sources.  Second, this
+kind of structure is well suited for the tasks the system was designed for, which is mainly supply chain monitoring. In
+this scenario, a company is likely to want to concentrate the final data processing and storage in a central private
+facility, but it still needs to push some of the data cleaning, filtering and aggregation close to the input entry
+points.  HiFi is built around TelegraphCQ\cite{telegraphcq} and TinyDB\cite{tinydb} It represent a custom solution to a
+specific problem, even though its architecture could be suitable also for other purposes.
+
+\paragraph{Considerations}
+HiFi can be considered a centralised stream processing system, design for a specific application domanin.
+It is built for large supply chain management, monitoring goods moving among warehouses with the use of RFID tags.
+It suuports data cleaning, meaning the removal of spurious tag readings, in order to produce more accurate results.
+In general, when working with sensor data, having a stage of data cleaning is a good idea. This idea could be
+incorporated within the DISSP prototype, with a sanitising component located at entry points of the system.

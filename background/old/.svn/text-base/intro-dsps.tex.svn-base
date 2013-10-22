@@ -1,0 +1,119 @@
+%good replication
+The natural step in the evolution of DSPSs is distribution. Centralized systems are inherently subject to scalability
+issues, being able to distributed the processing over a number of nodes is the logical approach to overcome this issue.
+Distribution also allow for better dependability as operators can be replicated at different locations maximising
+availability. Fault-tolerance can also be better achieved by employing distribution, as different replicas of operators
+can be deployed, achieving resilience to failure. The overall performance of the system is also increased by this
+approach, as the computation can be partitioned and run in parallel at different computing nodes. Distribution can be
+realised at different scales. Processing nodes can be located within the same datacenter, taking advantage of the 
+high-bandwidth and low-latency typical of these environment, or spanned over wide-area networks to push scalability even
+further.
+
+%issues
+Distribution presents several advantages, but it does come at a cost. Many issues arise when the system is decentralized: 
+the operational complexity the system increases and resources need to be allocated efficiently. In a DSPS distribution is 
+achieved by partitioning the query plan and running clusters of operators at different sites. Placing these operators
+correctly at deployment time and moving them at run time to rebalance the system is not an easy task. Running replicas,
+also, can greatly help to increase the dependability of the system, but their correct management also represent a key
+issue. Finally, being able to fully exploit the system resources is also major challenge. 
+
+\subsection{Operator Placement and Load Balancing}
+
+%op placement is difficult
+The optimal distribution of streaming operators over a number of network machines is key to maximise the performance of a
+decentralize stream processing system. Once the query plan has been divided into clusters, these needs to be mapped to
+some available physical computing sites. A placement algorithm assigns operators to processing nodes while satisfying a
+set of constraints and attempts to optimize some objective function. Finding the optimal assignement among the total
+possible assignments is an NP-complete problem and thus computationally intractable~\cite{npc-placement}. Despite this,
+many strtegies has been devised for efficient operator placement and depending on the assumptions and requirements of the
+system, different approaches can be more suitable than others. A taxonomy of various placement strategies for operators
+can be found in~\cite{placement_strategies}.
+
+%load-balancing
+Closely tied to operator placement is the problem of load balancing. While the former is more concerned with the
+placement at deployment time, load balancing has to deal with the moving of operator at run time. During the
+execution of the query the amount of data carried by the stream can greately vary and this may result in computational
+overload at some nodes. To recover from this overload condition, the system can decide to migrate some operators to
+better location, attempting to balance the load among the available resources. Many operator placement algorithms
+recognize the need of placement reconfiguration at run time and make load balancing a key component of their strategy.
+
+%centralized
+When the processing nodes of a DSPS are located within the same datacenter, the topology management can be assigned to a
+centralised placement controller. In these environments the controller can easily be aware of if the current state for
+the entire network, including workload information and resource availability. Having access to this information allows
+it to reason about placement choices, with results that are potentially optimal for small deployments. When the number
+of available resources becomes very large though, these strategy are not indicated because of their low degree of
+scalability. Abadi et al.~\cite{borealis-design} propose an example of such a solution, which assumes a fairly constant
+workload and an heavy cost for operator migration. Xing et al.~\cite{borealis-xing_placement} instead, consider the workload to
+be higly unpredictable, thus requiring some load balancing at runtime. They also acknolodge the importance of initial
+deployment, and a high migration cost for operators, thus developing an algorithm resilient to load
+variations~\cite{borealis-load}. All these algorithms have been implemented within the Borealis DSPS. 
+
+%decentralized
+When processing nodes are instead distributed over wide-are networks, a central coordinator becomes ineffective and a 
+decentralized approach to the problem have to be employed. These algorithms make decisions based on local workload
+and resource information. Pietzuch et al.~\cite{sbon}, for instance, employ a distributed algorithm based on multiple spring
+relaxation, trying to globally minimize a metric called network usage, based on both bandwith and latency. Another
+approach has been taken by Amini et al.~\cite{extreme-scale-sps}, in this case the algorithm maximises weighted throughput of
+processing elements, while ensuring stable operation in the face of highly bursty workloads. Zhou et al.~\cite{placement-zhou} 
+propose an algorithm in which the initial deployment is determined by minimising the communication cost among
+processing nodes, and then adapts to the changes in the data and workload within the system. Ying et al.~\cite{placement-ying}
+propose to also account for the state of operators when performing migration decisions. When the resources are
+administered by multiple authorities, the degree of trust and collaboration among them must be taken into account. 
+The algorithm from Balazinska et al.~\cite{medusa-load} achieve this by the mean of of prenegotiated load-exchange contracts
+between the nodes. 
+
+\subsection{Operator Replication}
+% benefits of replication
+Operator replication enables DSPSs to reduce the impact of system and network failures. Efficient replica allocation and
+management is of fundamental importance to maximise the dependability and availability of the system. Replication helps
+the system to be resilient to failures, as the computation of a crashed node is mirrored by one or more replicas, and can also
+overcome network partitions by exploiting geographic diversity. In general the system tries to allocate as many
+replicas as possible, given the amount of available resources.  As DSPSs move towards an Internet-scale, resource
+overprovisioning becomes more and more unfeasible, stressing even further the necessity of intelligent replica management.
+Also, for these extremely large systems, failure is much more likely to occur, becoming the usual operational mode
+rather than the exception. Correctly managing replicas, though, is a real challenge.
+
+%borealis
+Early works on replication in a DSPS have been focusing on masking software failure~\cite{borealis_ha_algos}, by running multiple copies
+of the same operators at different nodes. Others~\cite{ha_ft_dataflows} strictly favoured consistency over availability, by requiring at least
+one fully connected copy of the query tree to be correctly working in order for the computation to proceed. \\
+In Borealis, the approach has been to provide a configurable trade-off between availability and
+consistency~\cite{borealis-fault_tolerance}.
+This is done by letting the user specify a time threshold, within this time window all tuples are processed regardless
+of whether failures occur or not on input streams. This increase availability, since the operator continues to process
+even in presence of failure on its input streams. Output tuples though, are then marked as \textit{tentative}, in order
+to signal the incorrectness of these results. Once the system has heal from the failure, it tries to reconcile the
+state of operators which processed tentative tuples, by re-running their computation with the stable data tuples. This
+also means that every source or operator has to buffer all their outgoing tuples, at least for a certain amount of time,
+to replay them in case of failure. The goal, in Borealis, is to achieve \textit{eventual consistency}, or the guarantee
+that eventually all clients will receive the complete correct results. 
+
+%murty&welsh
+Another approach to the management of replicas has been proposed in~\cite{dependable-is-sensing}. The authors take a
+different stand point to failure, not considering it as an infrequent event, but as a constant condition within the
+system. This is due to the increased size of the infrastructure, which is considered to be deployed at Internet-scale. In this
+conditions maintaining consistency among replica becomes even harder. In fact, the authors claim it is better to drop
+this constraint all together and to employ instead \textit{free-running} operators. Operator, thus, are allowed to
+independently update their internal state as incoming tuples arrive. In case of recovery from failure, for instance, an
+operator restarts from scratch, without any knowledge on its previous state. This, on the other hand, means that an
+operator's state can diverge from its replicas, due to missing tuples. In general, though, the state of an operator is
+based only on the tuples in its \textit{causality window}. Thus, assuming a window size of $w$ seconds and no additional failure, 
+the system will regain consistency without the need for explicit synchronization. However, whenever the replicas are out
+of sync and produce different results, the system needs to choose which set of results represents the "best" answer.
+It can do so in different ways, for instance by choosing tuples generated by the replica with the biggest uptime, with a
+majority vote among replicas, or by relying on some \textit{quality metrics} describing the quality of the data. This
+process takes the name of \textit{best-guess reconciliation}.
+
+\begin{comment}
+\subsection{Query Optimization}
+
+\begin{structure}
+	\item Why do we reuse streams? - true scalability
+	\item How to reuse streams? - cosmos approach
+\end{structure}
+
+COSMOS
+
+\end{comment}
+

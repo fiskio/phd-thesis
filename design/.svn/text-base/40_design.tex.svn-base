@@ -1,0 +1,19 @@
+\chapter{System Design}
+\label{ch:system_design}
+
+\input{design/intro}
+
+\input{design/basic-components}
+
+\input{design/system-design}
+
+\input{design/query-deployment}
+
+\input{design/query-partitioning}
+
+	
+
+
+
+		
+

@@ -1,0 +1,297 @@
+\chapter{Introduction}
+
+%what is a DSPS
+Data stream processing systems (DSPSs) compute real-time queries over constantly changing streams of data~\cite{8-reqs}. A stream is a
+possibly infinite sequence of tuples, or timestamped entities~\cite{cql}. Differently than traditional databases, where
+queries are issued over stored data, in DSPSs queries are set first, letting the data flow through them. This allows the
+generation of real-time updated results based on the constantly changing available data streams. Real-time in this
+context refers to the ability of delivering results \emph{as they become available}. Stream queries are
+\emph{continuous}~\cite{cont-queries}, they process tuples as they are pushed into the system, delivering results as they are computed. 
+
+%ISSPs
+Internet-scale stream processing (ISSP) systems represent the next step in the evolution of stream processing~\cite{dissp-challanges}. 
+Similarly to how search engines make static web data useful to users, an ISSP system should reliably collect, filter and 
+process stream data from potentially thousands of data sources on behalf of many users. Such systems should support a
+large number of queries, possibly running for extended periods of time. Data should be processed in a decentralised
+fashion, distributing the computation over several datacenters.
+
+\begin{figure}[b!] 
+	\centering 
+	\includegraphics[width=0.8\textwidth]{img/mydissp.png}
+	\caption{Graphical representation of an Internet-scale stream processing system at work.}
+	\label{fig:dissp}
+\end{figure}
+
+
+In this context the notion of \emph{sensor} is not only limited to a device measuring some physical
+quantities, but refers to a more extended range of devices. \emph{Physical sensors} are devices taking measurements of
+some physical quantity at interval time, for instance a temperature sensor deployed in a sensor network, on the other
+hand a \emph{software sensor} takes measurements about non-physical events, like packets flowing through a router. \\
+
+Figure~\ref{fig:dissp} shows an ISSP at work. Sources, either physical or software, are located at different locations
+around the world (i.e. weather towers). Data streams are depicted as arrows. Several datacenters, also 
+located at different locations, are used to process these streams, in a decentralised fashion. Many users can
+concurrently issue queries, which the system tries to satisfy at the best of its possibilities, according to the
+available resources. 
+
+The purpose of this research is to investigate techniques to improve the \emph{dependability} of an Internet-scale
+stream processing system. The term dependability in this context refers to the ability of a system to withstand 
+failure and to efficiently recover from it. I plan to investigate a number of fault-tolerance techniques, which will
+allow the system to continue operating in presence of failure, gracefully degrading the quality of the returned results,
+while constantly reporting to the user the achieved quality-of-service. This techniques will be implemented and
+experimented in a research prototype system called DISSP (Dependable Internet-Scale Stream Processing).
+
+\section{Applications}
+
+The application domain for Internet-scale stream processing is large-scale monitoring, where data is abundant and
+ubiquitous. In particular, the target for this work is on applications able to tolerate a certain amount of data loss in
+the processing. Some applications, like \emph{financial trading}, do not fall into this category, as all the available
+input is necessary to produce a meaningful output. Other applications do not have such rigid constraints, and can better
+tolerate failure. For many applications \emph{an imperfect result is better than no result at all.}
+Examples of applications in this domain is \emph{environmental monitoring}~\cite{casa-lead} and \emph{Internet
+monitoring}~\cite{phi}. In both cases the amount of data produced is very large and sources are located all around the
+globe. These applications are also tolerant to \emph{approximate processing} and are able to produce meaningful results
+despite the of loss of information.
+
+Many interesting projects are being developed in the scope of environmental monitoring~\cite{neon, earthscope, casa,
+lead, testban}, and we can expect their number to grow in the future. These projects aim to better understand many
+natural processes by constantly monitoring them and collecting data on their functioning. The availability of cheap
+sensor devices~\cite{casa, sensorscope, permasense}~allow for the creation of large deployments, increasing the
+availability of data and improving its resolution. Let us take weather monitoring as an example. Storm, hurricanes and
+other meso-scale weather events are highly disruptive and difficult to forecast with precision. By deploying a large
+number of cheap weather stations~\cite{casa}, meteorologists want to gather more information and to be able to timely predict
+those weather events and mitigate their impact. Stream processing is well suited for collecting and processing this information.
+Even in the presence of some failure, like when some sources are not correctly reporting their measurements, the system is probably
+still able to make valuable predictions. The available data, in fact, might be sufficient to signal a danger condition and to
+issue a warning. 
+
+A second application in which our assumptions hold is \emph{Internet monitoring}. The guidelines to establish a public
+service monitoring the health of the Internet were sketched by the PHI (Public Health for the Internet)
+project~\cite{phi}. The authors propose to establish a collaborative infrastructure able to monitor the spread of
+malicious traffic on the Internet, in order to assess and mitigate its impact. In this infrastructure, input devices
+would be software sensors located at Internet routers, sending out statistics about the traffic flowing through them. 
+The backbone stream processing infrastructure has to be able to process a large amount of information and to issue
+alarms in real-time. Data for this application is going to be ubiquitous, being generated by monitoring devices located
+all across the Internet. The processing infrastructure is also widely distributed, as it is a project based on
+collaborative effort. The collection and propagation of measurements cannot be thought to be perfect. The most
+interesting data will be produced by nodes under attack, which will have more difficulties reporting it. The system needs to
+be able to understand the relative importance of the input data and to produce results even when not all the input data
+is collected. For these reasons, Internet monitoring is a good example of an application the could directly benefit
+from our dependable stream processing system.
+
+\section{Challenges}
+
+%% failure
+\paragraph{Dependability}Building a stream processing system at such a large scale poses some interesting challenges~\cite{dissp-challanges}.  First of all,
+\emph{failure} is going to be frequent. The system should not consider failure as a rare and transient condition,
+but as the regular operational mode. The system should be able to operate under \emph{constant partial failure}, with a
+number of resources unavailable at all times. The whole system design should be focused on handling failure, mitigating its
+effects and quantifying its impact on the achieved quality-of-service. A processing node can crash, network partitions
+can render two sites unreachable, or, more simply, there could not be sufficient resources to support the entire
+computation. All these events can be considered failures and often occur in large-scale distributed
+system~\cite{correlated-failures}. The ability of a system to withstand failure and to efficiently recover from it is
+referred to as \emph{dependability}. 
+
+%% scalability
+\paragraph{Scalability}Another important challenge arising when operating at Internet-scale is \emph{scalability}. This refers to the ability
+of the system to efficiently manage a growing amount of distributed resources. The first prototypes of stream processing
+systems employed a centralised design~\cite{stream, aurora}, in which a single entity was in charge of processing all
+the queries and all the input data. Once the number of queries and input sources became to grow, there has been a shift
+towards a \emph{decentralised} approach~\cite{borealis-design, mortar-long}. Incremental resource provisioning is
+important, in the mean of being able to add resources as the computing demand grows. A decentralised solution is more
+flexible in this regard, as the system can be expanded by simply adding new computing nodes~\cite{aurora*}. The 
+challenge for such a system is to be able to efficiently exploit this large amount of resources.
+
+
+\section{Contributions}
+
+The focus of my research is to investigate solutions to these challenges. In particular the focus will be on the
+\emph{dependability} aspects, researching efficient ways to operate under constant partial failure. 
+
+\paragraph{Dependability}The main challenges ISSP systems have to face are related to their scale: they need to reliably
+collect, process and deliver the data to the final user in real-time. 
+Conventional techniques for reliable data processing cannot easily be applied to achieve dependability in an ISSP
+system. This is due to its requirements of global scalability, of short recovery times in a real-time setting and of
+resource efficiency in a shared infrastructure. In fact, in such a large and distributed environment failure is
+going to be the common case and the system needs to constantly adjust its behaviour in order to deal with it.  I propose
+the implementation of a \emph{dependable} ISSP able to operate under failure, gracefully degrading the
+quality of the results, while giving constant feedback to the user on the achieved level of
+service. In particular, I am going to investigate the following techniques useful for improving the dependability of the
+system: 
+\begin{itemize}
+	\item \textbf{Decentralised operator deployment strategy}~In a distributed stream processing system, the operators
+composing a query are divided into groups and assigned to different computing nodes. This procedure takes the name of
+\emph{operator deployment}. I plan to investigate a new decentralised algorithm for this task. The goal, in terms of
+dependability is to find a stable deployment, which reduces the chances of failure for the query. Nodes should be chosen 
+so that they have sufficient resources to support the operator processing. Also, there should be enough bandwidth among
+them to allow the complete transmission of the data streams within the time constraints. Finally, the chosen nodes
+should have a low failure rate.
+
+	\item \textbf{Proactive replication}~If the system has enough spare resources, a way to increase the robustness of a
+query is to duplicate some of the processing, by creating redundant instances of some query operators at different
+nodes. This procedure takes the name of \emph{operator replication}. I plan to develop techniques to identify the most
+delicate operator in a query plan, in order to \emph{proactively} replicate them at deployment time. In this regard,
+there is the need for investigating decentralised techniques to allow a node, willing to replicated some operators,
+to identify the amount of spare resources available and the candidate nodes that will take part in the query processing.
+
+
+	\item \textbf{Load-balancing}~The system should also try to evenly distribute the processing effort among all participating
+nodes. At deployment time, nodes are chosen so that they have
+enough processing capabilities to support the processing. Because of changes in the stream data rates or complexity, it
+might happen that a node becomes overloaded and is no longer able to process correctly all the incoming tuples. When a
+node detects a degradation in its quality-of-service, it might decide to migrate some of its operators to another
+more suitable location. This procedure takes the name of \emph{load-balancing}. I plan to investigate \emph{reactive}
+techniques, to allow a node to recognise the overload condition and to migrate some operators to overcome it.
+\end{itemize}
+
+\textbf{Query Model}~In the scope of achieving \emph{dependability} in a Internet-scale stream processing system, there
+is the need to employ a query model that captures the quality of the
+processed data~\cite{dissp-qdb2009}. This allows the system to reason about the quality of the data, when making
+optimisation decisions. New metrics are employed to measure the performance of the
+computation in terms of quantity and quality of the information used to generate
+the result. These quantities are used by the system to make decisions about
+replication of operators and channels, in the attempt to deliver the best
+possible result to the user. They also provide the user an intuitive way of
+establishing the quality-of-service achieved by the system.
+
+\textbf{Research Prototype}~In order to test the techniques stated above, I plan to implement a research prototype of a
+\emph{dependable} distributed stream processing system. 
+Given the large number of data sources and user queries, a decentralised solution for data processing is the appropriate
+approach. A centralized solution suffers from
+scalability issues: it might become a bottleneck because of bandwidth and CPU
+limits, and it constitutes a single point of failure for the system~\cite{stream}.  
+I propose instead to employ a number of geographically distributed processing elements on
+which to place stream operators. In this scope the correct placing of operators
+and their replicas becomes crucial to build an ISSP which is both scalable and
+dependable. Even though distributed stream processing systems have been already proposed~\cite{borealis-design,
+ss-spc, mortar-long}, my goal is to explore new techniques for the accounting a management of resources, which will
+increase the dependability of the system. This research prototype, called DISSP, will be used as a testbed for my experiments.
+
+\begin{comment}
+%stream sharing
+\textbf{Stream Reuse}~Another important scalability improvement can be achieved by sharing
+intermediate streams across different queries in order to minimize the
+computational and communication cost~\cite{cosmos-short}.  When dealing with a large number of
+queries it is probable that some of intermediate results can be shared across
+different computations. Instead of allocating each query plan separately the
+system should take advantage of already running queries, trying to reuse the
+results of previously allocated operators. The contribution in this scope is to investigate better strategies for
+identifying reuse possibilities at such scale, in order to improve the processing capacity of the system.
+\end{comment} 
+
+
+\section{Document Outline}
+
+In this chapter I introduced the scope of my research. I described what an Internet-scale stream processing system is and 
+what are the challenges that arises when building a system at such a scale. I also explained what will be the focus of
+my research and its contributions to the field.
+
+In Chapter~2, I will review the state of the art in the area. I will begin by explaining what kind of applications can
+take advantage of stream processing, focusing in particular on application domains that do not require perfect
+processing in order to produce meaningful results. Then I will describe four major categories of systems. I will begin
+with large-scale monitoring systems, aiming at the construction of \emph{global sensing infrastructures}. Then
+I will continue with the discussion of the \emph{stream processing} paradigm, in both its \emph{centralised} and
+\emph{distributed} approaches. Then I will discuss some systems designed to compute \emph{large-scale aggregations},
+with particular focus on those handling imperfect computation and approximated results. 
+
+In Chapter~3, I will explain what have been the proposed models for expressing continuous queries. I will first take
+into consideration the \emph{Continuous Query Language~(CQL)}, a declarative language which has become the \emph{de~facto} standard. 
+Then, I will present today's \emph{de~jure} standard:~\emph{StreamSQL}. This is an extension to CQL, which fixes some subtle
+issues in handling concurrent tuples. I will also give some details about the \emph{Boxes-and-Arrows} query model. This
+takes a more graphical approach to query expression, and was employed by important systems such as Aurora and Borealis.
+
+In Chapter~4, I will present our work concerning the development of a \emph{quality-centric data model} for distributed
+stream management systems. Our proposal is to enhance tuples in data streams with three new attributes: \emph{weight,
+recall} and \emph{utility}. I will explain how these metrics can be used by the system to improve its \emph{dependability} and to
+report to the user its achieved \emph{quality-of service}. 
+
+In Chapter~5, I will present some future directions for my research. In particular I will discuss ideas on how to
+improve the dependability of an ISSP system. I will present some considerations on the design of a new decentralised
+\emph{operator placement} algorithm. I will describe some approaches to replica management: how to \emph{proactively
+replicate} the most important operators in a query and how to \emph{react to failure} to reduce its impact.
+At the end of this chapter, I will also provide an architectural overview of DISSP, our prototype \emph{dependable internet-scale stream processing} system.
+I will also present some considerations on its implementation and evaluation procedures.
+
+Chapter~6 concludes this report, providing a summary of the material presented. At the end of this document I also
+included a tentative schedule with the research agenda and timeline for the next months until the end of my PhD.
+
+\begin{comment}
+\subsection{Real-time Urban Transport Monitoring}
+\todo{expand}
+
+One area where they can be successfully employed is real-time urban transport
+monitoring.  Weather and pollution sensors are being deployed more and more in
+our cities and there are also projects to embed these sensors on buses and other
+forms of public transportation~\cite{cartel}\cite{citysense}. While traditional
+monitoring has been largely an off-line procedure, attaching these sources to a
+stream processing system would allow real-time monitoring of weather and
+pollution in a city.  The possibility of obtaining a continuous flow of these
+up-to-date measurements opens the door to a wide range of reactive applications.
+For instance, traffic could be diverted in order to avoid the accumulation of
+fine particles in certain congested areas, traffic lights patterns could be
+modified to ease the flow on road segments where pollution level are above the
+alarm threshold, especially in densely populated areas. In general the
+possibilities of applying the stream processing model in the field of
+Intelligent Transport Systems seem very promising. 
+
+
+\subsection{Meso-scale Weather Forecasting}
+\todo{expand}
+
+Another field that would benefit from stream processing is meso-scale weather
+forecasting. There has been a great deal of effort to develop a framework for
+the observation of weather on a large scale and to develop prediction models to
+react in real-time to meso-scale weather events, like floods, tornadoes, and
+winter storms~\cite{lead}. These kind of applications are especially suited for
+the large-scale stream processing infrastructure we envision. First because of
+their real-time nature: a speedy reaction to a catastrophic event is key to the
+mitigation of its impact. That is why it is important to be able to gathered the
+sensor information, quickly process it and deliver the results to the user. This
+leads to the second motivation: scalability. When working at such a large scale,
+the amount of data is so large that it becomes very problematic to process it in
+a centralized fashion. A distribution approach is definitely more suited,
+allowing the computation to be shared by many computing sites. Traditionally the
+computation has been offloaded to a Grid. What we propose is similar: a
+federated resource pool of processing nodes, with a number of geographically
+distributed sensor networks feeding it with their measurements.  On such an
+infrastructure every user could exploit the incoming data and run its own
+computation over many different classes of sensors. This would be particularly
+helpful in the scope of climate research, since it would allow researchers from
+all over the world to share data and computing power.
+
+\subsection{Internet Telescopes}
+\todo{expand}
+
+It is important to note that a stream is only a flow of timestamped data, and
+that it does not need to come from a physical sensor.  This means that stream
+processing can also be employed to process non physical data. Traditionally
+stream processing has been employed for network anomaly detection and in general
+the study of cyber attacks. For example it has been used to detect malicious
+nodes on a network.  Internet telescopes~\cite{internet-telescope} are a class
+of application that would benefit from distributed stream processing, since
+their purpose is to monitor a flow of events (like the establishment of a
+connection), which is potentially very large, and to process it to expose
+malicious patterns. 
+
+\subsection{Click Analisys}
+\todo{expand}
+
+Another example of application processing data not coming from a traditional
+sensor network is click analysis.  Large e-commerce website would like to deeply
+understand the behaviour of their customers. To do so, they rely on the analysis
+of their interaction with the website. Where do they click more often? How long
+does it take to make a decision about the purchase of a product?  Where does a
+customer click and when? All these questions are of vital importance for the
+marketing branch of any big enough e-commerce website.  Understanding the user
+actions is key improve the quality of the advertisements and to ultimately
+increase profits.  Unfortunately the amount of events generated by all the users
+is very large and it's often not possible to process it in the traditional way.
+The logging of all the events for all the users has a very high computational
+cost and it's also very demanding in terms of needed storage.  On the other
+hand, distributed stream processing would allow to process the events in real
+time and to store only the intermediate or final results. In this field stream
+processing opens the doors of a new class of applications which will allow for a
+much finer grain monitoring of user activities.
+\end{comment}
+
+ 

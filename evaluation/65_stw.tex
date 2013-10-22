@@ -1,0 +1,33 @@
+\section{Source Time Window}
+\label{sec:eval_stw}
+
+The purpose of this set of experiments is to evaluate if the Source Time Window (STW), introduced in
+Section~\ref{sec:stw} is a good approximation of the theoretical concept of Source Information Tuple
+Set, introduced in Section~\ref{sec:assumptions}. In a real system it is impossible to know exactly what
+tuples will contribute to the creation of a result, thus there is the need for an approximation. 
+The idea is to compute \sic values over a large enough time-window that exceeds of at least an order of
+magnitude the end-to-end latency of the queries. If the chose STW is too short in fact, in a normally
+loaded system, it would result in a \sic value heavily fluctuating around 1. 
+
+We evaluate the STW approximation as we increase the processing and network end-to-end latency.
+To this end, we gradually grow the number of query fragments from one
+to six---thus increasing the processing delay---and we deploy each fragment in a separate Emulab 
+node---thus increasing the network latency---while we keep the time-window
+fixed to 10~seconds. Overall, we perform six
+experiments (\ie one for each number of query fragments) and for each we deploy
+10 queries from each type of the complex workload mix. In all cases, \sys performs
+perfect processing and the average result SIC is shown in Table~\ref{table:time-window}.
+Results show a very low fluctuation of values, well within the expected range, thus meaning that the STW
+approximation implemented in the \sys system correctly captures perfect processing in all cases.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|c||c|c}
+    \hline
+        fragments & SIC$\pm$std & fragments & SIC$\pm$std \\ \hline
+	1 & 1.032$\pm$0.008 & 2 & 1.036$\pm$0.011 \\ \hline
+	3 & 1.020$\pm$0.066 & 4 & 1.018$\pm$0.069 \\ \hline
+	5 & 1.036$\pm$0.034 & 6 & 1.009$\pm$0.063 \\ \hline
+  \end{tabular}
+  \caption{Time-window approximation for various fragments.}
+  \label{table:time-window}
+\end{table}

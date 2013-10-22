@@ -1,0 +1,69 @@
+\section{Design Approach} 
+\label{sec:design}
+
+%\mnote{4.1 provides the design requirements, tying the overall design and architecture with the needs of
+% the model from Chapter 3}
+
+The design of the DISSP prototype system follows the ideas behind the quality-centric data model
+from the previous chapter. 
+The DISSP system places the \sic quality metric at its core and uses it to reason about the
+quality of processing achieved by queries. 
+Every stream is augmented with a \sic value and operators automatically calculate the
+new values for their output.
+Using \sic values, the system is able to operate under overload, reasoning about the performance of
+queries and making intelligent \mbox{load-shedding} decisions.
+%When deciding the design of the system, the choice arose about how to implement \emph{tuples} and
+%\emph{operators} in an efficient way. The requirements followed in this process were those of
+%\emph{performance}, \emph{extensibility} and \emph{efficiency under overload}. 
+
+\textbf{Efficiency under overload.} 
+The system achieves \emph{efficient processing} of tuples and operators. Even though it
+is designed to handle resource overload, its occurrence is mitigated as much as possible. 
+In an overload condition, having to discard some of the input data is always
+undesirable to the user. Especially since the system is designed to operate in resource constraint 
+environments, it should try to maximise its throughput so that the limited available resources
+can be fully exploited. 
+% Overload is considered to be the normal running condition of the system and not a transient condition to
+% be overcome. xt
+Under an overload condition, the efficiency of the system is inversely proportional to the quantity of
+load-shedding so that every increase in system performance leads to a decrease in the
+amount of input to be discarded, and thus to an increase of the \sic values of the computed tuples.
+
+\textbf{Meta-data management.}
+The DISSP system employs the \sic metric to reason about its performance under overload. The \sic value
+of the output tuples delivered to the user is an indicator of the amount of load-shedding
+experienced by that query. It provides a mechanism for the system to track the occurrence of failure and
+to estimate its impact on the quality of the processed data. It also provides feedback to the user about the
+quality of processing achieved by the executed queries.
+Every tuple is assigned a \sic value indicating the amount of information that led to its creation.
+The mechanism for \sic metric calculations is part of all operators that, after processing, assign a
+new \sic value to their output tuples. 
+Every time a tuple is lost, either due to failure or due to load-shedding, the \sic value of that query
+is decreased.
+
+\textbf{Flexible \mbox{load-shedding} policy.}
+The use of the \sic values also allows the DISSP system to employ flexible policies when making
+load-shedding decisions. When deciding which tuples should be discarded, their \sic values provide
+valuable information to the load-shedding component. A perfect value indicates that a tuple was produced
+in the absence of failure, while a lower value gives a measure of the amount of lost information. 
+Using this information, a load-shedder can decide to prioritise some queries over others,
+reasoning about the impact that tuple loss would have on their performance. It uses the local
+decisions at every processing node to implement a global shedding policy.
+Chapter~\ref{ch:load_shedding} focuses on the implementation and testing of a \emph{fair
+policy}, which tries to minimise the difference in \sic values experienced by all queries running in
+the system.
+
+
+
+\begin{comment}
+\paragraph{Extensibility} The second main design choice has been \emph{extensibility}. Together with a
+set of traditional operators taken from the relational database world, such as Average, Filter, Top-K and so forth, a complete system
+should easily allow the implementation of \emph{custom operators}. Even though a great deal of processing
+can be carried out with a limited set of operators, many times it is necessary to introduce some new
+operators, designed according to the user needs. For instance when dealing with the processing of social
+media data, a query could deal with the sentiment analysis of the content, thus requiring the use of
+Natural Language Processing operators. The same is true for financial operators implementing proprietary
+trading algorithms. For these reasons it was decided to provide the implementation of some generic
+operators while allowing the easy implementation of new ones. 
+\end{comment}
+

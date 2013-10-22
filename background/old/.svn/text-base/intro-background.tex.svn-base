@@ -1,0 +1,34 @@
+
+\section{Problem Statement}
+
+	\subsection{Global Sensing Infrastructure}
+
+	\subsection{Real-time Twitter Analisys}
+
+
+\section{Introduction to Stream Processing}
+	
+	\subsection{System Model}
+
+	\subsection{Data Mode}
+
+	\subsection{Query Model}
+
+
+\section{Dependability}
+
+	\subsection{Consistency Model}
+
+	\subsection{Replica Model}
+
+	\subsection{Deployment Strategy}
+
+
+\section{Approximate Processing}
+	
+	\subsection{Approximate Operators}
+
+	\subsection{Load Shedding}
+
+	\subsection{Gossip Aggregates}
+

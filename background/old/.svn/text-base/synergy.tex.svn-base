@@ -1,0 +1,11 @@
+\subsection*{Synergy}
+\label{sec:synergy}
+
+\begin{structure}
+	\item System Description
+	\item ...
+	\item Considerations
+\end{structure}
+
+Synergy: Sharing-Aware Component Composition for Distributed Stream Processing
+Systems \cite{synergy}

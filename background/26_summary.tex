@@ -1,0 +1,26 @@
+\section{Summary}
+
+This chapter presented the relevant background to understand the work presented in this thesis.
+It started with a description of a range of stream processing applications, in particular those that have
+to deal with large amount of data and can tolerate a certain degree of approximation in their results.
+Environmental monitoring is crucial for the timely prediction of possibly disruptive weather phenomena
+and for the long term understanding of world-wide climate change. Social media analysis deals with the
+processing of user-generated content in online social networks, which is a valuable tool for researchers
+to investigate the spread of information through social cascades.
+We also presented the most important query models used to express queries in stream processing systems:
+the continuous query language (CQL), which extends the relational model for the processing of unbounded
+streams, and the boxes-and-arrows model, which employs a visual paradigm to compose queries by creating a
+network of operators.
+After that, we introduced a system model for stream processing, presenting examples of systems that
+pioneered centralised as well as the distributed processing. When dealing with a distributed environment,
+the correct allocation of resources across processing sites is crucial. In this regard, we described
+efficient resource allocation techniques for both data centre and wide-area deployments.
+A major focus of this work is on techniques for the management of overload, in particular
+\mbox{load-shedding}.
+An overview of the most relevant strategies to discard input data efficiently was provided emphasising
+the different issues related to \mbox{load-shedding}.
+Finally, there was a description of techniques used to avoid and recover from failures, with a discussion
+on the possible consistency and replication models.\\
+The next chapter will describe the data model developed in the scope of this thesis which includes a
+quality metric that can be used to augment streams and allow the system to detect and measure the effect
+of overload. 

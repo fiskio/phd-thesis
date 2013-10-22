@@ -1,0 +1,10 @@
+\subsection*{TelegraphCQ}
+\begin{structure}
+	\item System Description
+	\item Discsussion
+\end{structure}
+
+TelegraphCQ~\cite{telegraphcq} is another centralised stream processing engine, which presents some original
+architectural approaches. It builds on a previous work, called Telegraph and adds to it support for continuous queries.
+Telegraph is composed by an extensible set of operators, or dataflow modules, that produce and consume records similarly
+to ´´

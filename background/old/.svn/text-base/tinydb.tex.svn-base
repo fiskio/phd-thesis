@@ -1,0 +1,12 @@
+\subsubsection*{Relational Approach}
+ \notemf{Can stay here as they are targeting sensor networks, or can be moved under DSPS}
+\begin{structure}
+	\item what have been the relational approaches to sensing? - TinyDB, Coguar
+	\item what did they achieve?
+	\item what can enhance them? - better computing infrastructure, stream processing
+\end{structure}
+
+Query Processing in Sensor Networks \cite{qpsn}
+[TinyDB] The Design of an Acquisitional Query Processor For Sensor Networks \cite{tinydb}
+[Couguar] The Cougar approach to in-network query processing in sensor networks \cite{coguar}
+

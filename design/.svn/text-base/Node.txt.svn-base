@@ -1,0 +1,61 @@
+NODE
+----
+
+	* registerQuery()
+	
+	
+	* connectQuery() 
+	
+		It connects all the RemoteReceiver objects of the query. These are the downstream parts of an 
+		inter-node network communication. They connect to their upstream counterparts, opening a socket
+		used to channel a stream of tuples. If the upstream node is not available, it waits and retries 
+		a certain number of times.
+		
+	* waitTillReady()
+	
+		Called after connectQuery(), it checks if all connected RR are actually ready to send data.
+		For each of them, it sends a probe in the form of http GET request. When the upstream node 
+		receives the GET request it starts sending tuples. At this point, when tuples are 
+		
+		
+		Format of GET probe request:
+		
+		GET /QUERY_querymem2:0/OPERATOR_FIDmem2 DISSP OPERATOR_memRR1020 QUERY_queryMopK10:QUERY_queryMopK10_1
+		
+		QUERY_querymem2:0	-> query name
+		OPERATOR_FIDmem2	-> operator to connect to
+		DISSP				-> token signaling connection from processing node
+		OPERATOR_memRR1020	-> operator asking to connect (RR?)
+		
+		QUERY_queryMopK10:QUERY_queryMopK10_1  -> complete query id (contains query name + subquery?) 
+		
+		
+Status report:
+--------------
+
+	Every node periodically reports some metrics about its operational level to the Coordinator, which then
+	propagates them to the Oracle. (other nodes too?)
+	
+	SET_ALIVE: sent to the Oracle. It signals that the node is up and running.
+	
+	
+	LAOD_INFO: sent to the Oracle. It contains info about 
+	
+		 capacity : number of tuples that processed by the node before overload (...where is it computed?)
+		 
+		 lastOverload : last time the node performed load shed.
+		
+		 ot.getLoadStatStr() : number of metrics (...everything should be contained in this function) 
+		 
+		 	ORFinal
+			WSCFinal
+			TPCFinal
+			droppedFinal
+			
+			
+	REPORT_QUERY_GU: sent to the Oracle by Coordinator. It contains info about the local SIC value. (...should be renamed)
+	
+	
+	REPORT_NODE_GU: sent to the Oracle. It contains info about the average SIC value loacally achieved by the node.
+	This is triggered at interval time by the StatisticsManager. 
+			

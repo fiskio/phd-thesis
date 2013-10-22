@@ -1,0 +1,304 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+%what is a DSPS
+Data stream processing systems (DSPSs) compute real-time queries over continuously changing streams of
+data~\cite{8-reqs}. A stream is a potentially infinite sequence of tuples, or timestamped
+entities~\cite{cql}. Differently from traditional databases, in which queries are issued over stored
+data, in DSPSs queries are issued first and results are generated as new data enters the system.
+This allows the output of real-time updated results based on changing data
+streams. Real-time in this context refers to the ability of delivering results \emph{as they become
+available}. Stream queries are therefore \emph{continuous}~\cite{cont-queries}.
+
+% ISSPs
+Internet-scale stream processing (ISSP) systems represent the next step in the evolution of stream
+processing~\cite{dissp-challanges}.
+Similarly to how search engines make static web data useful to users, an ISSP system reliably
+collects, filters and processes stream data from potentially thousands of data sources on behalf of many
+users. Such systems should support a large number of queries, possibly running for extended periods of
+time. Data should be processed in a decentralised fashion, distributing the computation over several data
+centers.
+
+In this context, the notion of \emph{sensor} is not only limited to a device measuring some physical
+quantity but also refers to a more extended range of devices. \emph{Physical sensors} are devices taking
+measurements of some physical quantity at interval time, \eg a temperature sensor deployed in a
+sensor network. On the other hand, \emph{software sensors} take measurements of non-physical events,
+such as social media events.
+
+Figure~\ref{fig:dissp} shows the deployment of an ISSP system. Sources, either physical or
+software sensors, are located at different locations around the world (\ie
+illustrated as weather towers). Data streams are depicted as arrows. Several data centres, also located
+at different locations, are used to process these streams in a decentralised fashion. Many users can concurrently issue queries, which the
+ISSP system tries to satisfy using the available processing resources.
+\clearpage
+\begin{figure}[t!] 
+	\centering 
+	\includegraphics[width=0.8\textwidth]{img/tesi/mydissp2} 
+	\caption{Graphical representation of an Internet-scale stream processing system.}
+	\label{fig:dissp}
+\end{figure}
+We can expect the rise of globally distributed ISSP systems in the future, in which several parties
+contribute processing resources to be shared by all users. Such federated resource pools join clusters
+distributed across the globe, each administered by a local authority. Users deploy queries processing data from sources located all over the world in real-time. MaxStream~\cite{maxstream} is a
+federated stream processing infrastructure designed to support real-time business intelligence
+applications, and Cosm~\cite{cosm} is a system aiming to construct a world-wide network of
+intelligent devices for the \mbox{Internet-of-Things}.
+The amount of available input data renders the provisioning of processing resources
+challenging because it may be too costly to purchase or rent the necessary infrastructure. 
+A world-wide federation of resources allows the creation of large infrastructures, in which
+ users take advantage of each others processing capabilities when needed.
+%in time of need, while allowing the use of theirs when unused. 
+
+% -------------------------------------------------------------------------------------------------------
+
+\section{Applications}
+
+A federated stream processing system can support the concurrent execution of a
+large number of queries, submitted by multiple users. 
+% The amount of available input data renders the provisioning of the processing resources
+% difficult as it may be too costly to purchase or rent the necessary infrastructure.
+The variety of queries that a stream processing system must support is broad and can be the basis for a
+large number of applications.
+Among these, two interesting application domains, which will be used as examples, deal with queries
+analysing \emph{sensor data} and \emph{social media} streams.
+
+
+\paragraph{Sensor data.} 
+Advances in cheap micro-sensing technology led to an increase in the availability and resolution of
+sensor data.
+In the future, the number of sensing devices will reach a point at which everything of material
+significance is ``sensor tagged'', reporting its state and position in real-time.
+One area that has recently flourished in this field is environmental monitoring. 
+Understanding how and why the climate is changing is a scientific priority and will be crucial
+to plan future policies.
+Sensor networks can also be employed to monitor weather phenomena that are potentially
+catastrophic, such as hurricanes and tornadoes. 
+The creation of large-scale weather sensing infrastructures allows to identify
+these phenomena before they become disruptive, thus enabling an early response to mitigate their impact.
+
+\paragraph{Social media.} 
+Social media represent a large source of user generated data, which offers new interesting	
+possibilities for data mining. 
+Data streams are populated with status updates, location check-ins, photos, videos, etc. This results
+in an ever increasing influx of everyday experiences that users decide to share. 
+The amount of available data is vast and opens the doors to a new class of streaming
+applications.
+Dealing with the totality of the generated data may be too costly, and the analysis of samples, capturing
+a certain percentage of the original stream, may be sufficient.
+Discarding a fraction of the input data allows a substantial reduction of the processing
+resources needed to execute queries, thus reducing operational costs.
+What is important is that this reduction in quality of the generated results is quantified and reported
+to the user. 
+This leads to a trade-off between the processing cost and the quality of processing achieved by
+the system.
+
+In this application domain, a result may
+be acceptable even if imperfect, as long as there is an indication of the degree of quality
+degradation. The judgement about the quality of the delivered results should be left to the end user,
+while the system should provide continuous feedback about the achieved quality of processing.
+% -------------------------------------------------------------------------------------------------------
+
+\section{Problem Statement}
+
+In certain domains, the over-provisioning of a stream processing system is not possible, such as
+in the case of a federated resource pool, or it may be too costly, such as in a cloud deployment.
+When the amount of resources needed for perfect stream processing is not available, 
+it may be possible to deliver meaningful results by processing only a subset of
+the input data.
+In many cases, an imperfect result is better than no result at all. 
+
+
+The constant increase in data availability allows the computation of a richer variety of stream
+processing queries but also renders the provisioning of the system more difficult and costly.
+A large amount of input data requires processing resources that may not be available to the user or
+too costly to purchase.
+% The cost of purchasing and administering the needed processing infrastructure can be too high and outside
+% the financial possibilities of a user. 
+In order to obtain the necessary processing capacity without having to own the entire infrastructure, it
+is possible to opt either for a \emph{federated resource pool} or for a \emph{cloud deployment}.
+
+In a federated resource pool, many parties contribute their resources to create	 a larger shared
+infrastructure, which can be used by all according to their needs. In such a scenario, each institution
+is only responsible for the costs of purchasing and administering their own processing resources, while
+being able to use the global set of resources. 
+% An example of such a shared infrastructure is
+% PlanetLab, where many academic institution joined a consortium and created a geographically distributed
+% general purpose processing infrastructure that spans the entire globe. 
+These kinds of deployments, in which many parties pool together their resources, are subject to a
+phenomenon similar to the \emph{tragedy of the commons}~\cite{Hardin68}. If every party tends to
+consume more resources than what they contributed, the amount of available resources becomes scarce.
+%TODO
+%Another problem with such deployments is that, when resources are scarce, it is only possible to
+%increase the provisioning of the local domain, while the other processing sites are under the control of
+% third parties.
+
+Another way to acquire a large amount of processing resources is to rent them on demand~\cite{cloud}. 
+In a cloud deployment model, the required processing nodes are rented from a cloud
+provider for the time needed. In this way, the cost of purchasing and maintaining the infrastructure
+is outsourced, and the user pays only for the incurred resource usage. 
+This allows the acquisition of a large processing capacity for a reasonable cost.
+The amount of resources needed, however, can be large and the rental cost may become too expensive. 
+Therefore, even if a user opts for a cloud deployment model, perfect
+processing may not be feasible due to these financial constraints.
+
+The loss of information that determines the quality reduction of results is due to either the loss of
+tuples or their intentional discarding.
+Processing nodes can fail and some may become temporarily unavailable due to a network failure,
+thus causing a loss of a portion of the processed tuples. 
+In these cases, the stream processing system should track the loss of information and
+quantify its impact on the quality of the results. Therefore, the user should be provided with a quality
+metric that reports the achieved quality of processing so that they can assess the ``goodness'' of
+the provided output.
+
+A common reason that leads to the reduction of processing quality is the deliberated
+shedding of a fraction of tuples. This happens when the rate at which tuples are received by a
+processing node is greater than the rate at which it is able to process them. The throughput of the node
+saturates and cannot increase any more. The excess tuples need
+to be discarded, which is referred to as \emph{\mbox{load-shedding}}~\cite{load-shedding}.
+In order to overcome an overload condition, it is possible to increase the amount of processing
+resources but, as explained above, this may not be feasible. Instead, it may be acceptable to sustain
+the overload condition if an acceptable quality of the results can be maintained.
+
+In a resource constrained deployment with a large number of users and queries, an efficient allocation of
+resources becomes critical. The problem is how to allocate resources fairly so that all queries achieve
+a similar quality of processing, regardless of their nature. The system should be able to reason
+about the relative performance of queries so that, when it has to perform \mbox{load-shedding}, it
+discards tuples in a fair fashion. Having a metric that captures the achieved quality of processing for
+all queries allows the system to implement a shedding policy that penalises queries fairly.
+In this way, the quality of the delivered results is equalised, and queries receive an optimal amount of
+processing resources.% according to their needs. 
+
+This thesis attempts to address a set of research questions.
+Is it possible to track the loss of information and report it to the user? In a DSPS is there a
+correlation between the quality of the processing and the correctness of the delivered results? When the
+DSPS has to choose which tuples to discard in an overload condition, is it possible to design a fair
+resource allocation so that all queries experience the same quality of processing? In a cloud deployment, in which
+resources are rented according to demand, what is the trade-off between the cost of processing and the
+quality of the delivered results? 
+
+% -------------------------------------------------------------------------------------------------------
+
+\section{Quality-Aware Stream Processing}
+
+A federated stream processing system that operates under constant overload has to be designed with the
+ability to evaluate its achieved quality of processing. When
+the amount of input data exceeds the processing capabilities of a node, the system has to discard a given amount of
+input tuples. By discarding new tuples for a certain amount of time, the load on the
+system can be reduced and the overload condition overcome. Such an approach, however, does not take into
+account the nature of the discarded tuples. 
+
+When overload is not an exceptional condition but is considered normal,
+the system needs to be able to reason about the information carried by the individual tuples of each query. 
+This allows the system to implement a \emph{semantic} shedding policy, in which the tuples to be
+discarded are chosen according to a given set of rules.
+By augmenting tuples with a metadata value expressing their importance to the query computation, it is
+possible to select tuples based on their information content and avoid random data loss. 
+This thesis proposes a new quality metric to quantify the amount of information captured by a data tuple,
+thus tracking the degradation of processing quality due to overload.
+
+% To address these challenges, this work proposes two main contributions: the introduction of a
+% quality-metric called \emph{Source Information Content (\sic)} and its use for the implementation of a
+% \emph{semantic shedding policy} with a fair allocation of resources.s crucial
+The choice of what tuples should be discarded and what should be kept affects the quality of the
+results. A federated stream processing system has to decide which tuples are more important for the
+processing and prioritise them over other tuples of lower quality. Not all tuples contain the same
+amount of information and thus have a different value to the query. For example, a tuple containing a
+value aggregated over a large number of sensors is likely to be more valuable than a tuple containing a single sensor reading. The system should
+be able to reason about the information content of tuples in order to identify the most valuable tuples to
+be spared from shedding. To do so, we introduce a \emph{quality metric} that captures the
+quantity of information that went into the creation of a tuple and thus its value. 
+Using this metric, the system is able to implement a \emph{semantic shedding policy}, which is based on
+the quality of tuples and retains the most valuable tuples for the computation.
+
+% -------------------------------------------------------------------------------------------------------
+\section{Contributions}
+\vspace{-3pt}
+\paragraph{SIC quality metadata metric.}
+In order to allow the system to reason about the achieved quality of processing, this thesis
+proposes a quality metric called \emph{Source Information Content (\sic)}. 
+It provides an estimate of the amount of information contained in a tuple and
+thus its importance for the query results. 
+It is added to streams in the form metadata and its value is calculated by the query operators.
+The system uses the \sic metric to implement intelligent resource allocation policies.
+Chapter~\ref{ch:data_model} introduces the quality-centric data model for federated stream processing
+system based on the \sic metric. It presents the assumptions behind the \sic metric and explains
+how it is calculated.
+\vspace{-3pt}
+\paragraph{Semantic quality-aware load shedding.}
+When an overload condition is considered normal, it becomes important to choose intelligently which input
+tuples to discard during \mbox{load-shedding}. 
+If the rate at which tuples are received is higher than the rate at which they can be
+processed, a node has to discard a certain fraction of its input
+tuples. 
+Augmenting streams with the \sic quality metric provides an indicator of the amount of
+information captured during the creation of a tuple, thus quantifying its importance to query processing.
+When performing \mbox{load-shedding}, the system can leverage this knowledge to realise a semantic
+load-shedding policy (\ie an algorithm that chooses the set of tuples to discard according to
+specific criteria). 
+Chapter~\ref{ch:load_shedding} presents the design and implementation of a fair load-shedding policy,
+which tries to allocate system resources proportionally to the requirements of queries so that the
+achieved quality of processing is similar for all queries.
+\vspace{-3pt}
+\paragraph{Prototype system design.} 
+The concepts introduced by the quality-aware data model have been realised in the \sys stream processing
+prototype system. 
+This system is designed to make use of the \sic quality metric to
+operate under overload while tracking the quality of processing achieved by each query. 
+The system implements a semantic load-shedding policy that provides a fair amount of resources to all
+queries.
+The prototype is described in Chapter~\ref{ch:system_design}, which shows how the basic concepts of the
+data model are realised. It presents the system-wide components interacting at a high level as well as
+the low level architecture of each processing node.
+\vspace{-3pt}
+\paragraph{Experimental evaluation.}
+We report results on the correlation between the degradation of \sic values and the
+correctness of query results. Even though the \sic quality metric is not designed as an accuracy metric,
+for many aggregate queries, there is a good correlation between \sic values and correctness.
+Having introduced semantic load-shedding policies, we investigate the advantages of employing the \sic
+quality metric for \mbox{load-shedding}. In particular, we compare a random shedder and the fair shedding
+algorithm introduced in Chapter~\ref{ch:load_shedding}. We find that the fair shedding policy
+leads to better resource allocation among queries for many classes of queries.
+% Chapter~\ref{ch:data_model}, when presenting the quality-centric data model and the \sic metric,
+% introduces the concept of \emph{Source Information Tuple Set}. This is an abstract entity that was
+% approximated with a \emph{Source Time Window} when implementing the prototype. A set of experiments was
+% designed and validated the hypothesis that the source time window construct represents a good
+% approximation of the source information tuple set.
+
+% A set of experiments was also designed to test if some of the theoretical constructs that have been
+% introduced by the data model can be implemented using an approximation and if this is good enough to be
+% employed.
+Finally, we explore the correlation between \sic degradation and cost. In
+this scenario, the user voluntarily accepts a reduction of result quality in order to reduce the amount
+of required resources and thus the cost of a cloud deployment. Our results show that there is a trade-off between a reduced \sic value of results and the costs
+of renting cloud resources.
+
+% -------------------------------------------------------------------------------------------------------
+\section{Thesis Outline}
+
+The rest of this thesis is organised as follows. Chapter~\ref{ch:background} presents the background
+material for this research work. It describes some applications of stream processing, focusing on
+those that can tolerate imperfect processing. It introduces different streaming data models and the
+basic concepts of stream processing. It presents different approaches for overcoming overload, focusing
+on \mbox{load-shedding} strategies.
+
+Chapter~\ref{ch:data_model} introduces our quality-centric data model, in which streams are augmented
+with the \sic metadata metric. It states the assumptions used to derive the quality metric and presents
+an overview of the different categories of queries. The chapter ends with the formalisation of the model
+and some examples of its application.
+
+Chapter~\ref{ch:system_design} presents the design of the \sys stream processing system, a research
+prototype that implements the proposed quality-centric data model. It explains how the abstract concepts
+from the the model can be implemented as a part of a real-world system. We describe the design of the
+prototype and show how the \sic metric is calculated and used.
+
+Chapter~\ref{ch:load_shedding} focuses on overload management by describing our approach for semantic
+fair \mbox{load-shedding}. It introduces the concept of fair resource allocation among
+queries and of a semantic load-shedding policy that implements it. It then describes the algorithm used
+to discard tuples on overloaded nodes so that all queries achieve a similar \sic value for their results.
+
+Chapter~\ref{ch:evaluation} presents a set of experiments designed to evaluate properties of the
+\sic quality metric. It investigates its correlation with the accuracy of results and compares a random
+shedding policy with our proposed fair shedding algorithm. Finally, it looks at the trade-off between
+cost and \sic value degradation.
+
+Chapter~\ref{ch:conclusion} concludes the thesis and includes a discussion of future research.

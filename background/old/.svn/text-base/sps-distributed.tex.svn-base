@@ -1,0 +1,7 @@
+\section{Distributed Stream Processing Systems}
+\label{sec:sps-distributed}
+
+\input{background/intro-dsps}
+
+\input{background/systems-dsps}
+\newpage

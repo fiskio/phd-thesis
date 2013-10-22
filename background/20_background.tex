@@ -1,0 +1,55 @@
+\chapter{Background}
+\label{ch:background}
+
+% PIZZONE INTRO
+In recent years, there has been a growing demand for applications capable of processing high-volume data
+streams in real-time~\cite{8-reqs}. These stream-based applications include, among others, financial
+algorithmic trading~\cite{streambase-algo}, environmental monitoring~\cite{swissexp} and the real-time
+processing of social media events~\cite{social-networks}.  
+This research work focuses on the issues arising when the amount of input data
+exceeds the processing capabilities of the system. In this scenario, it is necessary to employ
+techniques that overcome an overload condition and keep delivering results in a timely fashion. 
+The system should gracefully degrade the correctness
+of the computed results, following the principle that an approximate result is better than no
+result at all. 
+
+Many classes of applications do not require perfect results at all times. Examples are
+environmental monitoring and social media analysis. These application domains are the most suitable to be operated
+under overload as they are able to tolerate a certain degree of approximation in the results. They deal
+with large sets of input data that may require an extremely large amount of processing resources,
+possibly beyond what is available to the user. In many cases, it is possible to trade the correctness of
+results against a reduction of the cost for the processing infrastructure.
+
+Overload is a particular kind of failure because an excessive amount of data can render a
+stream processing system unusable. The management of overload can be achieved mainly with two
+techniques: \mbox{load-shedding} and approximate operators. \mbox{Load-shedding} is the process of
+deliberately discarding a certain percentage of the input data. The correct execution of load-shedding,
+(\ie choosing the right set of tuples to be discarded, can have a great impact on the quality of the computed result).
+In addition, it is also possible to reduce the complexity of operators, employing approximate versions
+that present a similar semantic but pose a significantly lower computational cost.
+
+%\todo{add outline chapter}
+
+%--------------------------------------------------------------------------------------------------------
+
+\input{background/21_applications.tex}
+
+%--------------------------------------------------------------------------------------------------------
+
+\input{background/22_query_models}
+
+%--------------------------------------------------------------------------------------------------------
+
+\input{background/23_system_model}
+
+%-------------------------------------------------------------------------------------------------------- 
+       
+\input{background/24_load_shedding}
+
+%--------------------------------------------------------------------------------------------------------    
+
+\input{background/25_failure}
+
+%--------------------------------------------------------------------------------------------------------					
+\input{background/26_summary}	
+

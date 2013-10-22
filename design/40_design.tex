@@ -1,0 +1,55 @@
+\chapter{DISSP Design}
+\label{ch:system_design}
+
+This chapter introduces the design of the DISSP system, a prototype stream processing system developed to
+implement and evaluate the quality-centric data model described in the previous chapter. 
+The chapter describes some of the novel features of the design and its implementation.
+It shows how the system employs the Source Information Content (\sic) metric to \emph{perform efficiently
+under overload} and to \emph{provide feedback} to the user about the achieved quality of processing of
+queries.
+
+The system is designed from the ground up to be distributed, allowing the processing of queries to
+span multiple compute nodes.
+It was particularly targeted at environments with a \emph{constrained amount of resources} that can not
+easily be scaled. Examples of such deployment settings include \emph{federated resource
+pools} with different authorities administering different processing sites; or \emph{cloud deployments}
+in which the resources are rented on demand and it may be more cost effective to reduce the
+amount of processing resources voluntarily, trading an acceptable reduction in the correctness of results
+for a substantially lower operational costs. 
+
+\emph{Overload} is assumed to be the normal condition of operation for the DISSP system and not a
+transient, rare event. 
+The \sic values of tuples are used to quantify their importance so that the system can perform an 
+\emph{intelligent selection} of which tuples to shed. This allows the creation of \emph{flexible shedding
+policies}, as will be shown in the next chapter.
+This chapter describes the design choices made to provide a reliable and efficient
+processing of queries in such a hostile environment.
+It also gives an overview of the different system-level components and their interaction when deploying
+and running queries. 
+
+%\pagebreak
+
+%--------------------------------------------------------------------------------------------------------
+
+\input{design/41_approach}
+%--------------------------------------------------------------------------------------------------------
+\input{design/42_basic_components}
+
+%--------------------------------------------------------------------------------------------------------
+
+\input{design/43_sys_arch}
+
+%--------------------------------------------------------------------------------------------------------
+
+\input{design/44_query_deployment}
+
+%--------------------------------------------------------------------------------------------------------
+
+\input{design/45_summary}
+
+	
+
+
+
+		
+

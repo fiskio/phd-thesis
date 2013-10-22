@@ -1,0 +1,73 @@
+\addcontentsline{toc}{chapter}{Abstract}
+
+\begin{abstract}
+\vspace{-15pt}
+Data stream processing systems (DSPSs) compute real-time queries over continuously changing streams of
+data.  A stream is a potentially infinite sequence of tuples, or timestamped data items.  
+% In contrast to traditional databases, in which queries are issued over stored data, results in DSPSs are
+% generated continuously as new data enters the system. 
+% \vspace{6pt}\\
+% % 
+The constant increase in data volume renders the provisioning of a DSPS challenging, requiring computing
+resources that may not be available or too costly to purchase. Even if a user opts for a cloud deployment
+model, thus renting all resources on demand, acquiring sufficient resources may still not be possible due
+to the financial cost.
+
+In the future, we can expect the development of processing infrastructures, in which different
+parties cooperate to create federated resource pools. 
+These kinds of deployments, in which many parties pool together their resources, are subject to a
+phenomenon similar to the \emph{tragedy of the commons}. Since every party tends to
+consume more resources than what they contributed, the amount of available resources is always scarce.
+%
+\vspace{6pt}\\
+%
+% Overload can be considered a type of failure because the system is not able to fully carry out the
+% required computation. A system operating under constant overload is thus subject to continuous failure.
+For these reasons, \emph{overload} should be considered a common operating condition for such DSPS and
+not an exception.
+In such situations, the system needs to discard some of its input data, which is an operation called
+\emph{load-shedding}. 
+When an overloaded system performs \mbox{load-shedding}, the choice of how much and what to discard is
+crucial for the correct functioning of the system.
+\vspace{6pt}\\
+%In such a resource constraint scenario, failure due to overload is not a transient condition.
+%
+Many streaming applications are able to produce useful results even after some data has been discarded	
+during the processing.
+Examples of such applications are meso-scale weather prediction, tornadoes and hurricanes forecasting
+and real-time social media monitoring.
+%Meaningful results can still be produced, even when some data is lost during the computation. 
+An approximate result may still be useful to the user, as long as it is delivered with a low latency and
+contains some information about its quality.
+%In many cases, an imperfect result is better than no result at all. 
+%  In this scenario of constant approximation, the system should continuously report to the user
+% the estimated impact of \mbox{load-shedding} on the quality of the results.
+\vspace{6pt}\\
+% Instead the system should be designed taking this into account, implementing approximation strategies 
+% that allow the system to still produce meaningful results while providing the user with a measure of 
+% the achieved quality of service. 
+We propose a new model for federated stream processing under overload. The system constantly
+estimates the impact of overload on the computation and reports to the user the achieved processing quality. We introduce a
+ quality metric called \textit{Source Information Content (\sic)}.
+%to augment data streams, and a set of
+% formulas to calculate its propagation within the system. This has been designed to work for any kind of operator and for both the \textit{fan-in} and the \textit{fan-out} families of queries.  
+This can be used by the user as an indicator for the achieved processing quality and by the system to
+implement intelligent shedding policies and to better allocate the system resources among users.
+% When an overloaded system performs \textit{\mbox{load-shedding}}, the choice of how much and what to discard is
+% crucial for the correct functioning of the system. 
+The \sic quality metric allows the implementation of a \textit{fair shedding} policy, giving an equal
+processing quality to all users without penalising individual queries. 
+\vspace{6pt}\\
+%
+% We develop these ideas as part of a research prototype called DISSP, the Dependable Internet-Scale
+% Stream Processing engine. With it we explore the issues related to overload
+% management and fair resource allocation.
+%, with the aim of building a system able to operate under constant failure.
+We experimentally show that augmenting streams with the \sic metric allows the system to make
+better \mbox{load-shedding} decisions, leading to more accurate results for many types of queries.
+It also allows the user to reason about the amount of processing resources that are needed to run a
+given query, striking a balance between the quality of the delivered results and the resource cost.
+%We show that is still possible to achieve a good approximation of the results
+%while sensibly reducing the costs for the user.
+
+\end{abstract}

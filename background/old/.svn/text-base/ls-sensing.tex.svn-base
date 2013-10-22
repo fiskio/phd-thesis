@@ -1,0 +1,27 @@
+\subsubsection*{Environmental Monitoring} \label{sec:climate} 
+
+\begin{structure}
+	\item Importance of Climate Studies
+	\item Climate Studies as a natural applications of sp
+    \item ...
+\end{structure}
+
+\paragraph{Distributed Collaborative Adaptive Sensing (DCAS)}
+	\begin{structure}
+		\item What are the goals?
+        \item Sensor Architecture
+        \item Software Architecture
+	\end{structure}
+
+	Meteorological Command and Control: Architecture and Performance Evaluation \cite {meteo-dcas}
+
+	CASA and LEAD: Adaptive Cyberinfrastructure for Real-Time Multiscale Weather Forecasting \cite{lead}
+
+\paragraph{The Swiss Experiment}
+	\begin{structure}
+		\item What are the goals?
+		\item Sensor Architecture
+		\item Software Architecture
+	\end{structure}
+	
+	The Swiss Experiment (uses GSN) \cite{swissexp} \cite{sensorscope}

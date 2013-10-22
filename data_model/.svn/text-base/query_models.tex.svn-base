@@ -1,0 +1,208 @@
+\section{Query Languages}
+
+In a DSPS data is constantly pushed into the system in the form of streams. These are real-time,
+continuous, ordered sequences of data items. Streams have different characteristics than traditional
+relations in a DBMS, and the way of expressing queries in a DSPS has to take these differences into
+account. Streams can be unbounded, but queries are usually issued over a recent snapshot of the data
+stream, which takes the name of \textit{window}. A query language for data streams must be capable of
+operate over windows of data, should be extensible, in order to support custom user operators, and simple
+enough to enable the easy expression of complex queries. 
+
+Three query paradigm have been proposed to operate over streaming data~\cite{dsm-issues}. The first and
+most adopted is the \textit{relational model}. This comes directly from the DBMS world and is usually
+implemented as and SQL-like language, it provides the syntax to express windows over data streams,
+similarly to the extensions introduced by SQL-99. A query describes the results, in a declarative way,
+giving the system the flexibility of selecting the optimal evaluation procedure to produce the desired
+answer. Examples of languges employing this model are CQL~\cite{cql}, StreamSQL~\cite{streamsql} and
+SPACE~\cite{ss-spade}. 
+
+Another method for expressing queries is through \textit{procedural languages}. In this paradigm the
+user constructs queries in a graphical way, having maximum control over the exact series of steps by
+which the query answer is obtained. In this model operators are depicted as boxes, and arrows represents the data
+streams flowing through them, thus taking the name of \textit{boxes-and-arrows} model. One drawback of
+this paradigm is the difficulty of expressing complex query plans, as the diagram describing the query
+can be become very intricate. Aurora~\cite{aurora} and Borealis~\cite{borealis-design} are examples of
+systems employing this query model.
+
+The third model for expressing queries is the \textit{object-oriented} paradigm. In this approach the
+query elements are modeled in an hierarchical way, taking inspiration from the object-oriented
+programming world. In Cougar~\cite{cougar-adt}, for instance, sources are modeled as ADTs (Abstract Data
+Types), exposing an interface consisting of the sensor's signal processing methods. A discussiong on
+query languages and practical issues on building a DSPS can be found in~\cite{design-principles}.
+
+\todo{check references}
+\todo{write summary}
+
+
+\subsection{CQL: Continuous Query Language}
+\label{sec:cql}
+
+CQL (Continuous Query Language)~\cite{cql} is a declarative language for expressing continuous queries
+over streams of data. It has been introduced by STREAM (Stanford Stream Data Manager)~\cite{stream} and
+has become one of the de-facto standards in stream processing. It is an SQL-like language designed to
+work on streams as well as with relations and to allow and easy conversion among them. It extends SQL,
+introducing semantics to enable queries to be issued over streams of data. A detailed description of the
+modre formal aspects of the language can be found in~\cite{cql-foundation}. 
+
+To better illustrate the main concepts in CQL, let's consider a \textit{temperature monitoring} query.
+The purpose of such query is to detect if the temperature in any room of a house rises over a certain
+threshold. If a room becomes too hot the system detects it and reacts by switching the local air
+conditioner on. In this scenario all rooms in the house are equipped with a thermal sensor. These are
+connected to a stream processing system, which is able to command the air conditioner of the room. The
+thermal sensors sample the temperature in the room every minute, sending these readings, together with
+their room id and timestamp, to the stream processing system. This executes a simple query, filtering
+all tuples with a temperature reading above a certain threshold (i.e. $T>=30 \). When the system
+detects that a room is too hot, it switches on the air-conditioning system in the signalled room. 
+
+\subsubsection{Data Types}
+
+The two core data types manipulated by CQL are \textit{streams} and \textit{relations}.
+
+\begin{definition}[Stream]{A stream S is a (possibly infinite) bag (multiset) of elements $\langle s, \tau \rangle$,
+where $s$ is a tuple belonging to the schema of $S$ and $τ ∈ T$ is the timestamp of the element.}
+\end{definition}
+
+Timestamps are not part of the schema of a stream and there could be zero, one or multiple elements with
+a certain timestamp in a stream. The number of elements with the same timestamp in a stream is finite but
+unbounded.%XXX
+In CQL the data part (not timestamped) of a stream element takes the name of \textit{tuple}. There are
+two classes of streams: \textit{base streams}, which are the input of the system, and \textit{derived
+streams}, which are intermediate streams produced by operators. 
+
+\underline{\textsc{Example}}: In our temperature monitoring example there would be only one base stream
+with schema: \textsc{RoomTmpStr(RoomID, RoomTmp)}. Attribute \textsc{RoomID} identifies the room where the
+sensor is located, while \textsc{RoomTmp} contains the current detected temperature. 
+
+\begin{definition}[Relation]{A relation R is a mapping from each time instant T to a finite, but
+unbounded bag (multiset) of tuples belonging to the schema of R.}
+\end{definition}
+
+A relation $R$ defines and unordered multiset of tuples at any instant in time $τ ∈ T$, denoted as
+$R(τ)$. The difference between this definition and the one used in databases is that in the standard
+relational model a relation is simply a set of tuples, with no notion of time. 
+
+\underline{\textsc{Example}}: In our example, a relation is created form the base stream of temperature
+readings through a time-window operator. It is a snapshot of of all readings received within the last
+minute. The concept of windows over streams will be better explained in th next paragraph.
+
+\subsubsection{Operator Classes}
+CQL employs three classes of operators to process stream data. First is the \textit{Stream-to-Relation},
+which allows the creation of a snapshot of the stream. Once this finite bag of tuples has been obtained
+it employs \textit{Relation-to-Stream} operators, which are equivalent to the ones employed in a
+traditional DBMS. Finally there are \textit{Relation-to-Stream} operators, to recreate streams out of the
+newly computed relations. Figure~\ref{sr} shows the interaction of these classes of
+operators. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/tesi/Stream-Relations} %XXX: rifare figura
+	\label{sr}
+\end{figure}
+
+\paragraph{Stream-To-Relation}
+operators are used to isolate a subset of a stream, or snapshot, so that
+one or more relation-to-relation operators can act on it. All the operators in this class are based on
+the concept of \textit{sliding window} over a stream. This contains, at any point in time, an historical
+snapshot of a finite portion of the stream. 
+
+Three kinds of window operators exists in CQL: time-based, tuple-based and partitioned. A
+\textit{time-based} window contains all the tuples in the stream with timestamp within the
+specified boundaries. For example it could hold all the tuples arrived in the last minute. In a
+\textit{tuple-based} window instead, the number of tuples is specified and fixed, so it only contains the
+last N tuples of the stream. A \textit{partitioned} window is a special kind of the tuple-based. It
+allows the user to specify a set of attributes as a parameter and splits the original stream based on
+these arguments, similarly to the SQL \textsf{GroupBy}, and computes a tuple-based window of size N
+independently creating a number of substreams.
+
+\textit{Sliding Windows} produce a snapshot of a stream based on two parameters: the \textit{window size}
+and the \textit{sliding factor}. Once the window is triggered it outuputs all the tuples it contains, but
+it does not discard them all. The sliding factor determines a criteria to hold some tuples in the window
+so that they can be used in the next iteration as well. A tuple-based window can be set to trigger every
+5 tuples, but to slide of 1, so every time it reaches 5 tuples it outputs all of them, but retains the
+4 newest tuples for the next iteration. A time-based window can be set to trigger every five minute with
+a sliding factor of 1 minute, so at every iteration it outputs all the tuples arrived in the last 5
+minutes, but retains all tuples arrived in the last 4 minutes. 
+
+\paragraph{Relation-To-Relation}
+operators are derived from the traditional SQL relational model, They perform the bulk of the data
+manipulation and are equivalent to many canonical SQL operators. In this category we find, for instance,
+\textsf{Select} and other familiar operators. These are the main operators in the system, as every stream
+is converted in a relation by a window operator, then processed by a relation-to-relation operator and
+finally output by relation-to-stream operator. 
+			
+\underline{\textsc{Example}}: Consider the following query for our temperature monitoring example:
+\\\\
+\tab \textsc{Select *} \\
+\tab \textsc{From RoomTmpStr[Range 5 Min]} \\
+\tab \textsc{Where Tmp > 30} \\\\
+This query is composed by a stream-to-relation time-window operator, followed by a relation-to-relation
+operator performing a projection. The output is a relation that contains, at any instant, the set of all
+temperature readings received by the system in the last five minutes, with temperatures greater than 30
+degrees celsius. 
+
+\paragraph{Relation-To-Stream}, 
+operators convert the result of relation-to-stream operators back into a stream. Three kinds of such
+operators exists in CQL: \textit{IStream, DStream} and \textit{RStream}.
+
+1. \textbf{IStream} (for ``insert stream'') outputs only the new tuples that have been generated since
+the last execution. It compares the current output of the preceding relation-to-relation operator and
+outputs all the tuples that are present in the current input, but not in the previous one. Informally it
+inserts new tuples into the stream. Formally the output of \textit{IStream} applied to a relation $R$
+contains a stream element $\langle s, \tau \rangle$ whenever tuple $s$ is in $R(\tau)-R(\tau-1)$. Assuming
+$R(-1)=\emptyset$, we have: %XXX: fix parentesis
+
+\begin{center}
+	$IStream(R) = \bigcup_{\tau>=0}((R(\tau)-R(\tau-1))\times\{\tau\})$ %fix union
+\end{center}
+
+2. \textbf{DStream} (for ``delete stream) outputs only tuples that have disappeared since the last
+execution. It compares the current output of the preceding relation-to-relation operator and
+outputs all the tuples that were present in the previous input, but not in the current one. Informally
+it generates the stream of tuples that have been deleted from the relation. Formally the output of
+\textit{DStream} applied to a relation $R$ contains a stream element $\langle s, \tau \rangle$ whenever tuple $s$ is in
+$R(\tau-1)-R(\tau)$. %XXX: fix parentesis
+
+\begin{center}
+	$DStream(R) = \bigcup_{\tau>=0}((R(\tau-1)-R(\tau))\times\{\tau\})$ %fix union
+\end{center}
+
+3. \textbf{RStream} (for ``relation stream'') informally outputs all tuples produced by the
+relation-to-relation operator. Formally the output of \textit{RStream} applied to a relation $R$ contains
+a stream element $\langle s, \tau \rangle$ whenever tuple $s$ is in $R$ at time $\tau$.
+
+\begin{center}
+	$RStream(R) = \bigcup_{\tau>=0}((R(\tau)\times\{\tau\})$ %fix union
+\end{center}	
+
+\begin{figure}[b]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/tesi/cql-example} %XXX: rifare figura
+	\caption{This query outputs all tuples having a temperature reading $\geq$ 30 in the last five minutes.}
+	\label{fig:cql-example}
+\end{figure}
+
+\underline{\textsc{Example}}: Figure~\ref{fig:cql-example} illustrates a simple CQL query implementing
+out temperature monitoring example. It signals all rooms where a temperature above 30 degrees celsius is
+detected in the last 5 minutes. The input stream is called \textsc{RoomTmpStr} and carries tuples formed
+by a room identifier (\textsc{RoomId}) and a temperature reading (\textsc{RoomTmp}). A time-based window
+id applied to it, to obtain a snapshot that contains only fresh measurements generated in the last five
+minutes. Once this relation has been created a conditional \textsc{Select} is applied to it, filtering
+out all tuples with a temperature value lower than 30 degrees. Finally, a new stream, called
+\textsc{HotRoomsStr}, is created by an \textsc{IStream} relation-to-stream operator, containing tuples
+coming from over heated rooms, which are then fed to the air conditioning control subsystem.
+
+
+\tab \textsc{Select IStream(*)} \\
+\tab \textsc{From RoomTmpStr[Range 5 Min]} \\
+\tab \textsc{Where Tmp > 30} \\
+
+
+%BOXES AND ARROWS
+\subsection{Boxes-and-Arrows Model}
+		 
+		Boxes and arrows\ldots
+		
+		\todo{write about boxes and arrows model}
+		
+		\vspace{300 pt}
+		

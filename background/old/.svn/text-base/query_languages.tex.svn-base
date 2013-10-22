@@ -1,0 +1,12 @@
+\subsection{Query Languages}
+\label{sec:qlang}
+
+Aurora, Borealis: \cite{aurora-and-medusa} \cite{borealis-design}
+
+Mortar: \cite{mortar-long}
+
+STREAM: \cite{cql}
+
+StreamSQL: \cite{streamsql}
+
+System S: \cite{ss-spade}

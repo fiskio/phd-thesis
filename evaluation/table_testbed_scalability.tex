@@ -1,0 +1,33 @@
+%% --- TABLE TESTBED ----
+\begin{table}[h]
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|m{3cm}|p{12cm}|} 
+  \hline
+ 
+    \multicolumn{2}{|c|}{\bf Emulab Testbed} \\ 
+    \hline\hline
+	Physical layout  &	
+	pc3000-type machines connected over a 1~Gbps LAN network. Each machine has a 3~Ghz
+	CPU and 2~GB of memory and runs the FBSD410+RHL90-STD Emulab-configured Linux image.
+	\\
+    \hline
+	\sys Layout
+	&
+	(1 machine: 1 oracle node),   
+	(3 machines: source data generation), 
+	(3 machines: query submission),
+	(18 machines: 18 \sys nodes). \\
+    \hline
+	
+	Sources
+	& 
+	150~tuples/sec in 3~batches/sec of 50~tuples/batch. \\
+	
+    \hline\hline
+    
+    
+  \end{tabular}
+  \caption{Testbed for increasing number of queries testbed.}
+  \label{table:inc-testbed}
+\end{table}

@@ -1,0 +1,5 @@
+\subsection*{SDIMS}
+\label{sec:sdims}
+
+I will first present the Scalable Distributed Information Management System (SDIMS)~\cite{sdims}. This is a system
+concerned with the computation of aggregate quantities about large-scale distributed systems. 

@@ -1,0 +1,194 @@
+\chapter{Background}
+\label{ch:background}
+
+%\pages{$\sim$30}
+
+\input{background/intro_background.tex}
+
+\input{background/problem_statement.tex}
+
+\input{background/envmon.tex}
+
+\input{background/socialmedia.tex}
+
+\begin{comment}
+\section{Problem Statement}
+	\pages{5}
+	\bul{What kinds of real world problems can benefit from stream processing?}		
+
+
+\end{comment}
+
+\section{Introduction to Stream Processing}
+	\pages{8}
+
+		\bul{High level introduction}
+		\bul{Also distinction between SPE and CEP}
+
+		\subsection{Query Model}
+			\mnote{What kinds of queries?}
+				\incite{query_languages_survey}
+		
+			\bul{cql queries}
+				\incite{cont-queries}
+				\incite{stream}
+				\incite{semantics-datastreams}
+				\incite{cql}
+				\incite{cql-foundation}
+
+			\bul{boxes and arrows queries} 
+				\incite{borealis-design}
+				\incite{boxes-and-arrows}
+				\incite{streambase}
+				\incite{streamsql}
+				\incite{ss-spade}
+				\incite{ss-spl}
+			\input{data_model/query_models}
+
+		\subsection{System Model}
+
+			\bul{How does a stream processing system operates?}
+				\incite{8-reqs}
+				\incite{design-principles}
+				\incite{stream-processing-challanges}
+				\incite{ds-models-and-issues}
+				\incite{dsm-issues}
+
+			\bul{Centralised Vs Distributed}
+				\bul{centralised}
+					\incite{aurora}
+					\incite{aurora*}
+					\incite{aurora-and-medusa}
+					\incite{stream}
+					\incite{stream-babcock}
+					\incite{niagaracq}
+					\incite{telegraphcq}
+					
+
+				\bul{distributed}
+					\incite{borealis-design}
+					\incite{mortar-short}
+					\incite{mortar-long}
+					\incite{ss-spc}
+
+			\bul{Resource Allocation} 
+
+				\bul{cluster}
+					\incite{placement-ying}
+					\incite{placement-zhou}
+					\incite{borealis-xing_placement}
+					\incite{borealis-load_management}		
+					\incite{borealis-load}
+					\incite{medusa-load}
+					\incite{partial-fault-tolerance}
+				
+				\bul{wide-area}
+
+					\incite{sbon}
+					\incite{placement_strategies} 
+					\incite{streamglobe}
+					\incite{adaptive-overlays}
+					\incite{adaptive-query-deployment}
+					\incite{adaptive-tree-reorganization}
+
+				\bul{sensor networks?}
+					\incite{npc-placement}
+					\incite{qpsn}
+
+\section{Distributed Aggregation}
+	\pages{4}
+	
+		\subsection{Stream Aggregation Systems}		
+		\incite{tinydb}
+		\incite{cougar-adt}
+		\incite{sdims}
+		\incite{astrolabe}
+		\incite{internet-telescope}
+		\incite{network-imprecision}
+		\incite{pier1}
+		\incite{pier2}
+		\incite{statstream}
+		\incite{sophia-distmon}
+
+		\subsection{Gossip aggregates}
+			\incite{cyclon}
+			\incite{vicinity}
+			\incite{gossip-aggregates}
+			\incite{gossip-aggregates-large}
+			\incite{gossip-aggregates-dipietro}	
+			
+			\input{background/gossip-agg}	
+
+	
+        
+\section{Failure}
+	\pages{8}
+
+		\incite{dependability}
+        
+		\subsection{Consistency Model}
+			\mnote{Eventual consistency Vs Relaxed Consistency}
+			
+			\incite{availability-consistency}
+			\incite{correlated-failures}
+			\incite{dependable-is-sensing}
+			\incite{availability-consistency}
+			\incite{consistency}
+
+	
+        \subsection{Replication Model}
+			\incite{borealis-fault_tolerance}
+			\incite{borealis-fast_and_ha}
+			\incite{borealis-fast_and_reliable}
+			\incite{borealis_ha_algos}
+			\incite{borealis-fault_tolerance}
+			\incite{borealis-catalog}
+	
+
+		
+
+\section{Overload Reduction}
+	\pages{8}
+
+         \subsection{Load Shedding}
+
+			\bul{How much?}
+			\bul{Where?}
+			\bul{What?}
+
+			\incite{borealis-load}
+			\incite{borealis-load_management}
+			\incite{load-shedding}
+			\incite{loadshed-babcock}
+			\incite{loadshed-chang}
+			\incite{loadshed-chi}
+			\incite{loadshed-dash}
+			\incite{loadshed-gedik}
+			\incite{loadshed-gedik2}
+			\incite{loadshed-grubjoin}
+			%\incite{loadshed-kendai}
+			\incite{loadshed-mozafari}
+			\incite{loadshed-tatbul}
+			\incite{loadshed-tatbul2}
+			\incite{loadshed-telegraphcq}
+			\incite{loadshed-tu}
+	
+	   \subsection{Stream Reuse}
+			\bul{Reducing overload by the mean of sharing streams}
+
+			\incite{cosmos-pre}
+			\incite{cosmos-short}
+			\incite{cosmos-long}
+			
+		\input{background/memory_limited}		
+%       \subsection{Approximate Operators}
+%			\incite{stream-chains}
+%			\incite{histograms}
+%			\incite{wavelets}
+%			\incite{bloom}
+%			\incite{dec-net-mon}
+			
+
+ 
+	
+\mnote{SUMMARY}

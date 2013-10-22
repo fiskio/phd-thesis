@@ -1,0 +1,14 @@
+\section{Features}
+\label{sec:features}
+
+\input{background/replication}
+
+\include{background/operator_placement}
+
+\include{background/query_languages}
+
+\include{background/source_discovery}
+
+\include{background/stream_reuse}
+
+\include{background/quality_metrics.tex}

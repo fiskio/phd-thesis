@@ -1,0 +1,145 @@
+\chapter{Conclusion}
+\label{ch:conclusion}
+
+In a world in which the production of data continues to grow, data stream processing systems (DSPSs) play
+an important role by allowing the computation of continuous queries over streams of data in real-time.
+Their applications include, among others, the processing of environmental sensor data, allowing
+scientists to monitor a wide range of natural phenomena, and the analysis of user-generated content
+shared through social media, offering new ways of interpreting human interactions.
+
+The large amount of available data makes the correct provisioning of DSPSs difficult. This is
+due to the unpredictable volatility of input data rates and the costs associated with the purchase or
+rental of computing platforms. A large amount of input data requires processing resources that may
+not be available to a user. To acquire resources, it is possible
+to use a federated resource pool, in which different parties contribute their resources to
+create a larger shared processing infrastructure, or to rent the required processing resources on demand
+in a cloud environment. In both cases, however, it may not be feasible to obtain the necessary resources,
+either due to practical issues or economical constraints.
+
+As a consequence, overload may be a common condition in DSPS systems.
+Traditionally, overload is considered a rare, transient condition but our perspective is that it is a
+normal operating condition. Instead of trying to achieve perfect processing at all times, a DSPS under
+overload should account for its impact and report any processing degradation to users. For many
+applications, an imperfect result may still be valuable to the user.
+
+Under overload, the lack of processing resources forces the system to discard a certain fraction of the
+input data, a process called load-shedding. The choice of which tuples to discard is critical to the
+correct functioning of the system.
+Instead of discarding tuples at random, we propose an intelligent load-shedding
+policy which selects tuples in a way so that all queries are penalised equally.
+
+\subsection*{Quality-Aware Stream Processing Under Overload.}
+\vspace{-25pt}
+This thesis presented a novel quality-centric data model for stream processing. It augments
+data streams with a quality metric called Source Information Content (\sic). 
+The definition of this metric follows the reasoning outlined in a set of
+assumptions and considerations, making it applicable to a DSPS with
+generic operators.
+The \sic metric tracks the failure during processing, providing an indication of the
+quality of the computed results. 
+It allows the user to reason about the result quality and the system to
+implement intelligent policies for overload management.
+
+A prototype stream processing system called \sys was developed to evaluate the benefits offered by the
+\sic metric. It was designed to process data efficiently under overload and provide continuous feedback
+to the user about the achieved quality of processing of queries.
+It exploits the \sic metric to degrade gracefully the quality of results for all queries. A particular
+focus is the efficiency of \mbox{load-shedding}, following a design that allows for the
+flexible implementation of semantic shedding policies. 
+The algorithm that decides which tuples to keep and which to discard leverages the information contained
+in the \sic values of tuples to implement a fair load-shedding policy.
+
+We defined fairness in a DSPS based on the \sic values achieved by queries (\ie a system is fair if all
+queries achieve an equal quality of processing) as expressed through the \sic value.
+Based on this definition, the \sic metric was used to implement a fair load-shedding policy, which
+detects and handles an excess of processing load by discarding a portion of the input tuples. This allows
+all queries to achieve an equal quality of processing, reducing the differences in terms of the \sic
+values of their results.
+System resources are allocated fairly among queries, regardless of their size or characteristics.
+This is particularly useful in a shared processing infrastructure, such as a federated resource pool, so
+that all users receive a fair share of the processing resources.
+
+We performed a set of experiment to explore the characteristics of the \sic metric and its
+applicability in the context of semantic load-shedding. The experimental results indicate that there is a
+good correlation between the error that occurs in the results and their associated \sic values. The
+fair shedding policy was compared with a random rejection of input data. Results show that the
+intelligent policy outperforms the random one, both in terms of the average \sic values as well as the
+dispersion of the values. The calculation of the \sic metric showed good scalability properties,
+maintaining a stable performance when varying the amount of processing resources and the number of
+deployed queries. Finally, we showed that it was possible to expose a trade-off between the reduction in
+cost per query and the reduction in \sic value when a user wants to reduce the processing costs and is willing to accept approximate results.
+\\
+\subsection*{Future work} 
+%The possibilities offered by the \sic metric are not completely explored. 
+Directions deserving further investigation include the application of the quality-centric data model to
+the dynamic allocation of the optimal amount of processing resources in a cloud deployment, the use
+of free-running replicas to increase the ability of the system to withstand failure and the augmenting of
+operators with custom error functions to better correlate \sic values and the accuracy of results.
+
+\paragraph{Dynamic Resource Allocation.}
+In a cloud deployment, the quality-aware data model could be used to scale the amount of
+rented resources at run-time, detecting a temporary shortage of resources in case of a sudden increase of
+the input rates, and also signaling an excess of processing capacity causing unnecessary costs.
+Based on the \sic value of results, it is either possible to \emph{scale-out}, increasing the amount of
+rented processing nodes when the \sic values of results do not reach a given threshold, or to
+\emph{scale-in}, reducing the amount of processing nodes in order to reduce the rental cost, when the
+amount of processing resources is excessive.
+
+Scaling-out resources allows to find the optimal amount of processing nodes to rent in order to achieve a
+given quality of processing. When a query is first deployed, an horizontal operator decomposition starts
+by allocating a modest amount of processing resources, decomposing the main operator into a small number
+of copies. It then checks if the number of allocated processing nodes is sufficient to achieve result
+\sic values that are above a user specified threshold. If the result \sic values are below this
+threshold, more processing nodes are allocated, increasing the number of parallel subqueries of the decomposition.
+This process is repeated until the achieved result \sic values go above the minimum threshold. In this
+way, it is possible to correctly provision the amount of resources needed to run a certain query,
+thus minimising the processing rental cost.
+
+The \sic metric could also be employed to scale-in resources, deallocating processing nodes when they
+are not needed. When the achieved result \sic values are well above the acceptable minimum
+value, the system can estimate if there is an advantage in reducing the number of processing nodes
+allocated for the current computation. For example, if the amount of input data is reduced, the current allocation of
+resources may become excessive and too costly.
+The system could start migrating queries from a node to the rest of the infrastructure and
+finally release it, reducing the resource costs. It would repeat this process as long as the result \sic
+values remain above a given threshold.
+
+\paragraph{Replica Management.}
+The proposed quality-centric data model can be also used to increase the system ability to withstand
+failure with the use of \emph{free-running replicas}~\cite{dependable-is-sensing}. This thesis was mainly
+concerned with issues arising in a system failing due to overload. Other kinds of failure that may occur
+in a DSPS include node crashes and network partitions. To mitigate the impact of failure caused by
+overload or other means, a DSPS should replicate the most important operators of a query. By running
+multiple copies of the same operators in parallel, more copies of the same result are computed at
+different sites. In case of failure of a node, the system can use the result calculated at another
+replica. In case of overload, the system can choose the result with the highest processing quality.
+
+Under failure, it is typical for different replicas to produce different results. The internal state
+of operators may not be consistent due to the missing inputs. A standard approach is to employ a
+\emph{eventual consistency} model, in which the internal state of the failed replica is restored after
+failure by replaying the missing tuples. However, this may not be feasible, due to
+the lack of resources.\\
+We propose instead to adopt a more relaxed consistency model, in which operators continue processing
+without any attempt of reconcile the internal state of a failed replica.
+If this relaxed consistency model is employed, the DSPS system must choose among the different outputs
+produced by the replicas, deciding which one that to deliver to the user. In this situation, the \sic
+metric offers a valuable indication about the quality of the output computed by the replicas. By
+capturing the amount of failure that occurred during the creation of tuples, it allows the system to
+select the correct output to deliver by choosing the one with the highest quality of processing (\ie
+that has the higher \sic value) and thus is closer to what would have been produced in absence of
+failure.
+
+\paragraph{Custom Error Functions.}
+A design choice that was made for the quality-centric data model is to ignore the processing semantics of
+the individual operators. Being operator agnostic allows the model to be applicable to any type of
+queries, without being restricted to a limited set of operator. Even though a link between the quality of
+processing and the accuracy of results was shown in the evaluation of the model, there is no direct
+correlation between the result \sic values and the error caused by overload.
+
+An extension to the model would be to allow users to submit custom error functions for operators. In this
+way, the model could calculate the exact error for the computed results. For a range of generic
+operators the error function could be already provided by the system, leaving the option of modifying it
+to the user. For custom operators instead, it would be necessary to submit it together with their
+implementation. 
+
+

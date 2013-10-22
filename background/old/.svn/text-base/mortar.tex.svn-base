@@ -1,0 +1,99 @@
+\subsection*{Mortar} 
+\label{sec:mortar}
+
+Mortar~\cite{mortar-short}\cite{mortar-long} is another stream processing system
+built for Internet-scale processing.  Among all the systems presented is the
+most similar to the one I am researching.  The authors acknowledge the
+impossibility of avoiding failure in such a large-scale environment and provide
+some mechanisms to improve dependability. They adopted some quality metrics to
+describe the goodness of a tuple, resembling our quality-centric data model.
+Also, many new approaches to tuple routing have been introduce in order to
+improve the connectivity of the query plan and to reduce the impact of node
+failure.
+
+\paragraph{Multiple-path routing} 
+Mortar employs a series of redundant query trees in order to improve the
+connectivity among nodes. Once a query is submitted in the system, a number of
+static overlays is created among the nodes taking part in the processing.  This
+approach is motivated by the particular operating environment envisioned by
+Mortar. It assumes that computing nodes are part of a federated resource pool.
+This means that in general all the resources are fairly available: nodes are not
+supposed to leave without notice and in general churn is very low.  Taking
+advantage of this stability, Mortar builds many static overlays over the nodes
+participating in a query, in order to improve the connectivity of the nodes.
+These trees are built randomly, but the system tries to improve latency by
+choosing nodes based on their network coordinates.  Once a primary tree is
+defined for the query, other sibling trees are built on permutations of these
+nodes.  Using multiple trees for routing improves the connectivity of the query
+plan in case of node failure.
+
+\paragraph{Dynamic Tuple striping} 
+Instead of replicating the data over different channels, Mortar adopts a
+technique called \emph{dynamic striping}.  This means that every stream is
+partitioned along different trees. All tuples converge to the downstream
+operator, but are sent along different paths to increase reliability. The
+partitioning policy is a simple round-robin.  Every tuple is free to flow on
+different tree after being processed by an operator, but the system tries to
+make it always move towards the root of the query plan. Each tuple maintains a
+list of $<tree, level>$ pairs that indicates the last level of each tree the
+tuple visited. This list is used by operators to choose on which tree it should
+be sent.  To ensure forward progress tuples are routed to trees, so that they
+can climb the operator level and move towards the user.  This is not the only
+policy though, Mortar also makes exceptions to this rule in order to reduce the
+constraints on the available paths. This, of course, might result in a cyclic
+routing and in the loss of some tuples.
+
+\paragraph{Time-division data partitioning}
+Dynamic tuple striping requires a data model that allow multipath routing. In
+general, each operator participates in many query trees and might receive tuples
+from any children operator at any time. An operator needs to be aware of which
+window a tuple belongs to, so that it can be processed accordingly and sent to
+the proper downstream operator.  The solution adopted in Mortar is to label
+tuples with an index describing the processing window they belong to.  This
+approach is called \emph{time-division}, since streams are partitioned along
+time and tuples are labeled with a progressive window index. Each operator
+identifies which tuples should be processed together by looking at these window
+index.
+
+\paragraph{Quality metrics} 
+Mortar recognizes the impossibility of guaranteeing perfect processing when
+operating at such a large scale.  It only aims at \emph{best-effort consistency}
+so it allows for some tuples to be lost during the processing.  Mortar enhances
+the tuples with some quality metrics, \emph{completeness} and \emph{staleness}.
+Completeness express the percentage of sources in the systems contributing to
+the final result.  Staleness indicates how long the tuple had stayed into the
+system. Every tuple is tagged with an \emph{age}, which represents the time
+since it's injection. This value is used for the \emph{syncless synchronization}
+mechanism.  Furthermore the system uses dynamic time-outs to unblock waiting
+operators. In such a system it is always very difficult to determine if a
+blocked operator should keep on waiting on a tuple or just consider it lost.
+Mortar estimates the maximum waiting time based on the longest delay of the
+tuples in the incoming stream.  It also injects \emph{boundary} tuples when a
+raw input stream stalls.
+
+\paragraph{Syncless Mechanism} 
+One assumption which is usually made about distributed stream processing system
+is the synchronization of clocks.  This is thought to be achieved using NTP
+(Network Time Protocol), but in many real world situations this is not enough
+and time skew may arise. If this happen the system would misbehave, as tuples
+would end up in different windows, leading to inconsistent results.  For these
+reasons Mortar decided to drop this assumption and to adopt a syncless
+synchronization mechanism.  Instead of relying on the absolute timestamp of a
+tuple it looks at the total time the tuple spent in the system, or its
+\emph{age}. Operators merge tuples with similar ages, with the same index within
+the time-space list.  In case of an aggregate operator, which output a new tuple
+based on a window of the input streams, the new Age is set at the average of the
+age of the aggregated tuples.
+
+\paragraph{Considerations} 
+Mortar is definitely the most innovative, and also the youngest, of the stream
+processing systems described in this document.  It builds on previous
+experiences and tries to move forward in the direction of a very large-scale
+system, capable of running a high number of queries simultaneously. It
+introduced a great deal of new approaches into stream processing, like
+multi-path routing, dynamic tuples striping and syncless processing. It also
+tried to introduce some quality metrics to quantify the impact of failure, even
+though it's lacking a proper quality-centric data model. Their metrics seem too
+simple to be really useful and are not so well explained in the paper.  Mortar
+is the most similar system to our own, and taking into account their approaches
+will definitely help the design of DISSP.

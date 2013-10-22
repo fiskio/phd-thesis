@@ -1,0 +1,16 @@
+\section{Summary}
+
+This chapter presented a data model for stream processing systems that takes the quality of the
+processing into account.
+First, we defined basic entities, such as tuples, streams and queries. The need for handling and
+quantifying failure led to the introduction of a quality metric called the Source Information Content
+(\sic). The definition of this metric followed the reasoning outlined in a set of assumptions and
+considerations, making it applicable to a generic stream processing system supporting any kind of
+operators.
+After that, there was an introduction of the different classes of queries, namely fan-in and fan-out
+queries.
+This led to the definition of the \sic metric with a set of equations for its calculation. A few
+real-world queries were then used to show how the metric can be used to keep track
+of the amount of failure that occurred during processing.
+The next chapter describes the design of a stream processing prototype system that implements the
+quality-aware query model, thus exploiting the \sic quality metric in practic.

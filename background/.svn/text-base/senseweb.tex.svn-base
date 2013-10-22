@@ -1,0 +1,33 @@
+\subsection*{SenseWeb}
+\label{sec:senseweb}
+
+SenseWeb~\cite{senseweb} is an example of ISSP system developed at Microsoft Research. This is a peer-produced sensor
+environment, in which many sensors networks are linked together and can be accessed through a uniform interface.  It provides an
+intuitive user interface called SenseMap~\cite{sensemap}. This interface displays sensors on a map, where users can
+click to select the ones they are interested in.  
+
+A central database is in charge of collecting all the data produced by the sensors and process all the user queries. This
+central entity takes the name of \emph{coordinator}.
+SenseWeb aims at supporting a wide variety of sensing devices. Their characteristics can be very diverse and so their
+communication capabilities.  In order to be able to process data coming from so many different sources, data needs to be
+cleaned and transformed into a meaningful format.  This process of input standardisation is carried out by the
+\emph{sensor gateways}.  They also enforce stream ownership, giving the sensor contributor the possibility to specify
+the sharing policies over his data.  A special kind of gateway is the \emph{mobile proxy}. This has the role of dealing
+with a highly volatile swarm of mobile devices, by making the mobility of devices transparent to the applications. Once
+the user has specified a location-based constraint, it returns data from all the devices available in the requested
+space-time window.  
+Another element of the system is the \emph{data transformer}. These are in charge of post-processing
+the data, for example by extracting the people count from a video stream. Transformers are indexed at the coordinator
+and can be discovered and used by the applications. They work similarly to the gateways, as they convert the data
+semantic, but they work of already processed data.
+
+\paragraph{Considerations}SenseWeb represents a first attempt to build a usable stream processing system.
+The major limitation of this system has to do with the hourglass configuration in which many
+sources and many applications have to deal with a single coordinator.  This can lead to scalability problems when
+dealing with a large number of sources and queries. In DISSP we address this problem by employing
+a distributed solution for data processing. SenseMap, the resource discovery interface for input sources, is a valuable
+tool with a clean and intuitive user interface. If the number of sources become very large, though, it might be
+cumbersome for the user to select the relevant ones just by clicking. This is particularly true when the characteristics
+of the sensors of interest are known, but not their location. It would be interesting to extend this tool to support
+selection of input sources based on their characteristics.
+

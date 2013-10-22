@@ -1,0 +1,35 @@
+
+	
+\begin{table}
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{|l|c|p{9cm}|} 
+\hline \bf Field	&	\bf Type &	\bf Description \\ \hline \hline
+
+\bf annotations						&	\it Object			&	Unused. Future/beta home for status annotations.  \\ \hline
+\bf contributors					&	\it Array of Object &	Nullable. An array of cut-down user objects (usually only one).  \\\hline 
+\bf coordinates						&	\it Object			&	Nullable. Represents the geographic location of this Tweet.   \\ \hline
+\bf created\_at						&	\it String			&	Time when this Tweet was created. \\ \hline
+\bf entities						&	\it Object			&	Entities which have been parsed out of the text of the Tweet. \\ \hline
+\bf favorited						&	\it Bool			&	Indicates whether this Tweet has been favorited by the authenticating user.  \\ \hline
+\bf geo								&	\it Object			&	Deprecated. Nullable. Use the "coordinates" field instead. \\ \hline
+\bf id								&	\it Int64			&	The integer representation of the unique identifier for this Tweet.  \\ \hline 
+\bf id\_str							&	\it String			&	The string representation of the unique identifier for this Tweet. Implementations should use this rather than the large integer in id. \\ \hline
+\bf in\_reply\_to\_screen\_name		&	\it String			&	Nullable. If the represented Tweet is a reply, this field will contain the screen name of the original Tweet's author.\\ \hline
+\bf in\_reply\_to\_status\_id		& 	\it Int64			&	Nullable. If the represented Tweet is a reply, this field will contain the integer representation of the original Tweet's ID.  \\ \hline
+\bf in\_reply\_to\_status\_id\_str	&	\it String			&	Nullable. If the represented Tweet is a reply, this field will contain the string representation of the original Tweet's ID. \\ \hline
+\bf in\_reply\_to\_user\_id			&	\it Int64			& 	Nullable. If the represented Tweet is a reply, this field will contain the integer representation of the original Tweet's author ID. \\ \hline
+\bf in\_reply\_to\_user\_id\_str	&	\it String			&	Nullable. If the represented Tweet is a reply, this field will contain the string representation of the original Tweet's author ID. \\ \hline
+\bf place							&	\it Object			& 	Nullable. \\ \hline
+\bf retweet\_count					&	\it Int or String	& 	Number of times this Tweet has been retweeted. For values greater than 100, this field contains the string "100+". \\ \hline
+\bf retweeted						&	\it Bool	 		& 	Indicates whether this Tweet has been retweeted by the authenticating user. \\ \hline
+\bf source							&	\it String			&  	Utility used to post the Tweet, as an HTML-formatted string. Tweets from the Twitter website have a source value of web.\\ \hline
+\bf text							&	\it String			& 	The actual text of the status update.\\ \hline
+\bf truncated						&	\it Bool			& 	Indicates whether the value of the text parameter was truncated, for example, as a result of a retweet exceeding the 140 character Tweet length. \\ \hline
+\bf user							&	\it Object	 		& 	The user who posted this Tweet. \\ \hline
+
+\end{tabular}
+\caption{Schema of the information contained in a Twitter message.}
+\label{tab:tweet}
+\end{table}
+

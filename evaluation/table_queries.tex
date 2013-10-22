@@ -1,0 +1,29 @@
+%% --- TABLE QU1ERIES ---
+\begin{table}[h!]
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|m{3cm}|p{12cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\bf Aggregate Queries} \\ 
+    \hline\hline
+    \textnormal{AVG}	&  Calculates the average value over 1~sec. \\ 
+%     \hline
+%     \textnormal{MAX}	&  Calculates the maximum value over 1~sec. \\ 
+    \hline	  
+    \textnormal{COUNT}	&  Counts the number of tuples with values $>=$ 50.0 over 1~sec.  \\  
+    \hline\hline
+    \multicolumn{2}{|c|}{\bf Complex Queries} \\ 
+    \hline \hline
+    \textnormal{TOP-5}	&  Shows the 5~PlanetLab nodes with the
+    highest amount of available CPU and at least 100~KB of free memory over 1~sec.\\
+    \hline	  
+%     \textnormal{AVG-all} & Shows the avg CPU consumption over
+%     PlanetLab nodes over 1~sec. \\
+%     \hline	  
+    \textnormal{COV} &  Shows the covariance of the CPU cycles consumption between two PlanetLab nodes.
+    \\
+    \hline	  
+  \end{tabular}
+  \caption{Query workload for experiments.}
+  \label{table:queries}
+\end{table}

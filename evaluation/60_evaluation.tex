@@ -1,0 +1,48 @@
+\chapter{Evaluation}
+\label{ch:evaluation}
+
+This chapter presents the experimental evaluation to demonstrate the advantages of employing the \sic
+quality metric in a stream processing system. All experiments are performed using the \sys prototype
+implementation described in Chapter~\ref{ch:system_design}.
+The research questions that this chapter addresses aim at a better understanding of the characteristics
+of the \sic metric and its applicability in the context of a continuously overloaded stream
+processing system.
+The \sic metric is designed to be operator agnostic. It can be applied to a general purpose
+system supporting any type of query, providing an indication of the quality of the
+computed results. This chapter considers the following research questions. Does the \sic value reflect
+the correctness of the delivered results? 
+What is the correlation between the error of the output and the reduction in \sic values?\\
+In addition, the \sic metric is used for the implementation of semantic shedding policies.
+We design a fair shedding policy and compare its performance to that of a random
+shedder.
+Does such a policy achieve better quality results? Is it more fair in the allocation of system
+resources?\\
+We were also interested in evaluating the performance of such a fair shedding policy in terms of
+scalability, both when varying the number of nodes and the number of deployed queries.
+What is the behaviour of the fair shedder when the amount of processing resources
+changes? Does its performance scale linearly with the number of processing nodes? What happens when the
+number of queries is increased on the same processing infrastructure? \\
+A user may be willing to trade off the correctness of result with a reduction of costs, \eg by
+deploying a larger number of queries on the same processing infrastructure. 
+Is it possible to strike a balance between the achieved \sic value and the cost of paying for the
+processing infrastructure? Adding an increasing number of queries to the system reduces the cost per
+query.
+How does this reduction in cost correlate with the reduction in \sic values? All these questions are
+answered in this chapter by considering a range of sample queries using both synthetic and real-world
+input data.
+%\todo{fill page, fix table workload}
+%\clearpage
+
+
+\input{evaluation/61_testbed}  
+
+\input{evaluation/62_correctness}
+
+\input{evaluation/63_shedder}
+
+\input{evaluation/64_cost}
+
+%\input{evaluation/65_stw}
+
+\input{evaluation/66_summary}
+

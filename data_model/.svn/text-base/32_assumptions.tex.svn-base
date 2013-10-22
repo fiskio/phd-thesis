@@ -1,0 +1,371 @@
+\section{Quality-Centric Data Model}
+
+In this section I will start presenting the \textit{quality-centric data model} we have developed, with
+the aim of increasing the system \textit{dependability} and to reason about the achieved
+\textit{quality-of-service}.
+I will first describe a novel metric called \textit{Source Information Content} (\sic), which is a
+metadata value associated with data streams. Then I will provide some foundation assumptions we made in
+the design of it and the reasoning behind these decisions.
+
+\subsection{Source Information Content}
+
+In a traditional stream processing system streams only contain data associated with
+timestamps, they do not carry information about the failure experienced by the system. In our model we
+propose to augment streams so that failure is recorded and accounted for. In order to do so we introduce
+a new metric called \textit{Source Information Content} (\sic) that gives a hint about the amount of
+information contained in a tuple and thus to its importance for the current query results. This is added
+to streams in the form metadata, whose value is calculated by the query operators and is inversly
+proportional to the occurrence of failure.
+
+A tuple should convey information about the amount of failure experienced during its creation. There
+should be a way to indicate if the data carried by a tuple was created using all the available
+information, and is then 100\% accurate, or if some information was lost in the process, thus reducing
+the dependability of that data. \textit{Source Information Content} tries to do achieve
+this goal, by measuring the amount of lost information in the creation of a tuple.
+
+The system can use this value to make decision about the importance of a tuple towards the creation of
+the final query result. When the system is overloaded for instance, it has to decide which tuples should
+be dropped in order to recover. \sic values in this case can be used to assess the individual value of
+tuples and guide the system to a selection that helps improving the quality of the results.
+
+In a single query scenario the system is able to reason about the amount of information carried by
+tuples, by dropping the ones with the lowest values it minimises the impact on the query results. Even in
+the absence of failure it might be that some tuples aggregate more information than others and should be
+treated with more care. In case of failure then, the system would prefer to drop some already compromised
+tuples before other which where produced with perfect information.
+
+When dealing with a system that allows the the concurrent execution of multiple queries, \sic values
+help discarding tuples so that all queries in the system are affected in the same way. All qu
+This process takes the name of \textit{fair shedding} and will be further analysed in
+Section~\ref{sec:fair-shedding}.
+
+In the next section I will present some assumption we made about the \sic quality metric, giving some
+reasoning behind them. I will not introduce any formulas at this point, leaving the discussion about how
+\sic values are calculated to Section~\ref{sec:sic}.
+\\
+\subsection{Model Assumptions}
+\label{sec:assumptions}
+
+%\begin{enumerate}
+\textbf{\textit{1. Failure is always present in large scale query processing, overload is a kind
+  of failure.}}
+  
+  In large-scale distributed systems failure is not to be considered as a rare and transient condition.
+  In fact evidence indicates that in such a system a certain percentage of nodes will be failing at all
+  times. Even though the Mean Time Between Failure (MTBF) for a single component might be quite high,
+  once the number of components grows the incidence of failure becomes more and more evident. 
+  
+  In a paper released by Google~\cite{google-failure-disks} it is shown how the occurrence of failure in
+  a large hard drive population is much higher than what declared by vendors. They analysed a large
+  population of disks and showed how the Annualized Failure Rate (AFR) ranged from 1.7\% for first year
+  drives to over 8.6\% for three-year old drives.
+  Jeff Dean of Google also presented some statistics~\cite{google-failure-talk} about the real world
+  occurrence of failure in their data centres. In a typical rack of 1800 machines it is expected that
+  more than 1000 machines will fail in the first year alone, and there is a 50\% chance that a
+  cluster will overheat, taking down most of the servers in less than 5 minutes and taking 1 to 2 days to
+  recover.
+  
+  Overload can be considered as a kind of failure, because the system is not able to process all the
+  incoming data and needs to discard some of it. In this case an approximated result is produced even
+  though all the processing units are functioning correctly.
+  Input data rates can be highly unpredictable, with variations that can often be of orders of
+  magnitude~\cite{load-shedding}. This leads to an objective difficulty in the provisioning of a
+  system. If we considered a cloud deployment scenario, where resources are rented, overload can be not
+  only tolerable but also desirable. It might be cheaper to underprovision the system on purpose, in
+  order to keep the costs down, when the approximation of results is not an issue.   \\
+	
+	
+\textbf{\textit{2. Users can accept approximated processing, but need to have a way of
+ 	evaluating the quality of the delivered results.}}
+  
+ 	Failure should be considered a normal condition of operation for a large enough data stream processing
+	system. We propose to augment data streams with a metric capturing the amount of failure occurred during
+	the processing so that this failure can be quantified instead of hidden. 
+	In many applications an approximated result is acceptable for users, but the it is important that when
+	failure occurs its amount is calculated and reported. It is then up to the user to decide if the quality
+	of the delivered results is good enough for these to be accepted or should be discarded instead.
+	
+	In sensor networks it is common to have a lot of failure at the source level. Sensors can suddendly stop
+	working because of hardware failure or can become temporarily unreachable. In this cases a query
+	processing their readings delivers results that are incomplete. Nevertheless the quality of the query
+	results can be good enough to be meaningful for the final user. Especially when dealing with a large set
+	of sensors the lack of input from a certain number of them does not usually mean that the computation
+	should be considered void as a whole. Instead the results simply become less accurate due to the missing
+	input data. If we consider queries aggregating readings of sensors scattered over a certain area, like
+	an average of pollutants in a city area, it is possible that a failing sensor is located close to
+	others that will record a similar reading. Thus the missing information might not produce a great variation in
+	the final result, that is approximated but still meaningful. 
+	
+	If we consider queries trying to detect a certain event instead, the failing of a single sensor can
+	become crucial. The failing unit could be the one that would have received the reading of interest, and
+	because of the failure this reading would never be generated. This is a particular scenario where
+	failure is not toleable and, even if an approximation of the results might not be acceptable, it is
+	important to notify the user that some failure occurred during the collection of the input data, leaving
+	the final decision about the goodness of the results to the user.
+	
+	An analogous reasoning can be applied to the social media analysis scenario. In this case the enormous
+	amount of available input data can determine an overload condition of the processing infrastructure.
+	Differently than the sensor data example, where the failure usually occurs at the input level, here the
+	failure more probably would happen at the processing stage. Queries dealing with aggregation usually
+	process copious amounts of data and in case of the loss of a small percentage of it they can still produce
+	results close to the ones that would be obtained in absence of failure. In general when dealing with
+	aggregations the larger is the set of input data, the more failure becomes tolerable. \\
+ 
+\textbf{\textit{3. A quality metric should be operator independent and abstract from the query
+  semantics.}}
+ 
+	Stream processing systems are usually very versatile and can compute a large variety of queries. Each
+	query is composed by operators whose semantics can be very different. If we consider the streaming
+	equivalent of some traditional operators present in a relational database, like \textit{filter} and
+	\textit{average}, it is notable how the the dropping of a tuple from the input of these operators can
+	have dramatic differences in terms of the produced output. Because of their different processing semantic 
+	missing one tuple can have almost no influence or can completely subvert the output of an operator.
+	Furthermore it is common for stream processing systems to be extensible, allowing users to implement
+	their own custom operators, whose processing semantics are unknown. 
+	
+	Let us consider the different impact that the loss of a tuple can have on the result of different
+	operators. An average operator, having in input a set of $100$ tuples carrying integer values
+	uniformly distributed in the range $[0,1]$, produces a single output tuple with a value close to $0.5$.
+	If we imagine to drop $50\%$ of the input because of overload, the operator would still produce a
+	single tuple with again a value close to $0.5$. In this scenario the loss of half of the input values
+	is almost unnoticeable from a practical point of view.
+	
+	A filter operator with the same input set, eliminating from the input stream all tuples with
+	values below $0.5$, would on average produce an output of $50$ tuples, since the input values are uniformly distributed in the
+	interval. When shedding half of the input values though, the operator result changes considerably. On
+	average it would now produce $25$ output tuples, which is half of the number of tuples it would produce
+	with the complete set of input tuples. With this simple example we can observe how the processing
+	semantic of the operator can be very different from one another and how the impact of input loss can be
+	almost unnoticeable for some operators while can be disruptive for others. 
+	
+	Because of this we decided that the quality metric employed by our system should be operator
+	independent and valid for any kind of processing semantics, efficiently capturing the processing 
+	degradation under failure. Even though the knowledge of the internal
+	functioning of operators would allow the system to have a more precise reasoning about the impact of
+	failure on the quality of the results, this is impractical for a general purpose system.  
+	Instead of trying to quantify the approximation of the result in terms of  precision ---\ie providing
+	error bars---we try to quantify the amount of information that was lost during the computation of a
+	result compared to the total amount that would have been processed in absence of failure.
+	
+	Other systems adopted this operator independent approach. The \textit{network imprecision}  metric
+	accounts for the state of all participating nodes in large-scale monitoring systems~\cite{network-imprecision}. 
+	It estimates the percentage of nodes available when calculating an aggregate value over a set of data
+	sources. In contrast, our metric operates at the granularity of individual tuples and uses the 
+	concept of a source time window to reason about the impact of information loss on the result.
+	Another example is the \textit{harvest} quality metric proposed independently by Murty and
+	Welsh~\cite{dependable-is-sensing} and Fox and Brewer~\cite{Fox1999}. In the former case, the authors 
+	argue that harvest should capture the fraction of data sources used in Internet-scale sensor systems.
+	In the latter case, the metric captures the fraction of data included in the response of Internet 
+	applications. \\
+  
+\textbf{\textit{4. All sources are equally important for the generation of the final result.}}
+	  
+	In our model sources are all considered equally important, regardless of their tuple production rate.
+	If we consider a sensor network deployment it is common to observe different rates of input readings.
+	This is due to different settings or different battery constraint of the sensors. A unit with a
+	depleted battery would usually reduce the rate at which it propagates information to save energy. Another reason could be the
+	position of sensor, the energy cost of propagating a reading in fact grows with distance, as it
+	requires a higher transmission power.
+	
+	Consider a sensor network monitoring moist levels on a rural area, composed of sensors randomly
+	scattered over a certain surface. The processing query produces an average moist value for the area
+	every hour, aggregating readings from all sensors which are produced at a rate of one every $10$
+	minutes. Because of the uneven distribution of sensors some require more power to transmit their
+	readings and in order to save battery decide to reduce the transmission rate to half the original. When
+	aggregating the moist values then, the amount of tuples for each sensor would be different. The
+	processing query would first group the readings by sensor id, average a single result for each sensor
+	over the specified time window, and finally compute a global average. We could see this as an average
+	over a single reading from every sensor, each conveying information about a certain location, but with
+	a different resolution. Nevertheless the information produced by all units has the same value for the
+	final calculation of the global value.
+	
+	In the previous example all tuples generated by a sensor in a one hour time-window convey the same
+	information, regardless of the fact that some sources produced more tuples and others less. All
+	sources equally contributed to the production of the final result.
+	
+	In our model we decided to treat all sources as equal, but this is not true in all cases. There might
+	be scenarios in which a particular source should be considered more important than others, for
+	instance because it is placed in a strategic location or because it is equipped with a more
+	sophisticated instrumentation. A possible extension to our model that would account for this
+	differences is to include a \textit{weight} parameter. This would allow the user to indicate to the
+	system which tuples should be regarded are more valuable. The system then would assign a different
+	importance to these tuples and try to avoid dropping them, with a probability proportional to their
+	weight. \\
+ 
+
+\textbf{\textit{5. All tuples from a source are equally important for the generation of the final
+result.}}
+
+	All tuples produced by a source that concur to the creation of the same result are considered to contain
+	the same amount of information. Because the model abstracts from the semantic of the query and is
+	designed to be used for all queries, it treats all source tuples as equals. This means that in case of
+	overload it would make a random decision about which tuples to drop.
+	
+	Let us consider a simple query, composed by one source and one average operator producing a single
+	output result every minute. The source produces $1000$ tuples per second, the system is overloaded and
+	is not able to process all of them. If the distribution of values carried by the source tuples is
+	uniform it does not make any difference which tuples are dropped. If instead the distribution is highly
+	skewed, presenting a small number of outliers, the dropping of one of them could sensibly change the
+	aggregated result. Because the system employs an operator independent model it cannot know which tuples
+	to drop in order to reduce the error in the results, so it treats all source tuples as equals and makes a random
+	decision. 
+	
+	This is a simplification to keep the model abstract enough to be usable in a general purpose system. Of
+	course there are situation, like in detection queries, where some source tuples are definitly more
+	important than others. Having the knowledge of the query semantic could enable the system to be more
+	selective and make distinctions among tuples when making shedding decisions, but it would bind it to a
+	specific set of operators and queries.
+	\\
+  
+\textbf{\textit{6. The amount of information going into an operator is equal to the amount in output, 
+  regardless of the number of tuples produced.}}
+ 
+	An operator processes one or more input batches and produces a single output batch. Every tuple that
+	enters the operator has a certain \sic value, which is the same for all tuples in a batch and might be
+	different for different batches. The operator transform these tuples into a new set according to its
+	processing semantic. Even though the amount of tuples in output might be different than the amount in
+	input, the \textit{amount of information} does not change. In our model we assume that the total \sic
+	value in input to an operator is not altered by the processing and is transmitted to the output
+	tuples.
+ 
+ 	Let us consider a simple \textit{map} operator, which transforms a farenheit temperature reading into
+ 	its celsius equivalent. This operator receives $N$ tuples in input, applies a simple formula and
+ 	produces $N$ tuples in output. The information carried by the input tuples is transformed, but its
+ 	total amount does not change. 
+ 	
+ 	Another class of operators deals with \textit{aggregation}, we can use a simple average as an
+ 	representative. This operators receive $N$ tuples in input and produce a single output tuple. 
+ 	Consider an operator calculating the average temperature in a room every minute. It receives all the
+ 	input tuples produced by the sensors during the specified time window an produces a single average
+ 	value. Even though the output tuple produced is only one, it carries all the information of the ones in
+ 	input, only transformed into a single aggregate value.
+ 	
+ 	Consider then a \textit{filter} operator, which discards a certain number of tuple not satisfying a set
+ 	of requirements. As an example, let us consider an operator filtering all temperature readings with a
+ 	value below $30$ degrees celsius. In input it receives $10$ tuples, out of which only $5$ carry a
+ 	reading above $30$ degrees. The number of output tuples in this case is only 50\% of the one in
+ 	input, yet the total information carried by these is unchanged. What changes is the individual
+ 	information value associated with the single tuples, which in this case in doubled compared to when
+ 	they entered the operator.
+ 	
+ 	In all the previous examples the number of tuples produces by an operator is smaller or equal to the
+ 	number in input. This is not true for all operators though. If we consider the \textit{join} operator
+ 	for instance, the number of tuples in output can also be greater than the input one. Let us consider a
+ 	join operator that has on one input containing temperature readings for a certain room and on the
+ 	other humidity values. The tuples on the first input have the schema $\langle\textsc{RoomID, Tmp}
+ 	\rangle$, while for the second the schema is $\langle\textsc{RoomID, Humidity}\rangle$. The operator
+ 	joins the two streams on the field \textsc{RoomID}, producing a stream of output tuple having schema
+ 	$\langle\textsc{RoomID, Tmp, Humidity}\rangle$. This amount of tuples produced by this operator is in
+ 	the range $[0, NxM]$, where $N$ is the number of temperature tuples and $M$ the number of
+ 	humidity ones. This means that is possible for such an operator to produce more tuples in output than the number 
+it has in input. In the perspective of our model the information is still conserved, even though the
+ 	individual \sic values of tuples might decrease. 
+ 	
+	\mnote{I included a special case below, I think we never discussed it, see if you agree with this.}
+ 	Finally we should consider the case when an operator produces no output at all. This can often happen
+ 	with filtering operators, when all the input tuples do not satisfy the filtering criteria and therefore
+ 	are dropped. Because there is no output tuple to carry the input information content, this situation
+ 	would be indistiguishable from the case where all the input tuple are lost, for instance because the
+ 	system had decided to shed them in order to overcome an overload condition. In this case the system
+ 	still needs to produce an \textit{empty batch}, containing no tuples but with a total \sic value equal
+ 	to the sum of the values received in input. In this way the total amount of information is preserved
+ 	and the final \sic calculation is not affected. \\
+ 	 
+\textbf{\textit{7. The importance of a tuple is directly proportional to the amount of information
+needed to generate it.}}
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/tesi/unbalanced-tree}
+	\caption{A an unabalanced query tree, showing the different information contents of the tuples flowing
+	through it.}
+	\label{fig:unbalanced-tree}
+\end{figure}
+
+	
+	When we consider the importance that a tuple has within a query it is important to take into account the
+	amount of information that went into its creation. The more information is conveyed within a tuple, the 
+	more important it becomes for the computation of the query result. If the system is in need of making a
+	decision about what tuples to drop, it has to consider the individual information content of tuples and
+	drop the ones with the lowest values first. This is done to reduce the amount of missing information in
+	the final query result. 
+	
+	Let us consider a query whose graph representation resembles an unbalanced tree as in
+	Figure~\ref{fig:unbalanced-tree}. In this query there are $3$ sources, all producing tuples at the same
+	rate. The input tuples produced by source 1 and 2 are first combined together by operator A, then the
+	resulting tuples are processed by operator B together with the tuple produces by source number $3$.
+	We can assumed
+	that operator B resides on a different machine than operator A and that, because of overlaoad, it needs
+	to discard one tuple out of the four currently present in its input buffers. When comparing the information values of
+	the single tuples it finds that the tuples received on the left input have an information content which
+	is double compared to the tuples received on its right input. This is because the tuples on the left
+	contain the information produced by $2$ sources, while the others are carrying the information of a
+	single source. Because the goal of the system is to deliver results containing the maximum amount of
+	source information, it decides that the one tuple to drop is one of the two received on its right input.
+	\\
+	
+ 	
+\textbf{\textit{8. The total amount of information contained in a result in absence of failure
+  is equal to the number of sources, 1 if scaled to be comparable with other queries.}}
+	
+	In absence of failure, every result batch produced by a query contains an amount of information which is
+	equal to the sum of the individual information values carried by the source tuples that concurred to its
+	creation. Considering every source as equal, we can assign a value of $1$ to the complete set of source
+	tuples for each source that contributed to the calculation of a result batch. If we do so, the final
+	\sic value of a result batch is equal to the number of sources.
+	
+	Let us consider a simple query calculating an average pollution value every minute from a set of $10$
+	sensors located at different locations in a city. This query produces a result batch of a single tuple,
+	which aggregates all the information gathered by the $10$ sensors over a one minute window. Let us
+	assume that no failure happens and that all tuples are correctly processed. Because all sources are
+	considered as equals, the total amount of information carried by the tuples produced by each source
+	over a minute is $1$. When the final result is computed then, the total information it carries is equal
+	to $10$, the number of sources.
+	
+	When dealing with a system supporting the concurrent execution of multiple queries it becomes important
+	to be able to compare the information values of the different queries. This is needed for instance in
+	an overload condition, when trying to achieve \textit{fair shedding}. This is the process of selectively
+	drop tuples to reduce the load of the system, so that the final \sic values of all queries is equalised. 
+	In this scope the system must be able to compare the different \sic values of queries. A simple way to
+	achieve this is to divide the total \sic value of a query to its number of sources. Doing so all \sic
+	values are scaled down in the interval $[0,1]$ and become comparable.\\
+	
+	
+\textbf{\textit{9. An operator can have more than one downstream operator, metric calculation should take
+this into account.}}
+
+	A query can be represented as a Directed Acyclic Graph (DAG), where nodes represent operators and arrows
+	the streams flowing through them. This means that, as long as there are no cycles, every operator is
+	free to have multiple downstream operators which receive its output as input. There are two main reasons
+	for distributing the output of an operators, 1) the query can compute multiple results, or 2) the
+	downstream computation is split over multiple nodes because it would be too computationally intensive on
+	a single one.
+	
+	The first case deals with queries computing multiple results. These are called \textit{fan-out} queries
+	and will be further analysed in Section~\ref{sec:fan-out}. They compute multiple results based on some
+	common input information, but are logically seen as a single query. The reason for treating a query with
+	multiple results as a single query is to allow the system to be fair when making shedding decisions
+	under overload.
+	Let us consider a system with $2$ running queries, submitted by $2$ users. The first user submitted a
+	query with a single terminal operator, while the query submitted by the other user have $9$. If the
+	system considered each result computed as a single query, the second user would be allocated 90\% of the
+	available resources, leaving only 10\% to the first. If the system instead considered the query
+	submitted by the second user as single computation yielding $9$ different results, it would evenly
+	shed tuple among the two queries, leading to a fair allocation of the available computing resources.
+	Fair shedding will be explained in more detail in Section~\ref{sec:fair-shedding}.
+	
+	The second reason for distributing the output of an operator is when the downstream computation is too
+	intensive to be executed on a single machine. In this case the output is split among several processing
+	node, each hosting the same set of operators, processing a portion of the output tuples. The
+	computed results are then collected to produce a single result. This is the stream equivalent of the 
+	\textit{map-reduce} paradigm.
+	
+	When computing the values of the \sic quality metric, the system needs to take this into account. In
+	particular it splits the total value of information in input among all its output tuples. A tuple is
+	assigned a value that is inversely proportional to the number of the output streams of the present
+	operator. In the first case, when multiple results are calculated, each terminal operator will produce
+	tuples with a value equal to the number of sources, divided by the number of results. In this way the
+	cumulative \sic value for the query is the same as if there is only one terminal operator.
+	In the case of a map-reduce partitioning of the query, the individual \sic value of tuples is lowered
+	during branching, but is restored during the reduce phase. The details about this calculations will be
+	covered in Section~\ref{sec:sic}.

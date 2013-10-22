@@ -1,0 +1,16 @@
+SUBMITTER
+
+It is in charge of deploy a query submitted by the user. It compiles a query provided in XML format to 
+bytecode and starts a query on a set of processing nodes. It also hosts a Coordinator for this query.
+
+- Receives a file containing the list of query files to deploy. It is possible to specify beginning and 
+ending indexes to start only a certain range of the queries contained in the list. This is particularly 
+useful for large deployments.
+
+
+- Each query file is compiled to bytecode and a NEW_QUERY message is delivered locally. This message 
+contains a string representation of the XML file describing the query and of the operator bytecode 
+encoded in Base64. The NEW_QUERY message triggers the creation of a COORDINATOR, which handles the 
+deployment of the query.
+
+ 

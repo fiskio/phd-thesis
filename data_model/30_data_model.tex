@@ -1,0 +1,61 @@
+\chapter{Quality-Centric Data Model}
+\label{ch:data_model}
+
+Overload in a stream processing system has been usually considered as a transient and rare condition. The
+common approach to handle overload has been to recover from it as quickly as possible, without
+quantifying its impact on the current processing. In many large-scale deployments, however, the
+occurrence of overload is common and not always avoidable. In such cases, it is better to adapt the
+system so that it can self-inspect and quantify the impact of overload on the computed results and let
+the user decide if the quality of the output is acceptable or not. 
+
+In order to do so, the system should quantify the amount of information that was lost during the
+processing because of failure. A quality metric can be used to enhance streams and detect and
+estimate the impact of failure on the current computation. Such a metric should be generic enough so
+that it can be used in any stream processing system, supporting the semantics of traditional as well as
+custom operators, and be applicable to a broad variety of query types.
+ 
+This chapter presents the quality-centric data model that we have
+developed to allow a stream processing system to calculate the impact of failure on its running queries.
+First, we provide a set of definitions about the basic components of a stream processing
+system, as they are assumed in the scope of this work. These fundamental concepts are used then to
+describe the workings of a stream processing system and to define a suitable quality metric.
+
+In order to define such a metric, it is important to understand the goals and the assumptions.
+We provide an explanation about the reasoning behind such a metric and about the characteristics
+that it should have. Next, we introduce the two main families of queries, fan-in and
+fan-out, providing sample queries to illustrate them.
+
+We then introduce the Source Information Content (\sic) metric, a quality metric
+defined based on the previous assumptions and with the required characteristics. A set of equations are
+given for its calculation, describing its propagation within the system and the benefits of its use.
+
+The chapter closes with running examples of real queries taking advantage of the \sic metric to
+enhance their processing so that failure can be detected and accounted for automatically. They show
+how the \sic metric can be applied to different query types and how its behaviour directly derives from
+the previously stated assumptions.
+
+\input{data_model/31_definitions}
+
+\input{data_model/32_assumptions}
+
+\input{data_model/33_query_domains}
+
+\input{data_model/34_sic}
+
+\input{data_model/35_query_examples}
+
+\input{data_model/36_summary}
+
+	
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=0.9\textwidth]{img/tesi/query_topk} 
+% 	\caption{An example of query calculating the currently least loaded nodes with at least 1 Gb of free
+% 	memory on PlanetLab.}
+% 	\label{fig:query_topk}
+% \end{figure}
+
+
+%\input{data_model/ic}
+%\emph{3 weeks. This chapter needs a lot of work since we still have to come up with a revised model that can unify the two scenarios. Before coming to London I am going to think about this so that we can together about it in the first meeting. Hopefully this part will be defined by the end of my staying.}
+

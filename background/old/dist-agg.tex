@@ -1,0 +1,105 @@
+\section{Distributed Aggregation}
+\label{sec:dist-agg}
+
+The last main category of system which I am going to describe, is concerned with \emph{distributed aggregation}.
+These systems are focused on the calculation of aggregate quantities in large systems. In a sense, it is possible to
+consider some of these systems as similar to stream proceesing ones, with the difference that these are only interested
+in the calculation of aggregation queries~\cite{astrolabe, sdims, dec-netmon}. In this scope, Aggreagtion is intended as a
+\emph{summarising mechanism}.  
+
+\subsection{Deterministic approaches}
+\input{background/sdims}
+\input{background/astrolabe}
+
+\subsection{Probabilistic approaches}
+Of particular interest for my research is the notion of \emph{imperfect aggregation}. In this case, the system does not
+attempt to calculate the exact value of a particular attribute. Instead, it makes an \emph{estimate} which, in some
+cases, is also paired with a some confidence metrics. Computing an approximate result instead of the
+actual one is much simpler, especially when considering a large-scale distributed system. With massive distribution comes 
+massive instability, and calculating a precise value, in some case, might not even be possible. Failure, in fact, has to
+be considered not as an isolated event, but as a constant in the system. I will consider two approaches: \emph{gossip-based 
+algorithms}, that exploits gossip-style protocols for aggregation, and \emph{network imprecision}, that proposes the
+introduction of imprecision metrics to bound the error.
+
+\subsubsection*{Gossip Aggregates}
+
+\emph{Gossip-based} (or \emph{epidemic}) protocols can be used to calculate imperfect aggregate functions in large scale
+distributed systems~\cite{gossip-aggregates, gossip-aggregates-large}. In these systems, every node periodically contact 
+one or a few nodes and exchanges information with them. Usually the noes chosen for this information exchange are
+chosen at random~\cite{cyclon}, but for certain application they get selected among a group of similar nodes, according
+to a given metric~\cite{vicinity}. The dynamics of information spread resemble the way information spread within a
+group, hence the use of the word \emph{gossip}, or can be seen as similar to the spread of an epidemic in a population. 
+The use of these protocols lead to high fault-tolerance and ``self-stabilization'', thus making them particularly useful
+in the scope of large-scale distributed systems. 
+
+Gossip-based protocols produce results which are \emph{probabilistic} in nature, but are able to produce results even
+when the system is subject to instability and can gracefully scale to a large number of participants. Also, they do not
+require error recovery mechanisms, as the system is able to self-organise and to regain balance. For these reasons they
+are particularly suitable for peer-to-peer system, where there is no hierarchy and nodes join and leave frequently.
+While not producing ``perfect results'', they are able to obtain good estimates without the overhead of other
+deterministic approaches, such as the construction of aggregation trees. The total cost of computing these aggregates
+is low and be approximated as $O(n\mathrm{log}n)$ messages and $O(\mathrm{log}n)$
+rounds~\cite{gossip-aggregates-opt}. The precision of the estimate can be arbitrarily low, depending on the number of
+rounds used~\cite{gossip-aggregates-large}.
+
+By employing gossip-based protocols it is possible to calculate a large number of aggregate values in a system. 
+The most common examples are \emph{sums} and \emph{averages}, but can also be used to calculate
+quantiles~\cite{gossip-aggregates}. Also, it has been shown that they can be employed to calculate wide range of
+functions such as counting, generalised means, minimums and maximums, products and also
+rankings~\cite{gossip-aggregates-large}.
+These protocols can be employed, for instance, to the calculation of the total
+number of nodes in the system, or the average load. It is possible to calculate aggregates of any numerical
+value held by a node, usually representing a fairly stable property (calculation based on dynamic properties is
+possible, but make little sense as an aggregate). For all this reasons, gossip-based aggregates appear to be the best
+option to calculate aggregate functions in a large-scale distributed system, and I plan to employ this methods in my
+future research.
+
+%As an example to illustrate how a gossip-based aggregate calculation works, I will explain how to determine the total number of nodes in the system. 
+%Gossip-Based Computation of Aggregate Information \cite{gossip-aggregates}
+%Gossip-Based Aggregation in Large Dynamic Networks \cite{gossip-aggregates-large}
+\subsubsection*{Network Imprecision}
+
+Another approach to imperfect aggregation takes the name of \emph{network imprecision (NI)}~\cite{network-imprecision}.
+This is a set consistency metric that characterise the quality of the processing in the computation of an aggregate value.
+It allows the application to reason if the returned data is to be trusted, allowing, for instance, the filtering of
+inconsistent results. NI should be considered then as a ``stability flag'' for the system. Every query result is
+enhanced with a set of attribute describing the current state of the system.
+
+
+Since large-scale distributed systems are seldom completely stable, instead of all-or-nothing stability flag, NI provides three 
+metrics: $N_{all}$, $N_{reachable}$ and $N_{dup}$, to provide more flexibility in handling the system instability.
+\begin{itemize}
+	\item $N_{all}$ is an estimate of the total number of nodes currently in the system.
+	\item $N_{reachable}$ is an estimate of the number of nodes whose recent updates might not be reflected in the
+current answer.
+	\item $N_{dup}$ is an estimate of the number of nodes whose input might have been double counted due to overlay
+reconfiguration.
+\end{itemize}
+Based on these metrics it is possible to infer the stability of the system and thus the quality of the answer. If
+$N_{all} = N_{reachable}$ and $N_{dup} = 0$, then the system is completely stable and the query results can be trusted. 
+If $N_{reachable}$ is close to $N_{all}$ and $N_{dup}$ is low, the results are calculated on the wide majority of the
+inputs and can probably considered valid. If, instead, the $N_{reachable}$ is much smaller than $N_{all}$ and $N_{dup}$
+is high, the system is unstable and results should not be trusted.
+
+It is interesting to note that the metrics introduces by NI are themselves aggregate sums. As such they themselves
+should be provided with metrics about their quality. This is obviously not the correct way of approaching the problem.
+Instead the authors propose to maintain some invariants during the calculation of NI metrics. In particular query
+results must be generated by at \emph{at least} $N_{reachable}$ input sources, and \emph{at most} $N_{dup}$ duplicate
+inputs due to topology reconfiguration. If the implementation guarantees the maintenance of these two invariants, then
+the NI metrics, even though possibly imperfect, can considered as \emph{bounds} on the system imprecision.
+
+The introduction of metrics establishing the quality of the query results allow the user (or the application) to
+quantify the achieved quality of processing and can be used by the system to improve its performance. In a similar way we
+proposed a quality-centric data model for distributed stream processing systems~\cite{dissp-qdb2009}, a more specific
+model that tries also to quantify the information loss occurred in the creation of results. A detailed description of the
+quality-centric data model is presented in Chapter~\ref{ch:model}. 
+
+%Probabilistic Counting Algorithms for Data Base Applications \cite{flajolet-martin}
+
+%StatStream: statistical monitoring of thousands of data streams in real time \cite{statstream} | \emph{where does itfit?} 
+
+
+
+%\input{background/dec-netmon}
+
+%\newpage

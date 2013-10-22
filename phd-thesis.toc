@@ -1,0 +1,151 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Abstract}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Applications}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Sensor data.}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Social media.}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Problem Statement}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Quality-Aware Stream Processing}{11}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.4}Contributions}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{SIC quality metadata metric.}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Semantic quality-aware load shedding.}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Prototype system design.}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Experimental evaluation.}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.5}Thesis Outline}{13}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Background}{15}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Stream-based applications}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Distributed Collaborative Adaptive Sensing.}{18}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Social Cascades.}{19}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Social Cascading in Twitter.}{20}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Impact of Social Cascades on CDNs.}{20}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Query Languages}{21}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Stream-To-Relation}{23}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Relation-To-Relation}{24}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Relation-To-Stream}{24}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Stateless operators.}{26}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Stateful operators.}{26}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\unhbox \voidb@x \hbox {Load-shedding} operators.}{27}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}System Model}{27}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Overload Reduction}{31}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Centralised Coordination.}{34}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Distributed Coordination.}{34}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Failure}{35}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Summary}{38}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Quality-Centric Data Model}{39}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Model Definitions}{40}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Model Assumptions}{45}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Types of Queries}{54}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Source Information Content}{57}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Use Cases for Source Information Content}{61}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Summary}{65}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}DISSP Design}{67}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Design Approach}{68}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Implementing the Model}{69}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}DISSP Architecture}{72}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}System-level Components}{72}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.2}Node Architecture}{75}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Tuple Handling.}{77}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Command Messages.}{77}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Web Interface.}{78}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Thread Pool.}{78}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Work Unit.}{79}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Periodic Evaluation.}{79}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Life Cycle of a Query}{82}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4.1}Submission of Queries}{83}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{XML Query Representation.}{84}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Templates.}{84}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4.2}Partitioning of Queries}{86}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}Summary}{87}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Quality-Aware Load-Shedding}{89}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Fairness in \unhbox \voidb@x \hbox {Load-Shedding}}{90}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Abstract Shedder Model}{91}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Quality-Aware Fair Shedding}{93}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.4}Implementation of the DISSP Load-Shedder}{97}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}Summary}{98}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Evaluation}{101}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Experimental Set-up}{102}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}SIC Values and Correctness}{104}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Aggregate queries.}{105}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Complex queries.}{106}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}\unhbox \voidb@x \hbox {Load-shedding} Policies}{107}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.4}Trade-off between Quality of Processing and Resource Cost}{113}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.5}Summary}{114}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusion}{115}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Dynamic Resource Allocation.}{117}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Replica Management.}{117}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Custom Error Functions.}{118}

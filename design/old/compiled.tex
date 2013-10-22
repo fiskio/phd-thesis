@@ -1,0 +1,243 @@
+\subsection*{Compiled Operators and Tuples}
+\label{sec:templates}
+In our system tuples and operators are implemented as \emph{compiled POJO objects}. This choice was made
+taking performance into consideration, since other options, based for instance on \emph{reflection}, were considered too
+slow and cause of a potential performance bottleneck. To instantiate a custom tuple or operator object,
+based on the query requirements, a text \textit{template} is completed with the information contained in the XML file
+describing the query producing a new .java file, which is then compiled to bytecode by a run-time compiler. 
+
+\paragraph{XML Query Representation} Queries are submitted to the system using and XML representation. An
+XML query file contains the complete description of the query. It specifies what kind of tuples will be
+processed, providing a description of the \emph{tuple schemas} so that operators are aware of the
+number, type and name of the fields contained in the tuples they process. It also contains the list of operators
+implementing the query semantic. Every operator is represented by an XML block, containing its
+description. Every operator needs to be specialised before it can be used within a query. A generic
+implementation is provided in a \emph{template file}, which acts as a blueprint for the operator, which
+is then finalised with the data included in the XML block, allowing the correct instantiation of the
+operator.
+The information needed to complete an operator templates includes its \emph{name, parameters} and an indication about its \emph{following operator}. Every operator either declares itself as a
+\emph{terminal} operator, by declaring no downstream operators, or as an \emph{intermediate} operator by
+declaring that its output should be fed in input to another operator. This allows the system to
+reconstruct the complete query graph. 
+The information contained in the XML representation is used to generate the complete .java files
+describing theon customised tuples and operator that will be used in the query. This can then be compiled
+and instantiated so that the query can begin processing. 
+
+\paragraph{Templates} are semi-complete \textrm{.java} files, representing the skeleton of a class. 
+They are used for the efficient instantiation of customised \textit{tuples} and \textit{operators}.
+All tuples share some common characteristics, but are differentiated by the number of fields, their names
+and types. The same is true for all operators belonging to the same type. For instance Average operators
+are all equals when it comes to the processing semantic, but they differ about the name and type of the
+field to be averaged. So a generic blueprint for these object comes from the generalisation of a specific
+instance, where specific names and types are replaced by some place text tokens called \emph{place
+holders}. Using the information contained in their XML description it is possible to substitute these
+place holders with the correct details, transforming a template into a complete \textrm{.java} ready for
+compilation.
+Place holders are all capital keywords preceded by a dollar sign, in the
+form ``\texttt{\$PLACEHOLDER}''. They are meant to be completed using the information provided in the XML
+file describing the query and the compiled into actual POJO objects with the desired characteristics. For
+this transformation the system employs a \textit{CharSequenceCompiler}, which takes in input a string
+containing the content of a completed \textrm{.template} file and produces an instance of the customised
+object.
+This allows the system to operate always on compiled bytecode, granting the maximum performance of
+execution together with the flexibility of working with customised versions of tuples and operators
+tailored to the specific query requirements.
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fixed,
+  showstringspaces=false,
+  commentstyle=\color{white}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  %morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{BrickRed},
+  identifierstyle=\color{NavyBlue},
+  keywordstyle=\color{ForestGreen}, 
+  morekeywords={type,name}% list your attributes here
+}
+\noindent\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=XML,label=lst:opxml,caption=XML description of an Average operator]
+	<operator name="MyAvgCpu" type="Average">
+	    <next name="MyOutput"/>
+	    <parameter name="tuple"    value="simpleSchemaONE" />
+	    <parameter name="field"    value="cpu"/>
+	    <parameter name="groupby"  value="idx"/>
+	<operator>
+\end{lstlisting}
+\end{minipage}
+
+\exblock{Listing~\ref{lst:opxml} shows the XML description of an \emph{Average} operator. In the first
+line the operator is characterized as being an instance of class ``Average'', described in the correspondant
+.template file, and it is given the name of ``MyAvgCpu'. Then there is the declaration of a \emph{next}
+operator, this means that this is not a terminal operator and thus its output should be delivered to a
+single local operator named ``MyOutput''. Next are 3 parameter definitions, in the form $\langle name,
+value \rangle$. The system will look for the ``\$NAME'' placeholder and will replace it with the string
+given by ``value''. Once the substitution has taken place, the .template file becomes a complete .java
+source file and is then compiled by the \emph{CharSequenceCompiler}.}
+	
+	
+%--------------------------------- 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fixed,
+  showstringspaces=false,
+  commentstyle=\color{white}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  %morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{BrickRed},
+  identifierstyle=\color{NavyBlue},
+  keywordstyle=\color{ForestGreen}, 
+  morekeywords={type,name}% list your attributes here
+}
+\begin{lstlisting}[language=XML,label=lst:tuplexml,caption=XML description of a Tuple]
+	<schema name="simpleSchemaONE">
+	    <field type="long"   name="ts"  />
+	    <field type="double" name="idx" />
+	    <field type="double" name="tmp" />  
+	</schema>
+\end{lstlisting}
+
+
+As described in Section~\ref{sec:templates}, Tuples are implemented using a template file. One parent
+class called ``Tuple'' is provided, containing the basic logic common to all tuples, and every other
+tuple class derive from this. In the XML query description, the user specifies a schema and a name for
+the tuples that will be used by the query and the system creates a new tuple class, with the name and
+fields required. A generic tuple \texttt{.template} file is filled, substituting some placeholders with
+the provided data, producing the \texttt{.java} source file of the new tuple class.
+
+Listing~\ref{lst:tuplexml} shows the XML description of a Tuple object with 3 fields: one \texttt{long}
+for the timestamp named \textit{ts}, and two \texttt{double}, one with a numerical identifier \textit{idx}
+and the other carrying a temperature reading \textit{tmp}. These values will be inserted in the tuple
+.template in correspondance with the ``\texttt{\$FIELD}'' placeholder, transforming it into a complete
+.java source file. The compiled object will contain 3 public fields with the type and name specified in
+ the XML listing.
+ 
+%--------------------------------- 
+ 
+ Listing~\ref{lst:opxml} shows the XML description of an \textit{Average} operator. In the first line the
+operator is characterized as being an instance of class ``Average'', described in the correspondent
+.template file, and it is given the name of ``MyAvgCpu'. Then there is the declaration of a \textit{next}
+operator, this means that this is not a terminal operator and thus its output should be delivered to a
+single local operator named ``MyOutput''. Next are 3 parameter definitions, in the form $\langle name,
+value \rangle$. The system will look for the ``\$NAME'' placeholder and will replace it with the string
+given by ``value''. Once the substitution has taken place, the .template file becomes a complete .java
+source file and is then compiled by the \textit{CharSequenceCompiler}.
+		 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fixed,olding,
+  showstringspaces=false,
+  commentstyle=\color{white}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  %morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{BrickRed},
+  identifierstyle=\color{NavyBlue},
+  keywordstyle=\color{ForestGreen}, 
+  morekeywords={type,name}% list your attributes here
+}
+\noindent\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=XML,label=lst:opxml,caption=XML description of an Average operator]
+	<operator name="MyAvgCpu" type="Average">
+	    <next name="MyOutput"/>
+	    <parameter name="tuple"    value="simpleSchemaONE" />
+	    <parameter name="field"    value="cpu"/>
+	    <parameter name="groupby"  value="idx"/>
+	<operator>
+\end{lstlisting}
+\end{minipage}
+
+In the next sections there will be an overview of the main classes of operators provided by the DISSP
+prototype. \textit{Window Operators} provide transformations over window sizes, holding the input of an
+operator until a certain condition is reached. \textit{I/O Operators} are the gateways to the system, in
+input they provide the conversion from external to system tuple representation, in output they deliver
+the query results to the user. \textit{Network Operators} allow the inter-node communication, so that a
+query can be partitioned and distributed onto several nodes. Finally there will be a list of the main
+\textit{Data Manipulation Operators}, these are the ones actually performing the processing on the data,
+and are equivalent to the \textit{relation-to-relation} operators in CQL.
+
+\mnote{Where should I place the operator list? Here seems a bit dispersive}
+
+\subsubsection*{Window Operators}
+\label{sec:window-op}
+Window Operators provide a way of regrouping tuples, changing the size of their container batches and are
+equivalent to the \emph{stream-to-relation} operators in CQL. 
+In CQL a stream is a continuous entity and needs to be broken down into a series of relations through a
+\emph{stream-to-relation} operator before operators can process it. In our system a stream is a purely 
+abstract entity, since batches already are series of tuple snapshots, but window operators are still used
+to group the input of an operators, so that every new input batch contains tuples with a precise
+semantic. The regrouping of tuples can be done according to their \emph{timestamp}, according to the
+values of a \emph{field}, or according to their \emph{position} in the stream.
+
+\paragraph{Sliding Windows}
+
+
+\paragraph{Time Window}
+A \emph{Time Window} defines a temporal interval and produces an output batch containing all the tuples
+received during the interval. For instance a time window of interval ``1 minute'' outputs a batch of
+tuples every minute, containing all tuples received in the previous 60 seconds. The incoming tuples
+accumulate in the internal buffers until the current time interval is over, then they are grouped into a
+new batch that is sent in output and a new time interval begins. 
+
+\paragraph{Field Window}
+
+\paragraph{Count Window}
+A \emph{Count Window} defines a new output batch composed by an exact number of tuples. For instance a
+count window of size N always produces batches of N tuples in output. If an input batch contains M
+tuples, with M greater than N, it gets broken down into a series of batches of size N, until the
+remaining tuples are less than N. These remainder tuples sit in the internal operator buffer until they
+are merged with a new incoming batch. When a new batch arrives it is merged with the tuples still present
+into the internal buffer from the previous execution and, if their total amount is greater than N, a new
+output batch is produced.   
+
+			
+From the standpoint of a user, implementing a new custom operator boils down to the definition of
+a new java class, extending either the \textit{BlockingOperator} or the \textit{NonBlockingOperator} class,
+which implements the \texttt{execute()} method. To make this class generic it is then necessary to
+convert it into a \textit{template} file. This is done by replacing some fields with a generic placeholder
+which will then be specified in the XML description of this operator.
+
+	
+	
+		\subsubsection*{I/O Operators}
+		\label{sec:input-output}
+In DISSP there are two main kinds of InputDevices operators. The first connects to an external source and 
+then receives tuples as they become available. The other kind instead generate a \emph{synthetic
+workload}, employing a file containing the log of a previous stream of tuples, which are replayed at a
+certain rate. This second option is particularly useful when performing system tests and in experiments
+where different strategies has to be evaluated, for instance comparing the performance of two load
+shedding strategies. A Source can start multiple InputDevice operators at once, so that the same
+component can act as a gateway to multiple real sources.
+A more detailed description about the different types of \emph{input devices} implemented within the
+DISSP system is provided in Section~\ref{sec:input-output}.		
+			\paragraph{Source Input Device}
+			\paragraph{Output Device}
+		
+		\subsubsection*{Network Operators}
+		\label{sec:network-op}	
+			\paragraph{Remote Sender}
+			\paragraph{Remote Receiver}
+		
+		\subsubsection*{Data Manipulation Operators}
+		\label{sec:data-op}				
+			\paragraph{Filter}
+			\paragraph{Average}
+			\paragraph{Covariance}
+			\paragraph{Join}
+			\paragraph{TopK}
+			\paragraph{Union}
+			\paragraph{Min}
+			\paragraph{Max}

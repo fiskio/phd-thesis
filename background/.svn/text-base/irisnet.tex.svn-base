@@ -1,0 +1,35 @@
+\subsection*{IrisNet}
+
+Another example of a system aiming at building a global sensing infrastructure is IrisNet~\cite{irisnet}.  
+The project envisions a \emph{world-wide sensor web}, where a common infrastructure is used to elaborate queries over a broad range of heterogeneous sensors.  The sensor
+infrastructure is shared, meaning that the same sensor can provide data to several applications. This maximises the
+sensor's use and minimize the cost and configuration effort of sources. 
+
+IrisNet employs a distributed database based on
+XML, partitioned hierarchically following the structure of the data.  The system employs a two-tier architecture.
+Sources are connected to \emph{sensing agents} (SAs), implementing a generic data acquisition interface to access sensor
+data. The backend infrastructure is composed by \emph{organizing agents} (OAs). These form a distributed database that
+stores the data produced by the SAs.  Sensor derived data is represented in XML using self-describing tags. The
+hierarchical nature of XML allows the mapping of nodes in the document to OAs and OAs to physical machines. Also each
+OA registers with the Internet's Domain Name Service (DNS). 
+It gets assigned a globally unique name in which the subdomain segments represent the different levels in the system
+hierarchy, defining a path from the root to the node. 
+This is the only mapping from the logical database structure to the physical hosts
+IP addresses in the system.  
+
+When routing a query the system directs it to the Lowest Common Ancestor of the nodes
+potentially selected. If for example the query is concerned with sensors deployed in London, it will route it to an OA
+owning the LCA for London.  This allow some degree of scalability because it prevents the global hierarchy root from
+becoming the bottleneck of the system. in order to achieve fault-tolerance and to allow even further scalability several
+OAs can own a node. This means that a query is routed to one of the replicated OAs owing the LCA for execution and also
+it provides a backup mechanism in case of node failure.  At the bottom of the hierarchy tree there are the Sensing
+Agents.  These have the role of collecting and storing the data coming from possibly a large number of sensors. The code
+to elaborate sensor readings takes the name of \emph{senselet} and can be dynamically loaded onto the SAs. Once the data
+is collected and transformed by the senselets it is sent to the OA owning it, to be stored. 
+
+\paragraph{Considerations} Even though IrisNet achieves some degree of scalability by partitioning the data exploiting
+the hierarchical nature of XML, this mechanism might reveal to be too static to be truly scalable. Data can be organized in very
+unbalanced structures which naturally lead to an unbalanced distributing of the data. Also replicas are only used to
+increase the reliability of the system, but could also be used in competition to increase performances and maximise the
+system usage.  Probably a more flexible mechanism should be used to partition the computation over the data streams,
+which would allow a more fluid distribution of the load and overall improve the system scalability. 

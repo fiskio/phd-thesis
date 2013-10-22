@@ -1,0 +1,16 @@
+\subsection*{NiagaraCQ}
+\begin{structure}
+	\item System Description
+	\item Out-of-order processing
+	\item Punctuation 
+	\item Discsussion
+\end{structure}
+
+[NiagaraCQ] NiagaraCQ: A Scalable Continuous Query System for Internet Databases \cite{niagaracq}
+
+[NiagaraST] Out-of-order processing: a new architecture for high-performance
+stream systems \cite{out-of-order}
+
+[NiagaraST] Exploiting Punctuation Semantics in Continuous Data Streams
+\cite{punctuation-semantic}
+

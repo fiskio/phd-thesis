@@ -1,0 +1,10 @@
+\subsection*{Sophia}
+\label{sec:sophia}
+
+\begin{structure}
+	\item System Description
+	\item ...
+	\item Considerations
+\end{structure}
+
+Sophia: an Information Plane for networked systems \cite{sophia-distmon}

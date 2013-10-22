@@ -1,0 +1,21 @@
+* Load Shedding for Aggregation Queries over Data Streams
+
+Paper about load shedding in STREAM. Focuses on aggregation queries with sliding windows.
+It uses statistics on data streams to decide where to place load-shedder operators and what probability
+a tuple has to pass through one of them. Every load-shedding operator has a parameter "p" which is the 
+probability of a tuple to be dropped by the operator, with probability 1-p the tuple is not dropped.
+Network analysis as case study. 
+
+Algorithm:
+	- Determine the effective sampling rates for each query that will distribute error evenly among all queries.
+	- Determine where in the data flow diagram load shedding should be performed to achieve the appropriate rates and satisfy the load equation.
+	
+Seek to minimize is the maximum relative error E across all queries.
+ 
+If there is no sharing of operators among queries, it is straightforward to see that the optimal solution 
+is to introduce a load shedder with sampling rate pi = Pi before the first operator in the query path for
+each query qi . Introducing a load shedder as early in the query path as possible reduces the effective 
+input rate for all “downstream” operators and conforms to the general query optimization principle of
+pushing selection conditions down.
+ 
+ 

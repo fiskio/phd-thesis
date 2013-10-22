@@ -1,0 +1,2799 @@
+% This file was created with JabRef 2.7b.
+% Encoding: UTF-8
+
+@INPROCEEDINGS{borealis-design,
+  author = {Daniel J Abadi and Yanif Ahmad and Magdalena Balazinska and Ugur
+	Cetintemel and Mitch Cherniack and Jeong-Hyon Hwang and Wolfgang
+	Lindner and Anurag S Maskey and Alexander Rasin and Esther Ryvkina
+	and Nesime Tatbul and Ying Xing and Stan Zdonik},
+  title = {The Design of the Borealis Stream Processing Engine},
+  booktitle = {Second Biennial Conference on Innovative Data Systems Research (CIDR
+	2005)},
+  year = {2005},
+  address = {Asilomar, CA},
+  month = {January},
+  __markedentry = {[mfiscato]},
+  file = {:papers/borealis-design.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.10.24}
+}
+
+@INPROCEEDINGS{boxes-and-arrows,
+  author = {Abadi, Daniel J. and Carney, Don and \c{C}etintemel, Ugur and Cherniack,
+	Mitch and Convey, Christian and Lee, Sangdon and Stonebraker, Michael
+	and Tatbul, Nesime and Zdonik, Stan},
+  title = {Aurora: a new model and architecture for data stream management},
+  booktitle = {The VLDB Journal},
+  year = {2003},
+  volume = {12},
+  pages = {120--139},
+  address = {Secaucus, NJ, USA},
+  publisher = {Springer-Verlag New York, Inc.},
+  __markedentry = {[mfiscato]},
+  doi = {http://dx.doi.org/10.1007/s00778-003-0095-z},
+  file = {:papers/boxes_and_arrows.pdf:PDF},
+  issn = {1066-8888},
+  journal = {The VLDB Journal},
+  owner = {mfiscato},
+  timestamp = {2009.08.10}
+}
+
+@INPROCEEDINGS{gsn2,
+  author = {Aberer, K. and Hauswirth, M. and Salehi, A.},
+  title = {Infrastructure for Data Processing in Large-Scale Interconnected
+	Sensor Networks},
+  booktitle = {Mobile Data Management, 2007 International Conference on},
+  year = {2007},
+  pages = {198-205},
+  month = {May},
+  abstract = {With the price of wireless sensor technologies diminishing rapidly
+	we can expect large numbers of autonomous sensor networks being deployed
+	in the near future. These sensor networks will typically not remain
+	isolated but the need of interconnecting them on the network level
+	to enable integrated data processing will arise, thus realizing the
+	vision of a global "sensor Internet." This requires a flexible middleware
+	layer which abstracts from the underlying, heterogeneous sensor network
+	technologies and supports fast and simple deployment and addition
+	of new platforms, facilitates efficient distributed query processing
+	and combination of sensor data, provides support for sensor mobility,
+	and enables the dynamic adaption of the system configuration during
+	runtime with minimal (zero-programming) effort. This paper describes
+	the global sensor networks (GSN) middleware which addresses these
+	goals. We present GSN's conceptual model, abstractions, and architecture,
+	and demonstrate the efficiency of the implementation through experiments
+	with typical high-load application profiles. The GSN implementation
+	isvailable from http://gsn.sourceforge.net/.},
+  doi = {10.1109/MDM.2007.36},
+  file = {:papers/gsn0.pdf:PDF},
+  keywords = {Internet, middleware, mobile communication, query processing, wireless
+	sensor networksdata processing, distributed query processing, global
+	sensor Internet, global sensor network, heterogeneous sensor network,
+	large-scale interconnected sensor networks, middleware, sensor mobility,
+	system configuration, wireless sensor technology},
+  owner = {mfiscato}
+}
+
+@TECHREPORT{gsn,
+  author = {Karl Aberer and Manfred Hauswirth and Ali Salehi},
+  title = {Global Sensor Networks},
+  institution = {EPFL},
+  year = {2006},
+  file = {:papers/gsn.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.26}
+}
+
+@INPROCEEDINGS{sword,
+  author = {Jeannie Albrecht and David Patterson and Amin Vahdat},
+  title = {Distributed resource discovery on PlanetLab with SWORD},
+  booktitle = {In WORLDS},
+  year = {2004},
+  file = {:papers/sword.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.10.17}
+}
+
+@ARTICLE{plush,
+  author = {Albrecht, Jeannie and Tuttle, Christopher and Snoeren, Alex C. and
+	Vahdat, Amin},
+  title = {PlanetLab application management using plush},
+  journal = {SIGOPS Oper. Syst. Rev.},
+  year = {2006},
+  volume = {40},
+  pages = {33--40},
+  number = {1},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/1113361.1113370},
+  file = {:papers/plush-pl_app_management.pdf:PDF},
+  issn = {0163-5980},
+  owner = {mfiscato},
+  publisher = {ACM},
+  timestamp = {2009.06.18}
+}
+
+@INPROCEEDINGS{ss-spc,
+  author = {Amini, Lisa and Andrade, Henrique and Bhagwan, Ranjita and Eskesen,Frank
+	and King, Richard and Selo, Philippe and Park, Yoonho and Venkatramani,
+	Chitra},
+  title = {SPC: a distributed, scalable platform for data mining},
+  booktitle = {DMSSP '06: Proceedings of the 4th international workshop on Data
+	mining standards, services and platforms},
+  year = {2006},
+  pages = {27--37},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/1289612.1289615},
+  file = {:papers/ss-spc.pdf:PDF},
+  isbn = {1-59593-443-X},
+  location = {Philadelphia, Pennsylvania},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@INPROCEEDINGS{extreme-scale-sps,
+  author = {Amini, Lisa and Jain, Navendu and Sehgal, Anshul and Silber, Jeremy
+	and Verscheure, Olivier},
+  title = {Adaptive Control of Extreme-scale Stream Processing Systems},
+  booktitle = {ICDCS '06: Proceedings of the 26th IEEE International Conference
+	on Distributed Computing Systems},
+  year = {2006},
+  pages = {71},
+  address = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  doi = {http://dx.doi.org/10.1109/ICDCS.2006.13},
+  file = {:papers/extreme-scale-sps.pdf:PDF},
+  isbn = {0-7695-2540-7},
+  owner = {mfiscato}
+}
+
+@TECHREPORT{ibm-talk,
+  author = {Henrique Andrad},
+  title = {Large-Scale Distributed Stream Processing with IBM InfoSphere Streams},
+  institution = {IBM Research},
+  year = {2010},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/ibm-talk.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@INPROCEEDINGS{ss-scale_up,
+  author = {Henrique Andrade and Bugra Gedik and Kun-Lung Wu and Philip S. Yu},
+  title = {Scale-Up Strategies for Processing High-Rate Data Streams in System
+	S},
+  booktitle = {ICDE},
+  year = {2009},
+  pages = {1375-1378},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  ee = {http://dx.doi.org/10.1109/ICDE.2009.116},
+  file = {:papers/ss-scale_up.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.19}
+}
+
+@TECHREPORT{stream,
+  author = {A. Arasu and B. Babcock and S. Babu and J. Cieslewicz and M. Datar
+	and K. Ito and R Motwani and U. Srivastava and J. Widom},
+  title = {STREAM: The Stanford Data Stream Management System},
+  institution = {Stanford InfoLab},
+  year = {2004},
+  type = {Technical Report},
+  number = {2004-20},
+  __markedentry = {[mfiscato]},
+  abstract = {A good overview of the Stanford Data Stream Management System project
+	as of March 2004.},
+  file = {:papers/stream.pdf:PDF},
+  journal = {Book chapter},
+  owner = {mfiscato},
+  publisher = {Stanford InfoLab},
+  timestamp = {2009.04.22},
+  url = {http://ilpubs.stanford.edu:8090/641/}
+}
+
+@ARTICLE{cql,
+  author = {Arasu, Arvind and Babu, Shivnath and Widom, Jennifer},
+  title = {The CQL continuous query language: semantic foundations and query
+	execution},
+  journal = {The VLDB Journal},
+  year = {2006},
+  volume = {15},
+  pages = {121--142},
+  number = {2},
+  __markedentry = {[mfiscato]},
+  address = {Secaucus, NJ, USA},
+  doi = {http://dx.doi.org/10.1007/s00778-004-0147-z},
+  file = {:papers/cql.pdf:PDF},
+  issn = {1066-8888},
+  owner = {mfiscato},
+  publisher = {Springer-Verlag New York, Inc.},
+  timestamp = {2009.06.18}
+}
+
+@ARTICLE{twitter-sentiment-3,
+  author = {Asur, Sitaram and Huberman, Bernardo A},
+  title = {Predicting the Future with Social Media},
+  journal = {2010 IEEEWICACM International Conference on Web Intelligence and
+	Intelligent Agent Technology},
+  year = {2010},
+  volume = {abs/1003.5},
+  pages = {492--499},
+  number = {1},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/twitter-sentiment-3.pdf:PDF},
+  publisher = {Ieee},
+  url = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=5616710}
+}
+
+@INPROCEEDINGS{eddies,
+  author = {Avnur, Ron and Hellerstein, Joseph M.},
+  title = {Eddies: continuously adaptive query processing},
+  booktitle = {SIGMOD '00 Proceedings of the 2000 ACM SIGMOD international conference
+	on Management of data},
+  year = {2000},
+  volume = {29},
+  number = {2},
+  pages = {261--272},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/335191.335420},
+  file = {:papers/eddies.pdf:PDF},
+  issn = {0163-5808},
+  journal = {SIGMOD Rec.},
+  owner = {mfiscato},
+  timestamp = {2009.08.05}
+}
+
+@INPROCEEDINGS{ds-models-and-issues,
+  author = {Babcock, Brian and Babu, Shivnath and Datar, Mayur and Motwani, Rajeev
+	and Widom, Jennifer},
+  title = {Models and issues in data stream systems},
+  booktitle = {PODS '02: Proceedings of the twenty-first ACM SIGMOD-SIGACT-SIGART
+	symposium on Principles of database systems},
+  year = {2002},
+  pages = {1--16},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/543613.543615},
+  file = {:papers/datastreams_models_and_issues.pdf:PDF},
+  isbn = {1-58113-507-6},
+  location = {Madison, Wisconsin},
+  owner = {mfiscato},
+  timestamp = {2009.08.10}
+}
+
+@INPROCEEDINGS{stream-chains,
+  author = {Babcock,, Brian and Babu,, Shivnath and Motwani,, Rajeev and Datar,,
+	Mayur},
+  title = {Chain: operator scheduling for memory minimization in data stream
+	systems},
+  booktitle = {SIGMOD '03: Proceedings of the 2003 ACM SIGMOD international conference
+	on Management of data},
+  year = {2003},
+  pages = {253--264},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/872757.872789},
+  file = {:papers/stream-chains.pdf:PDF},
+  isbn = {1-58113-634-X},
+  location = {San Diego, California},
+  owner = {mfiscato},
+  timestamp = {2009.04.22}
+}
+
+@INPROCEEDINGS{loadshed-babcock,
+  author = {Brian Babcock and Mayur Datar and Rajeev Motwani},
+  title = {Load Shedding for Aggregation Queries over Data Streams},
+  booktitle = {In ICDE},
+  year = {2004},
+  pages = {350--361},
+  __markedentry = {[mfiscato]},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-babcock.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@INPROCEEDINGS{cont-queries,
+  author = {Shivnath Babu and Jennifer Widom},
+  title = {Continuous Queries over Data Streams},
+  booktitle = {International Conference on Management of Data (SIGMOD 2001)},
+  year = {2001},
+  volume = {30 },
+  month = {September},
+  __markedentry = {[mfiscato]},
+  abstract = {In many modern applications, data may take the form of infinite "data
+	streams", rather than finite stored data sets. Several aspects of
+	data management need to be reconsidered in the presence of data streams,
+	offering a new research direction for the database community. In
+	this paper we focus primarily on the problem of query processing,
+	specifically on how to define and evaluate "continuous queries" over
+	data streams. We address semantic issues as well as efficiency concerns.
+	Our main contributions are threefold. First, we specify a general
+	and flexible architecture for query processing in the presence of
+	data streams. Second, we use our basic architecture as a tool to
+	clarify alternative semantics and processing techniques for continuous
+	queries. The architecture also captures most previous work on continuous
+	queries and data streams, as well as related concepts such as triggers
+	and materialized views. Finally, we map out research topics in the
+	area of query processing over data streams, showing where previous
+	work is relevant and describing problems yet to be addressed. Please
+	note that this paper was prepared as a ``vision'' contribution. Its
+	main goal is to identify in detail what we believe to be an interesting
+	new research direction, which also happens to have near-term practical
+	relevance.},
+  file = {:papers/continuous-queries.pdf:PDF},
+  journal = {SIGMOD Record},
+  keywords = {Data Streams, Continuous Queries},
+  owner = {mfiscato},
+  timestamp = {2009.09.01},
+  url = {http://ilpubs.stanford.edu:8090/527/}
+}
+
+@INPROCEEDINGS{internet-telescope,
+  author = {Bailey,, Michael and Cooke,, Evan and Jahanian,, Farnam and Provos,,
+	Niels and Rosaen,, Karl and Watson,, David},
+  title = {Data reduction for the scalable automated analysis of distributed
+	darknet traffic},
+  booktitle = {IMC '05: Proceedings of the 5th ACM SIGCOMM conference on Internet
+	Measurement},
+  year = {2005},
+  pages = {21--21},
+  address = {Berkeley, CA, USA},
+  publisher = {USENIX Association},
+  __markedentry = {[mfiscato]},
+  file = {:papers/internet-telescopes.pdf:PDF},
+  location = {Berkeley, CA},
+  owner = {mfiscato},
+  timestamp = {2009.05.19}
+}
+
+@TECHREPORT{availability-consistency,
+  author = {Balazinska and Balakrishnan and Madden and Stonebraker},
+  title = {Availability-Consistency Trade-Offs in a Fault-Tolerant Stream Processing
+	System},
+  institution = {Massachusetts Institute of Technology Computer Science and Artificial
+	Intelligence Laboratory},
+  year = {2004},
+  __markedentry = {[mfiscato]},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/availability-consistency.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.10.24}
+}
+
+@INPROCEEDINGS{borealis-fault_tolerance,
+  author = {Magdalena Balazinska and Hari Balakrishnan and Samuel Madden and
+	Mike Stonebraker},
+  title = {Fault-Tolerance in the Borealis Distributed Stream Processing System},
+  booktitle = {ACM SIGMOD Conf.},
+  year = {2005},
+  address = {Baltimore, MD},
+  month = {June},
+  __markedentry = {[mfiscato]},
+  file = {:papers/borealis-fault_tolerance.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.10.27}
+}
+
+@INPROCEEDINGS{medusa-load,
+  author = {Balazinska, Magdalena and Balakrishnan, Hari and Stonebraker, Mike},
+  title = {Contract-based load management in federated distributed systems},
+  booktitle = {NSDI'04: Proceedings of the 1st conference on Symposium on Networked
+	Systems Design and Implementation},
+  year = {2004},
+  pages = {15--15},
+  address = {Berkeley, CA, USA},
+  publisher = {USENIX Association},
+  __markedentry = {[mfiscato]},
+  file = {:papers/medusa-load.pdf:PDF},
+  location = {San Francisco, California},
+  owner = {mfiscato},
+  timestamp = {2009.08.05}
+}
+
+@ARTICLE{stream-processing-challanges,
+  author = {Magdalena Balazinska and Amol Deshpande and Michael J. Franklin and
+	Phillip B. Gibbons and Jim Gray and Mark Hansen and Michael Liebhold
+	and Suman Nath and Alexander Szalay and Vincent Tao},
+  title = {Data Management in the Worldwide Sensor Web},
+  journal = {IEEE Pervasive Computing},
+  year = {2007},
+  volume = {6},
+  pages = {30--40},
+  number = {2},
+  __markedentry = {[mfiscato]},
+  address = {Piscataway, NJ, USA},
+  doi = {http://dx.doi.org/10.1109/MPRV.2007.27},
+  file = {:papers/sp_challanges.pdf:PDF},
+  issn = {1536-1268},
+  owner = {mfiscato},
+  publisher = {IEEE Educational Activities Department},
+  timestamp = {2008.10.15}
+}
+
+@INPROCEEDINGS{partial-fault-tolerance,
+  author = {Bansal, N. and Bhagwan, R. and Jain, N. and Yoonho Park and Turaga,
+	D. and Venkatramani, C.},
+  title = {Towards Optimal Resource Allocation in Partial-Fault Tolerant Applications},
+  booktitle = {INFOCOM 2008. The 27th Conference on Computer Communications. IEEE},
+  year = {2008},
+  pages = {1319-1327},
+  month = {April},
+  __markedentry = {[mfiscato]},
+  abstract = {We introduce Zen, a new resource allocation framework that assigns
+	application components to node clusters to achieve high availability
+	for partial-fault tolerant (PFT) applications. These applications
+	have the characteristic that under partial failures, they can still
+	produce useful output though the output quality may be reduced. Thus,
+	the primary goal of resource allocation for PFT applications is to
+	prevent, delay, or minimize the impact of failures on the application
+	output quality. This paper is the first to approach this resource
+	allocation problem from a theoretical perspective, and obtains a
+	series of results regarding component assignments that provide the
+	highest service availability under the constraints imposed by the
+	application data flow graph and the hosting clusters. We show that
+	(1) even simple versions of this resource allocation problem are
+	NP-Hard, (2) a 2-approximate polynomial-time algorithm works for
+	tree topologies, and (3) a simple greedy component placement performs
+	well in practice for general application topologies. We implement
+	a system prototype to study the application availability achieved
+	by Zen compared to failure-oblivious placement, replication, and
+	Zen+replication. Our experimental results show that three PFT applications
+	achieve significant data output quality and availability benefits
+	using Zen.},
+  doi = {10.1109/INFOCOM.2008.189},
+  file = {:papers/partial-fault_tolerant.pdf:PDF},
+  issn = {0743-166X},
+  keywords = {computational complexity, data flow graphs, fault tolerant computing,
+	polynomial approximation, resource allocation, trees (mathematics)NP-hard,
+	data flow graph, failure-oblivious placement, greedy component placement,
+	optimal resource allocation, partial-fault tolerant application,
+	polynomial-time algorithm work, tree topology},
+  owner = {mfiscato},
+  timestamp = {2009.06.25}
+}
+
+@ARTICLE{twitter-sentiment-4,
+  author = {Barbosa, Luciano},
+  title = {Robust Sentiment Detection on Twitter from Biased and Noisy Data},
+  journal = {Proceedings of the 23rd International Conference on Computational
+	Linguistics Posters},
+  year = {2010},
+  pages = {36--44},
+  number = {August},
+  publisher = {Association for Computational Linguistics},
+  url = {http://portal.acm.org/citation.cfm?id=1944571}
+}
+
+@INPROCEEDINGS{sensorscope,
+  author = {Barrenetxea, Guillermo and Ingelrest, Fran\c{c}ois and Schaefer,
+	Gunnar and Vetterli, Martin and Couach, Olivier and Parlange, Marc},
+  title = {SensorScope: Out-of-the-Box Environmental Monitoring},
+  booktitle = {IPSN '08: Proceedings of the 7th international conference on Information
+	processing in sensor networks},
+  year = {2008},
+  pages = {332--343},
+  address = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  doi = {http://dx.doi.org/10.1109/IPSN.2008.28},
+  file = {:papers/sensorscope.pdf:PDF},
+  isbn = {978-0-7695-3157-1},
+  owner = {mfiscato}
+}
+
+@TECHREPORT{borealis-catalog,
+  author = {Bradley Berg},
+  title = {A Distributed Catalog for the Borealis Stream Processing Engine},
+  institution = {Borealis Internal Document},
+  year = {2006},
+  __markedentry = {[mfiscato]},
+  comment = {borealis},
+  file = {:papers/borealis-dist_catalog.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@ARTICLE{bloom,
+  author = {Bloom, Burton H.},
+  title = {Space/time trade-offs in hash coding with allowable errors},
+  journal = {Commun. ACM},
+  year = {1970},
+  volume = {13},
+  pages = {422--426},
+  month = {July},
+  __markedentry = {[mfiscato]},
+  acmid = {362692},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/362686.362692},
+  file = {:papers/approx-bloom.pdf:PDF},
+  issn = {0001-0782},
+  issue = {7},
+  issue_date = {July 1970},
+  keywords = {hash addressing, hash coding, retrieval efficiency, retrieval trade-offs,
+	scatter storage, searching, storage efficiency, storage layout},
+  numpages = {5},
+  owner = {mfiscato},
+  publisher = {ACM},
+  timestamp = {2009.08.04},
+  url = {http://doi.acm.org/10.1145/362686.362692}
+}
+
+@ARTICLE{twitter-stocks,
+  author = {Johan Bollen and Huina Mao and Xiao-Jun Zeng},
+  title = {Twitter mood predicts the stock market},
+  journal = {CoRR},
+  year = {2010},
+  volume = {abs/1010.3003},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  ee = {http://arxiv.org/abs/1010.3003},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/twitter-stocks.pdf:PDF}
+}
+
+@INPROCEEDINGS{scalability,
+  author = {Bondi, Andr\'{e} B.},
+  title = {Characteristics of scalability and their impact on performance},
+  booktitle = {WOSP '00: Proceedings of the 2nd international workshop on Software
+	and performance},
+  year = {2000},
+  pages = {195--203},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/350391.350432},
+  file = {:papers/scalability.pdf:PDF},
+  isbn = {1-58113-195-X},
+  location = {Ottawa, Ontario, Canada},
+  owner = {mfiscato},
+  timestamp = {2009.09.09}
+}
+
+@INPROCEEDINGS{cougar-adt,
+  author = {Bonnet, Philippe and Gehrke, Johannes and Seshadri, Praveen},
+  title = {Towards Sensor Database Systems},
+  booktitle = {MDM '01: Proceedings of the Second International Conference on Mobile
+	Data Management},
+  year = {2001},
+  pages = {3--14},
+  address = {London, UK},
+  publisher = {Springer-Verlag},
+  __markedentry = {[mfiscato]},
+  file = {:papers/cougar-adt.pdf:PDF},
+  isbn = {3-540-41454-1},
+  owner = {mfiscato},
+  timestamp = {2009.08.14}
+}
+
+@INPROCEEDINGS{cayuga,
+  author = {Brenna, Lars and Demers, Alan and Gehrke, Johannes and Hong, Mingsheng
+	and Ossher, Joel and Panda, Biswanath and Riedewald, Mirek and Thatte,
+	Mohit and White, Walker},
+  title = {Cayuga: a high-performance event processing engine},
+  booktitle = {SIGMOD '07: Proceedings of the 2007 ACM SIGMOD international conference
+	on Management of data},
+  year = {2007},
+  pages = {1100--1102},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/1247480.1247620},
+  file = {:papers/cayuga.pdf:PDF},
+  isbn = {978-1-59593-686-8},
+  location = {Beijing, China},
+  owner = {mfiscato}
+}
+
+@MISC{caida,
+  author = {{CAIDA: The Cooperative Association for Internet Data Analysis}},
+  title = {http://www.caida.org/},
+  owner = {mfiscato},
+  timestamp = {2009.09.10}
+}
+
+@INPROCEEDINGS{metrosense,
+  author = {Campbell, Andrew T. and Eisenman, Shane B. and Lane, Nicholas D.
+	and Miluzzo, Emiliano and Peterson, Ronald A.},
+  title = {People-centric urban sensing},
+  booktitle = {WICON '06: Proceedings of the 2nd annual international workshop on
+	Wireless internet},
+  year = {2006},
+  pages = {18},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/1234161.1234179},
+  file = {:papers/metrosense.pdf:PDF},
+  isbn = {1-59593-510-X},
+  location = {Boston, Massachusetts},
+  owner = {mfiscato}
+}
+
+@ARTICLE{metrosense-article,
+  author = {Andrew T. Campbell and Nicholas D. Lane and Emiliano Miluzzo and
+	Ronald A. Peterson and Hong Lu and Xiao Zheng and Mirco Musolesi
+	and Kristóf Fodor and Shane B. Eisenman and Ghang Seop Ahn},
+  title = {The Rise of People-Centric Sensing},
+  journal = {IEEE Internet Computing},
+  year = {2008},
+  volume = {1},
+  pages = {12-21},
+  file = {:papers/metrosense-article.pdf:PDF},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{aurora,
+  author = {Carney, Don and \c{C}etintemel, U\v{g}ur and Cherniack, Mitch and
+	Convey, Christian and Lee, Sangdon and Seidman, Greg and Stonebraker,
+	Michael and Tatbul, Nesime and Zdonik, Stan},
+  title = {Monitoring streams: a new class of data management applications},
+  booktitle = {VLDB '02: Proceedings of the 28th international conference on Very
+	Large Data Bases},
+  year = {2002},
+  pages = {215--226},
+  publisher = {VLDB Endowment},
+  __markedentry = {[mfiscato]},
+  file = {:papers/aurora.pdf:PDF},
+  location = {Hong Kong, China},
+  owner = {mfiscato},
+  timestamp = {2009.09.02}
+}
+
+@INPROCEEDINGS{socialcascade-flickr,
+  author = {Cha, Meeyoung and Mislove, Alan and Adams, Ben and Gummadi, Krishna
+	P.},
+  title = {Characterizing social cascades in flickr},
+  booktitle = {Proceedings of the first workshop on Online social networks},
+  year = {2008},
+  series = {WOSN '08},
+  pages = {13--18},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  acmid = {1397739},
+  doi = {http://doi.acm.org/10.1145/1397735.1397739},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/socialcascading-salvo.pdf:PDF},
+  isbn = {978-1-60558-182-8},
+  keywords = {cascades, epidemiology, information dissemination, social networks},
+  location = {Seattle, WA, USA},
+  numpages = {6},
+  owner = {mfiscato},
+  timestamp = {2011.11.07},
+  url = {http://doi.acm.org/10.1145/1397735.1397739}
+}
+
+@ARTICLE{wavelets,
+  author = {Chakrabarti, Kaushik and Garofalakis, Minos and Rastogi, Rajeev and
+	Shim, Kyuseok},
+  title = {Approximate query processing using wavelets},
+  journal = {The VLDB Journal},
+  year = {2001},
+  volume = {10},
+  pages = {199--223},
+  month = {September},
+  __markedentry = {[mfiscato]},
+  acmid = {767147},
+  address = {Secaucus, NJ, USA},
+  file = {:papers/wavelets.pdf:PDF},
+  issn = {1066-8888},
+  issue = {2-3},
+  keywords = {Approximate query answers, Data synopses, Query processing, Wavelet
+	decomposition},
+  numpages = {25},
+  owner = {mfiscato},
+  publisher = {Springer-Verlag New York, Inc.},
+  timestamp = {2009.08.04},
+  url = {http://dl.acm.org/citation.cfm?id=767141.767147}
+}
+
+@ARTICLE{temp-privacy,
+  author = {Haowen Chan and Adrian Perrig},
+  title = {Security and Privacy in Sensor Networks},
+  journal = {Computer},
+  year = {2003},
+  volume = {36},
+  pages = {103-105},
+  number = {10},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://doi.ieeecomputersociety.org/10.1109/MC.2003.1236475},
+  file = {:papers/security_and_privacy_sensors.pdf:PDF},
+  issn = {0018-9162},
+  owner = {mfiscato},
+  publisher = {IEEE Computer Society},
+  timestamp = {2009.08.03}
+}
+
+@ARTICLE{failure-analysis,
+  author = {Chandra, Abhishek and Prinja, Rohini and Jain, Sourabh and Zhang,
+	ZhiLi},
+  title = {Co-designing the failure analysis and monitoring of large-scale systems},
+  journal = {SIGMETRICS Perform. Eval. Rev.},
+  year = {2008},
+  volume = {36},
+  pages = {10--15},
+  month = {August},
+  acmid = {1453178},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/1453175.1453178},
+  file = {:papers/failure-analysis.pdf:PDF},
+  issn = {0163-5999},
+  issue = {2},
+  numpages = {6},
+  owner = {mfiscato},
+  publisher = {ACM},
+  timestamp = {2009.09.09},
+  url = {http://doi.acm.org/10.1145/1453175.1453178}
+}
+
+@INPROCEEDINGS{telegraphcq,
+  author = {Chandrasekaran, Sirish and Cooper, Owen and Deshpande, Amol and Franklin,
+	Michael J. and Hellerstein, Joseph M. and Hong, Wei and Krishnamurthy,
+	Sailesh and Madden, Samuel R. and Reiss, Fred and Shah, Mehul A.},
+  title = {TelegraphCQ: continuous dataflow processing},
+  booktitle = {SIGMOD '03: Proceedings of the 2003 ACM SIGMOD international conference
+	on Management of data},
+  year = {2003},
+  pages = {668--668},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/872757.872857},
+  file = {:papers/telegraphCQ.pdf:PDF},
+  isbn = {1-58113-634-X},
+  location = {San Diego, California},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@ARTICLE{loadshed-chang,
+  author = {Chang, Joong Hyuk and Kum, Hye-Chung (Monica)},
+  title = {Frequency-based load shedding over a data stream of tuples},
+  journal = {Inf. Sci.},
+  year = {2009},
+  volume = {179},
+  pages = {3733--3744},
+  month = {October},
+  __markedentry = {[mfiscato]},
+  acmid = {1595228},
+  address = {New York, NY, USA},
+  doi = {10.1016/j.ins.2009.01.014},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-chang.pdf:PDF},
+  issn = {0020-0255},
+  issue = {21},
+  keywords = {Data stream, Data stream processing, Frequency-based load shedding,
+	Load shedding},
+  numpages = {12},
+  owner = {mfiscato},
+  publisher = {Elsevier Science Inc.},
+  timestamp = {2011.10.31},
+  url = {http://dl.acm.org/citation.cfm?id=1595073.1595228}
+}
+
+@INPROCEEDINGS{niagaracq,
+  author = {Jianjun Chen and David J. DeWitt and Feng Tian and Yuan Wang},
+  title = {NiagaraCQ: A Scalable Continuous Query System for Internet Databases},
+  booktitle = {In SIGMOD},
+  year = {2000},
+  pages = {379--390},
+  __markedentry = {[mfiscato]},
+  file = {:papers/NiagaraCQ.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.26}
+}
+
+@ARTICLE{gates-grid,
+  author = {Liang Chen and Kolagatla Reddy and Gagan Agrawal},
+  title = {GATES: A Grid-Based Middleware for Processing Distributed Data Streams},
+  journal = {High-Performance Distributed Computing, International Symposium on},
+  year = {2004},
+  volume = {0},
+  pages = {192-201},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://doi.ieeecomputersociety.org/10.1109/HPDC.2004.16},
+  file = {:papers/gates-grid.pdf:PDF},
+  issn = {1082-8907},
+  owner = {mfiscato},
+  publisher = {IEEE Computer Society},
+  timestamp = {2009.06.26}
+}
+
+@INPROCEEDINGS{aurora*,
+  author = {Mitch Cherniack and Hari Balakrishnan and Magdalena Balazinska and
+	Donald Carney and Ugur Cetintemel and Ying Xing and Stan Zdonik},
+  title = {Scalable Distributed Stream Processing},
+  booktitle = {CIDR 2003 - First Biennial Conference on Innovative Data Systems
+	Research},
+  year = {2003},
+  address = {Asilomar, CA},
+  month = {January},
+  __markedentry = {[mfiscato]},
+  file = {:papers/aurora-cidr03.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.09.02}
+}
+
+@INPROCEEDINGS{loadshed-chi,
+  author = {Yun Chi and Haixun Wang and Philip S. Yu},
+  title = {Loadstar: Load shedding in data stream mining},
+  booktitle = {In Proc. Int. Conf. on Very Large Data Bases (VLDB)},
+  year = {2005},
+  pages = {1302--1305},
+  __markedentry = {[mfiscato]},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-chi.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@BOOK{ibm-redbook,
+  title = {IBM InfoSphere Streams
+	
+	Assembling Continuous Insight in the Information Revolutio},
+  publisher = {IBM},
+  year = {2011},
+  editor = {IBM},
+  author = {Chuck Ballard , Kevin Foster, Andy Frenkiel , Senthil Nathan, Bugra
+	Gedik, Deepak Rajan, Roger Rea , Brian Williams, Mike Spicer, Michael
+	P. Koranda, Vitali N. Zoubov},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/ibm-redbook.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@INPROCEEDINGS{rss-costa,
+  author = {Paolo Costa and Jeff Napper and Guillaume Pierre and Maarten Van
+	Steen},
+  title = {Autonomous Resource Selection for Decentralized Utility Computing},
+  booktitle = {Proceedings of the 29$^{th}$ IEEE International Conference on Distributed
+	Computing Systems (ICDCS 2009)},
+  year = {2009},
+  address = {Montreal, Canada},
+  month = {June},
+  publisher = {IEEE Computer Society Press},
+  file = {:papers/rss-costa.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.08.03}
+}
+
+@INPROCEEDINGS{gigascope,
+  author = {Cranor, Chuck and Johnson, Theodore and Spataschek, Oliver and Shkapenyuk,
+	Vladislav},
+  title = {Gigascope: a stream database for network applications},
+  booktitle = {SIGMOD '03: Proceedings of the 2003 ACM SIGMOD international conference
+	on Management of data},
+  year = {2003},
+  pages = {647--651},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/872757.872838},
+  file = {:papers/gigascope.pdf:PDF},
+  isbn = {1-58113-634-X},
+  location = {San Diego, California},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{loadshed-dash,
+  author = {Dash, Ranjan and Fegaras, Leonidas},
+  title = {Synopsis based load shedding in XML streams},
+  booktitle = {Proceedings of the 2009 EDBT/ICDT Workshops},
+  year = {2009},
+  series = {EDBT/ICDT '09},
+  pages = {93--98},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  acmid = {1698806},
+  doi = {http://doi.acm.org/10.1145/1698790.1698806},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-dash.pdf:PDF},
+  isbn = {978-1-60558-650-2},
+  keywords = {XML streams, approximate query processing, data streams, histogram,
+	load shedding, quality of service, synopsis},
+  location = {Saint-Petersburg, Russia},
+  numpages = {6},
+  owner = {mfiscato},
+  timestamp = {2011.10.31},
+  url = {http://doi.acm.org/10.1145/1698790.1698806}
+}
+
+@INPROCEEDINGS{gossip-aggregates-dipietro,
+  author = {Di Pietro, Roberto and Michiardi, Pietro},
+  title = {Gossip-based aggregate computation: computing faster with non address-oblivious
+	schemes},
+  booktitle = {PODC '08: Proceedings of the twenty-seventh ACM symposium on Principles
+	of distributed computing},
+  year = {2008},
+  pages = {442--442},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/1400751.1400837},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/gossip-aggregates-dipietro.pdf:PDF},
+  isbn = {978-1-59593-989-0},
+  location = {Toronto, Canada},
+  owner = {mfiscato},
+  timestamp = {2009.09.08}
+}
+
+@TECHREPORT{query_languages_survey,
+  author = {Miran Dylan},
+  title = {An Analysis of Stream Processing Languages},
+  institution = {Macquarie University, Sydney - Australia},
+  year = {2009},
+  __markedentry = {[mfiscato]},
+  file = {:papers/query_languages_survery.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.08.10}
+}
+
+@MISC{earthscope,
+  author = {{Earthscope project}},
+  title = {http://www.earthscope.org},
+  __markedentry = {[mfiscato]},
+  owner = {mfiscato},
+  timestamp = {2009.07.10}
+}
+
+@MISC{emulab,
+  author = {{Emulab - Network Emulation Testbed}},
+  title = {http://www.emulab.net/},
+  owner = {mfiscato},
+  timestamp = {2009.09.10}
+}
+
+@INPROCEEDINGS{mfiscato-selfman08,
+  author = {Marco Fiscato and Paolo Costa and Guillaume Pierre},
+  title = {On the Feasibility of Decentralized Grid Scheduling},
+  booktitle = {Selfman Workshop at SASO},
+  year = {2008},
+  file = {:papers/mfiscato-selfman08.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.07.24}
+}
+
+@INPROCEEDINGS{dissp-qdb2009,
+  author = {Marco Fiscato and Quang Hieu Vu and Peter Pietzuch},
+  title = {A Quality-Centric Data Model for Distributed Stream Management Systems},
+  booktitle = {7th International Workshop on Quality in Databases at VLDB 2009},
+  year = {2009},
+  file = {:papers/dissp-qdb2009.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.07.24}
+}
+
+@ARTICLE{flajolet-martin,
+  author = {Flajolet, Philippe and Martin, Nigel G.},
+  title = {Probabilistic Counting Algorithms for Data Base Applications},
+  journal = {Journal of Computer and System Sciences},
+  year = {1985},
+  volume = {31},
+  pages = {182--209},
+  number = {2},
+  abstract = {This paper introduces a class of probabilistic counting lgorithms
+	with which one can estimate the number of distinct elements in a
+	large collection of data (typically a large file stored on disk)
+	in a single pass using only a small additional storage (typically
+	less than a hundred binary words) and only a few operations per element
+	scanned. The algorithms are based on statistical observations made
+	on bits of hashed values of records. They are by con- struction totally
+	insensitive to the...},
+  citeulike-article-id = {493560},
+  citeulike-linkout-0 = {http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.12.7100},
+  file = {:papers/flajolet-martin.pdf:PDF},
+  keywords = {aggregation, sketches},
+  owner = {mfiscato},
+  posted-at = {2008-09-04 23:00:00},
+  priority = {2},
+  timestamp = {2009.07.30},
+  url = {http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.12.7100}
+}
+
+@INPROCEEDINGS{hifi,
+  author = {Michael J. Franklin and Shawn R. Jeffery and Sailesh Krishnamurthy
+	and Frederick Reiss},
+  title = {Design Considerations for High Fan-in Systems: The HiFi Approach},
+  booktitle = {In CIDR},
+  year = {2005},
+  pages = {290--304},
+  __markedentry = {[mfiscato]},
+  file = {:papers/hifi.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.10.29}
+}
+
+@INPROCEEDINGS{ss-spade,
+  author = {Gedik, Bugra and Andrade, Henrique and Wu, Kun-Lung and Yu, Philip
+	S. and Doo, Myungcheol},
+  title = {SPADE: the system s declarative stream processing engine},
+  booktitle = {SIGMOD '08: Proceedings of the 2008 ACM SIGMOD international conference
+	on Management of data},
+  year = {2008},
+  pages = {1123--1134},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/1376616.1376729},
+  file = {:papers/ss-spade.pdf:PDF},
+  isbn = {978-1-60558-102-6},
+  location = {Vancouver, Canada},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@INPROCEEDINGS{loadshed-gedik,
+  author = {Gedik, B. and Kun-Lung Wu and Yu, P.S.},
+  title = {Efficient Construction of Compact Shedding Filters for Data Stream
+	Processing},
+  booktitle = {Data Engineering, 2008. ICDE 2008. IEEE 24th International Conference
+	on},
+  year = {2008},
+  pages = {396 -405},
+  month = {april},
+  __markedentry = {[mfiscato]},
+  doi = {10.1109/ICDE.2008.4497448},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-gedik.pdf:PDF},
+  keywords = {CQ server;NR sifters;QoS;adaptive source filtering;continual query;data
+	stream processing;high-volume source streams;load-shedding source
+	filters;nonuniformly regulated sifters;optimization;information filtering;quality
+	of service;query processing;},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@ARTICLE{loadshed-grubjoin,
+  author = {Gedik, B. and Kun-Lung Wu and Yu, P.S. and Ling Liu},
+  title = {GrubJoin: An Adaptive, Multi-Way, Windowed Stream Join with Time
+	Correlation-Aware CPU Load Shedding},
+  journal = {Knowledge and Data Engineering, IEEE Transactions on},
+  year = {2007},
+  volume = {19},
+  pages = {1363 -1380},
+  number = {10},
+  month = {oct. },
+  __markedentry = {[mfiscato]},
+  doi = {10.1109/TKDE.2007.190630},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-grubjoin.pdf:PDF},
+  issn = {1041-4347},
+  keywords = {adaptive multiway windowed stream join;approximation technique;data
+	stream operation;near-optimal window harvesting;optimization problem;query
+	processing;time correlation-aware CPU load shedding;tuple dropping;approximation
+	theory;load shedding;optimisation;query processing;},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@ARTICLE{loadshed-gedik2,
+  author = {Gedik, Bugra and Wu, Kun-Lung and Yu, Philip S. and Liu, Ling},
+  title = {CPU load shedding for binary stream joins},
+  journal = {Knowl. Inf. Syst.},
+  year = {2007},
+  volume = {13},
+  pages = {271--303},
+  month = {November},
+  __markedentry = {[mfiscato]},
+  acmid = {1327263},
+  address = {New York, NY, USA},
+  doi = {10.1007/s10115-006-0044-4},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-gedik2.pdf:PDF},
+  issn = {0219-1377},
+  issue = {3},
+  keywords = {Data streams, Load shedding, Stream joins},
+  numpages = {33},
+  owner = {mfiscato},
+  publisher = {Springer-Verlag New York, Inc.},
+  timestamp = {2011.10.31},
+  url = {http://dl.acm.org/citation.cfm?id=1327261.1327263}
+}
+
+@ARTICLE{qpsn,
+  author = {Johannes Gehrke and Samuel Madden},
+  title = {Query Processing in Sensor Networks},
+  journal = {IEEE Pervasive Computing},
+  year = {2004},
+  volume = {3},
+  pages = {46-55},
+  number = {1},
+  __markedentry = {[mfiscato]},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://doi.ieeecomputersociety.org/10.1109/MPRV.2004.1269131},
+  file = {:papers/query-processing-in-sensor-networks.pdf:PDF},
+  issn = {1536-1268},
+  owner = {mfiscato},
+  publisher = {IEEE Computer Society}
+}
+
+@ARTICLE{irisnet,
+  author = {Phillip B. Gibbons and Brad Karp and Yan Ke and Suman Nath and Srinivasan
+	Seshan},
+  title = {IrisNet: An Architecture for a Worldwide Sensor Web},
+  journal = {IEEE Pervasive Computing},
+  year = {2003},
+  volume = {2},
+  pages = {22-33},
+  number = {4},
+  __markedentry = {[mfiscato]},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://doi.ieeecomputersociety.org/10.1109/MPRV.2003.1251166},
+  file = {:papers/irisnet.pdf:PDF},
+  issn = {1536-1268},
+  owner = {mfiscato},
+  publisher = {IEEE Computer Society},
+  timestamp = {2008.10.16}
+}
+
+@INPROCEEDINGS{xstream,
+  author = {Lewis Girod and Yuan Mei and Stanislav Rost and Arvind Thiagarajan
+	and Hari Balakrishnan and Samuel Madden},
+  title = {XStream: a Signal-Oriented Data Stream Management System},
+  booktitle = {International Conference on Data Engineering (ICDE)},
+  year = {2008},
+  address = {Cancun, Mexico},
+  month = {April},
+  __markedentry = {[mfiscato]},
+  file = {:papers/xstream.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.26}
+}
+
+@ARTICLE{twitter-sentiment-1,
+  author = {Go, Alec and Bhayani, Richa and Huang, Lei},
+  title = {Twitter Sentiment Classification using Distant Supervision},
+  journal = {Processing},
+  year = {2009},
+  pages = {1--6},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/TwitterDistantSupervision09.pdf:PDF},
+  url = {http://www.stanford.edu/~alecmgo/papers/TwitterDistantSupervision09.pdf}
+}
+
+@INPROCEEDINGS{dsm-issues,
+  author = {Golab, Lukasz and \"{O}zsu, M. Tamer},
+  title = {Issues in data stream management},
+  booktitle = {SIGMOD},
+  year = {2003},
+  volume = {32},
+  pages = {5--14},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/776985.776986},
+  file = {:papers/dsm-issues.pdf:PDF},
+  issn = {0163-5808},
+  journal = {SIGMOD Rec.},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{consistency,
+  author = {Lukasz Golab and Theodore Johnson and Theodore Johnson},
+  title = {Consistency in a Stream Warehouse.},
+  booktitle = {CIDR},
+  year = {2011},
+  pages = {114-122},
+  __markedentry = {[mfiscato]},
+  ee = {http://www.cidrdb.org/cidr2011/Papers/CIDR11_Paper13.pdf}
+}
+
+@INPROCEEDINGS{phi,
+  author = {Joseph M. Hellerstein and Tyson Condie and Minos Garofalakis and
+	Boon Thau Loo and Petros Maniatis and Timothy Roscoe and Nina A.
+	Taft},
+  title = {Public Health for the Internet (ϕ) Towards A New Grand Challenge
+	for Information Management},
+  booktitle = {Innovative Data Systems Research (CIDR)},
+  year = {2007},
+  file = {:papers/phi.pdf:PDF},
+  owner = {mfiscato}
+}
+
+@TECHREPORT{ss-spl,
+  author = {Martin Hirzel and Henrique Andrade and Bugra Gedik and Vibhore Kumar
+	and Giuliano Losa and Mark Mendell and Howard Nasgaard and Robert
+	Soulé and Kun-Lung Wu},
+  title = {SPL Stream Processing Language Specification},
+  institution = {IBM Research},
+  year = {2009},
+  __markedentry = {[mfiscato]},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/ss-spl.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@MISC{foursquare-wsj,
+  author = {http://blogs.wsj.com/digits/2011/05/19/a-week-on-foursquare/},
+  title = {Where the Young and Tech-Savvy Go},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{foursquare-rude,
+  author = {http://engineering.foursquare.com/2011/02/28/how-we-found-the-rudest-cities-in-the-world-analytics-foursquare/},
+  title = {{How we found the rudest cities in the world – Analytics @ foursquare}},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{twendz,
+  author = {http://twendz.waggeneredstrom.com/},
+  title = {Twendz},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{twitrratr,
+  author = {http://twitrratr.com/},
+  title = {Twitrratr},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{twitter-sentiment,
+  author = {http://twittersentiment.appspot.com/},
+  title = {Twitter Sentiment},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{lhc,
+  author = {http://www.ieeetcsc.org/newsletters/2003-01/mondardini.html},
+  title = {Data generated by the Large Hadron Collider},
+  owner = {mfiscato},
+  timestamp = {2009.09.09}
+}
+
+@MISC{socialmention,
+  author = {http://www.socialmention.com/},
+  title = {Social Mention},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{tweetfeel,
+  author = {http://www.tweetfeel.com/},
+  title = {TweetFeel},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{ubervu,
+  author = {http://www.ubervu.com/},
+  title = {Ubervu},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@INPROCEEDINGS{pier2,
+  author = {Ryan Huebsch and Brent Chun and Joseph M. Hellerstein and Boon Thau
+	Loo and Petros Maniatis and Timothy Roscoe and Scott Shenker and
+	Ion Stoica and Aydan R. Yumerefendi},
+  title = {The Architecture of PIER: an Internet-Scale Query Processor},
+  booktitle = {In CIDR},
+  year = {2005},
+  pages = {28--43},
+  __markedentry = {[mfiscato]},
+  file = {:papers/pier2-architecture.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.10.21}
+}
+
+@INPROCEEDINGS{pier1,
+  author = {Ryan Huebsch and Joseph M. Hellerstein and Nick Lanham and Boon Thau
+	Loo and Scott Shenker and Ion Stoica},
+  title = {Querying the internet with PIER},
+  booktitle = {VLDB '2003: Proceedings of the 29th international conference on Very
+	large data bases},
+  year = {2003},
+  pages = {321--332},
+  publisher = {VLDB Endowment},
+  __markedentry = {[mfiscato]},
+  file = {:papers/pier1-query_the_internet.pdf:PDF},
+  isbn = {0-12-722442-4},
+  location = {Berlin, Germany},
+  owner = {mfiscato},
+  timestamp = {2008.10.20}
+}
+
+@INPROCEEDINGS{cartel,
+  author = {Bret Hull and Vladimir Bychkovsky and Yang Zhang and Kevin Chen and
+	Michel Goraczko and Allen K. Miu and Eugene Shih and Hari Balakrishnan
+	and Samuel Madden},
+  title = {CarTel: A Distributed Mobile Sensor Computing System},
+  booktitle = {4th ACM SenSys},
+  year = {2006},
+  address = {Boulder, CO},
+  file = {:papers/cartel.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.11.07}
+}
+
+@INPROCEEDINGS{borealis-fast_and_ha,
+  author = {Jeong-Hyon Hwang and U\u{g}ur \c{C}etintemel and Stan Zdonik},
+  title = {Fast and Highly-Available Stream Processing over Wide Area Networks},
+  booktitle = {Proceedings of the 24th International Conference on Data Engineering(ICDE)},
+  year = {2008},
+  pages = {804-813},
+  __markedentry = {[mfiscato]},
+  comment = {borealis},
+  file = {:papers/borealis-fast_and_ha.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.03.26}
+}
+
+@INPROCEEDINGS{borealis_ha_algos,
+  author = {Hwang, Jeong-Hyon and Balazinska, Magdalena and Rasin, Alexander
+	and Cetintemel, Ugur and Stonebraker, Michael and Zdonik, Stan},
+  title = {High-Availability Algorithms for Distributed Stream Processing},
+  booktitle = {ICDE '05: Proceedings of the 21st International Conference on Data
+	Engineering},
+  year = {2005},
+  pages = {779--790},
+  address = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  __markedentry = {[mfiscato]},
+  doi = {http://dx.doi.org/10.1109/ICDE.2005.72},
+  file = {:papers/borealis_ha_algos.pdf:PDF},
+  isbn = {0-7695-2285-8},
+  owner = {mfiscato},
+  timestamp = {2009.08.06}
+}
+
+@INPROCEEDINGS{borealis-fast_and_reliable,
+  author = {Jeong-Hyon Hwang and Ugur Cetintemel and Stanley B. Zdonik},
+  title = {Fast and Reliable Stream Processing over Wide Area Networks},
+  booktitle = {ICDE Workshops},
+  year = {2007},
+  pages = {604-613},
+  __markedentry = {[mfiscato]},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  comment = {borealis},
+  ee = {http://dx.doi.org/10.1109/ICDEW.2007.4401047},
+  file = {:papers/borealis-fast_and_reliable.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.10.28}
+}
+
+@INPROCEEDINGS{network-imprecision,
+  author = {N. Jain and D. Kit and D. Mahajan and P. Yalagandula and M. Dahlin,
+	Y. Zhang},
+  title = {Network Imprecision: A New Consistency Metric for Scalable Monitoring},
+  booktitle = {OSDI},
+  year = {2008},
+  __markedentry = {[mfiscato]},
+  owner = {mfiscato},
+  timestamp = {2008.12.10}
+}
+
+@ARTICLE{streamsql,
+  author = {Jain,, Namit and Mishra,, Shailendra and Srinivasan,, Anand and Gehrke,,
+	Johannes and Widom,, Jennifer and Balakrishnan,, Hari and \c{C}etintemel,,
+	U\v{g}ur and Cherniack,, Mitch and Tibbetts,, Richard and Zdonik,,
+	Stan},
+  title = {Towards a streaming SQL standard},
+  journal = {Proc. VLDB Endow.},
+  year = {2008},
+  volume = {1},
+  pages = {1379--1390},
+  number = {2},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/1454159.1454179},
+  file = {:papers/streamSQL.pdf:PDF},
+  owner = {mfiscato},
+  publisher = {VLDB Endowment},
+  timestamp = {2009.02.12}
+}
+
+@ARTICLE{gossip-aggregates-large,
+  author = {Jelasity, M\'{a}rk and Montresor, Alberto and Babaoglu, Ozalp},
+  title = {Gossip-based aggregation in large dynamic networks},
+  journal = {ACM Trans. Comput. Syst.},
+  year = {2005},
+  volume = {23},
+  pages = {219--252},
+  month = {August},
+  __markedentry = {[mfiscato]},
+  acmid = {1082470},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/1082469.1082470},
+  file = {:papers/gossip-aggregates-large.pdf:PDF},
+  issn = {0734-2071},
+  issue = {3},
+  keywords = {Gossip-based protocols, proactive aggregation},
+  numpages = {34},
+  owner = {mfiscato},
+  publisher = {ACM},
+  url = {http://doi.acm.org/10.1145/1082469.1082470}
+}
+
+@INPROCEEDINGS{twitter-sentiment-5,
+  author = {Jiang, Long and Yu, Mo and Zhou, Ming and Liu, Xiaohua and Zhao,
+	Tiejun},
+  title = {Target-dependent Twitter sentiment classification},
+  booktitle = {Proceedings of the 49th Annual Meeting of the Association for Computational
+	Linguistics: Human Language Technologies - Volume 1},
+  year = {2011},
+  series = {HLT '11},
+  pages = {151--160},
+  address = {Stroudsburg, PA, USA},
+  publisher = {Association for Computational Linguistics},
+  acmid = {2002492},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/twitter-sentiment-5.pdf:PDF},
+  isbn = {978-1-932432-87-9},
+  location = {Portland, Oregon},
+  numpages = {10},
+  url = {http://dl.acm.org/citation.cfm?id=2002472.2002492}
+}
+
+@ARTICLE{senseweb,
+  author = {Aman Kansal and Suman Nath and Jie Liu and Feng Zhao},
+  title = {SenseWeb: An Infrastructure for Shared Sensing},
+  journal = {Multimedia},
+  year = {2007},
+  volume = {14},
+  pages = {8-13},
+  number = {4},
+  __markedentry = {[mfiscato]},
+  abstract = {Web 2.0 is an emerging paradigm for applications and user interactions.
+	In this article, Aman Kansal, Suman Nath, Jie Liu, and Feng Zhao
+	from Microsoft Research discuss the development of SenseWeb, a peer-produced
+	sensor network environment, used for everyday life decisions.},
+  file = {:papers/sense_web.pdf:PDF},
+  issn = {1070-986X},
+  keywords = {application data ieee information microsoft network paper processing
+	sensor soap spatial storage v0805 web windows },
+  owner = {mfiscato},
+  timestamp = {2008.10.14},
+  url = {http://dx.doi.org/10.1109/MMUL.2007.82}
+}
+
+@INPROCEEDINGS{gossip-aggregates,
+  author = {Kempe, David and Dobra, Alin and Gehrke, Johannes},
+  title = {Gossip-Based Computation of Aggregate Information},
+  booktitle = {Proceedings of the 44th Annual IEEE Symposium on Foundations of Computer
+	Science},
+  year = {2003},
+  series = {FOCS '03},
+  pages = {482--},
+  address = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  __markedentry = {[mfiscato]},
+  acmid = {946317},
+  file = {:papers/gossip-aggregates-kempe.pdf:PDF},
+  isbn = {0-7695-2040-5},
+  owner = {mfiscato},
+  url = {http://dl.acm.org/citation.cfm?id=946243.946317}
+}
+
+@INCOLLECTION{loadshed-kendai,
+  author = {Kendai, Balakumar and Chakravarthy, Sharma},
+  title = {{Load Shedding in MavStream: Analysis, Implementation, and Evaluation}},
+  booktitle = {Sharing Data, Information and Knowledge},
+  publisher = {Springer Berlin / Heidelberg},
+  year = {2008},
+  editor = {Gray, Alex and Jeffery, Keith and Shao, Jianhua},
+  volume = {5071},
+  series = {Lecture Notes in Computer Science},
+  pages = {100-112},
+  note = {10.1007/978-3-540-70504-8_10},
+  __markedentry = {[mfiscato]},
+  affiliation = {The University of Texas at Arlington IT Laboratory and Department
+	of Computer Science & Engineering Arlington TX 76019},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-kendai.pdf:PDF},
+  isbn = {978-3-540-70503-1},
+  keyword = {Computer Science},
+  owner = {mfiscato},
+  timestamp = {2011.10.31},
+  url = {http://dx.doi.org/10.1007/978-3-540-70504-8_10}
+}
+
+@BOOK{recall-def,
+  title = {Information retrieval systems: theory and implementation},
+  publisher = {Springer},
+  year = {1997},
+  editor = {Springer},
+  author = {Gerald Kowalski},
+  pages = {5},
+  owner = {mfiscato},
+  timestamp = {2009.09.03}
+}
+
+@INPROCEEDINGS{pipes,
+  author = {Kr\"{a}mer, J\"{u}rgen and Seeger, Bernhard},
+  title = {PIPES: a public infrastructure for processing and exploring streams},
+  booktitle = {Proceedings of the 2004 ACM SIGMOD international conference on Management
+	of data},
+  year = {2004},
+  series = {SIGMOD '04},
+  pages = {925--926},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  acmid = {1007699},
+  doi = {http://doi.acm.org/10.1145/1007568.1007699},
+  file = {:papers/pipes.pdf:PDF},
+  isbn = {1-58113-859-8},
+  location = {Paris, France},
+  numpages = {2},
+  owner = {mfiscato},
+  url = {http://doi.acm.org/10.1145/1007568.1007699}
+}
+
+@INPROCEEDINGS{pipes-short,
+  author = {Kramer, J\"{u}rgen and Seeger, Bernhard},
+  title = {PIPES: a public infrastructure for processing and exploring streams},
+  booktitle = {SIGMOD '04: Proceedings of the 2004 ACM SIGMOD international conference
+	on Management of data},
+  year = {2004},
+  pages = {925--926},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/1007568.1007699},
+  file = {:papers/pipes-short.pdf:PDF},
+  isbn = {1-58113-859-8},
+  location = {Paris, France},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{cql-foundation,
+  author = {JÃ¼rgen KrÃ¤mer and Bernhard Seeger},
+  title = {A temporal foundation for continuous queries over data streams},
+  booktitle = {In Proc. 11th Int. Conf. on Management of Data (COMAD)},
+  year = {2005},
+  pages = {70--82},
+  __markedentry = {[mfiscato]},
+  file = {:papers/cql-foundation.pdf:PDF},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{deduce,
+  author = {Kumar, Vibhore and Andrade, Henrique and Gedik, Bu\u{g}ra and Wu,
+	Kun-Lung},
+  title = {DEDUCE: at the intersection of MapReduce and stream processing},
+  booktitle = {Proceedings of the 13th International Conference on Extending Database
+	Technology},
+  year = {2010},
+  series = {EDBT '10},
+  pages = {657--662},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  acmid = {1739120},
+  doi = {http://doi.acm.org/10.1145/1739041.1739120},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/deduce.pdf:PDF},
+  isbn = {978-1-60558-945-9},
+  location = {Lausanne, Switzerland},
+  numpages = {6},
+  owner = {mfiscato},
+  timestamp = {2011.10.31},
+  url = {http://doi.acm.org/10.1145/1739041.1739120}
+}
+
+@INPROCEEDINGS{starglobe-grid,
+  author = {Kuntschke, Richard and Scholl, Tobias and Huber, Sebastian and Kemper,
+	Alfons and Reiser, Angelika and Adorf, Hans-Martin and Lemson, Gerard
+	and Voges, Wolfgang},
+  title = {Grid-Based Data Stream Processing in e-Science},
+  booktitle = {E-SCIENCE '06: Proceedings of the Second IEEE International Conference
+	on e-Science and Grid Computing},
+  year = {2006},
+  pages = {30},
+  address = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  doi = {http://dx.doi.org/10.1109/E-SCIENCE.2006.78},
+  file = {:papers/starglobe-grid.pdf:PDF},
+  isbn = {0-7695-2734-5},
+  owner = {mfiscato},
+  timestamp = {2009.06.26}
+}
+
+@TECHREPORT{mcafee-report_2q2009,
+  author = {McAfee Avert Lab},
+  title = {McAfee Threats Report: Second Quarter 2009},
+  institution = {McAfee Avert Lab},
+  year = {2009},
+  file = {:papers/mcafee-report_2q2009.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.07.30}
+}
+
+@ARTICLE{placement_strategies,
+  author = {Geetika T. Lakshmanan and Ying Li and Rob Strom},
+  title = {Placement Strategies for Internet-Scale Data Stream Systems},
+  journal = {IEEE Internet Computing},
+  year = {2008},
+  volume = {12},
+  pages = {50-60},
+  number = {6},
+  __markedentry = {[mfiscato]},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://doi.ieeecomputersociety.org/10.1109/MIC.2008.129},
+  file = {:papers/placement_strategies.pdf:PDF},
+  issn = {1089-7801},
+  owner = {mfiscato},
+  publisher = {IEEE Computer Society},
+  timestamp = {2009.06.19}
+}
+
+@INPROCEEDINGS{wired-geometric-routing,
+  author = {Jonathan Ledlie and Michael Mitzenmacher and Margo Seltzer and Peter
+	Pietzuch},
+  title = {Wired Geometric Routing},
+  booktitle = {Proceedings of the 6th International Workshop on Peer-to-Peer Systems
+	(IPTPS{\textquoteright}07)},
+  year = {2007},
+  address = {Bellevue, WA},
+  month = {02/2007},
+  file = {:papers/wired-geometric-routing.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.18},
+  url = {http://www.doc.ic.ac.uk/~peter/manager/doc/IPTPS07-LedliePietzuch.pdf}
+}
+
+@ARTICLE{out-of-order,
+  author = {Li, Jin and Tufte, Kristin and Shkapenyuk, Vladislav and Papadimos,
+	Vassilis and Johnson, Theodore and Maier, David},
+  title = {Out-of-order processing: a new architecture for high-performance
+	stream systems},
+  journal = {Proc. VLDB Endow.},
+  year = {2008},
+  volume = {1},
+  pages = {274--288},
+  number = {1},
+  doi = {http://doi.acm.org/10.1145/1453856.1453890},
+  file = {:papers/out-of-order.pdf:PDF},
+  owner = {mfiscato},
+  publisher = {VLDB Endowment}
+}
+
+@ARTICLE{lead,
+  author = {Li, Xiang and Plale, Beth and Vijayakumar, Nithya and Ramachandran,
+	Rahul and Graves, Sara and Conover, Helen},
+  title = {Real-time storm detection and weather forecast activation through
+	data mining and events processing},
+  journal = {Earth Science Informatics},
+  year = {2008},
+  volume = {1},
+  pages = {49--57},
+  number = {2},
+  __markedentry = {[mfiscato]},
+  abstract = {Abstract\&nbsp;\&nbsp;Each year across the USA, destructive weather
+	events disrupt transportation and commerce, resulting in both loss
+	of lives and property. Mitigating the impacts of such severe events
+	requires innovative new software tools and cyberinfrastructure through
+	which scientists can monitor data for specific severe weather events
+	such as thunderstorms and launch focused modeling computations for
+	prediction and forecasts of these evolving weather events. Bringing
+	about a paradigm shift in meteorology research and education through
+	advances in cyberinfrastructure is one of the key research objectives
+	of the Linked Environments for Atmospheric Discovery (LEAD) project,
+	a large-scale, interdisciplinary NSF funded project spanning ten
+	institutions. In this paper we address the challenges of making cyberinfrastructure
+	frameworks responsive to real-time conditions in the physical environment
+	driven by the use cases in mesoscale meteorology. The contribution
+	of the research is two-fold: on the cyberinfrastructure side, we
+	propose a model for bridging between the physical environment and
+	e-Science1 workflow systems, specifically through events processing
+	systems, and provide a proof of concept implementation of that model
+	in the context of the LEAD cyberinfrastructure. On the algorithmic
+	side, we propose efficient stream mining algorithms that can be carried
+	out on a continuous basis in real time over large volumes of observational
+	data.},
+  citeulike-article-id = {3638106},
+  citeulike-linkout-0 = {http://dx.doi.org/10.1007/s12145-008-0010-7},
+  citeulike-linkout-1 = {http://www.springerlink.com/content/3600858ku9k78451},
+  doi = {10.1007/s12145-008-0010-7},
+  owner = {mfiscato},
+  posted-at = {2008-11-21 07:24:28},
+  timestamp = {2009.07.29},
+  url = {http://dx.doi.org/10.1007/s12145-008-0010-7}
+}
+
+@INPROCEEDINGS{mortar-long,
+  author = {Logothetis, Dionysios and Yocum, Kenneth},
+  title = {Wide-scale data stream management},
+  booktitle = {ATC'08: USENIX 2008 Annual Technical Conference on Annual Technical
+	Conference},
+  year = {2008},
+  pages = {405--418},
+  address = {Berkeley, CA, USA},
+  publisher = {USENIX Association},
+  __markedentry = {[mfiscato]},
+  file = {:papers/mortar-long.pdf:PDF},
+  location = {Boston, Massachusetts},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@INPROCEEDINGS{mortar-short,
+  author = {Dionysios Logothetis and Kenneth Yocum},
+  title = {Mortar: Towards Million-Node Data Stream Management},
+  booktitle = {Usenix Annual Technical Conference - Poster Session},
+  year = {2007},
+  __markedentry = {[mfiscato]},
+  file = {:papers/mortar-short.pdf:PDF},
+  location = {Santa Clara},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@INPROCEEDINGS{planetseer,
+  author = {M Zhang, C Zhang, V Pai, L Peterson, and R Wang},
+  title = {PlanetSeer: Internet Path Failure Monitoring and Characterization
+	in Wide-Area Services},
+  booktitle = {Proceedings of the Sixth Symposium on Operating Systems Design and
+	Implementation},
+  year = {2004},
+  file = {:papers/planet-seer.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.11.18}
+}
+
+@INPROCEEDINGS{fjords,
+  author = {Madden, S. and Franklin, M.J.},
+  title = {Fjording the stream: an architecture for queries over streaming sensor
+	data},
+  booktitle = {18th International Conference on Data Engineering (ICDE), 2002. Proceedings.},
+  year = {2002},
+  pages = {555-566},
+  doi = {10.1109/ICDE.2002.994774},
+  file = {:papers/fjords.pdf:PDF},
+  keywords = {power consumption, query processing, road traffic, sensor fusion,
+	software architecture, software performance evaluation, traffic engineering
+	computingFjords architecture, Interstate 80, communication costs,
+	data collection, environmental monitoring, inter-state highway traffic,
+	intermittent connectivity, multiple query management, performance,
+	periodic sampling, power constraints, power consumption, query architecture,
+	query throughput, sensor resource demands, streaming sensor data,
+	traffic sensor network traces, wireless networks},
+  owner = {mfiscato},
+  timestamp = {2009.08.05}
+}
+
+@INPROCEEDINGS{tinydb,
+  author = {Samuel Madden and Michael J. Franklin and Joseph M. Hellerstein and
+	Wei Hong},
+  title = {The design of an acquisitional query processor for sensor networks},
+  booktitle = {Proceedings of the 2003 ACM SIGMOD international conference on on
+	Management of data},
+  year = {2003},
+  pages = {491--502},
+  publisher = {ACM Press},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/872757.872817},
+  file = {:papers/tinydb.pdf:PDF},
+  groupsearch = {0},
+  interhash = {0ea09809d6c1f0b3074ec9964ca29464},
+  intrahash = {9ec99f47681f70fbcee76dbc18fe1a55},
+  isbn = {1-58113-634-X},
+  location = {San Diego, California},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@INPROCEEDINGS{semantics-datastreams,
+  author = {Maier, David and Li, Jin and Tucker, Peter A. and Tufte, Kristin
+	and Papadimos, Vassilis},
+  title = {Semantics of Data Streams and Operators},
+  booktitle = {ICDT},
+  year = {2005},
+  pages = {37--52},
+  __markedentry = {[mfiscato]},
+  citeulike-article-id = {1301017},
+  doi = {10.1007/b104421},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/stream-semantics.pdf:PDF},
+  keywords = {dsms, model, streams},
+  owner = {mfiscato},
+  posted-at = {2007-05-17 00:48:28},
+  priority = {2},
+  timestamp = {2009.06.30},
+  url = {http://dx.doi.org/10.1007/b104421}
+}
+
+@INPROCEEDINGS{casa,
+  author = {David J. Mclaughlin and V. Ch and Kelvin Droegemeier and Stephen
+	Frasier and Jim Kurose and Francesc Junyent and Brenda Philips and
+	Ra Cruz-pol and Jose Colom},
+  title = {Distributed Collaborative Adaptive Sensing (DCAS) for Improved Detection},
+  booktitle = {in Proc. American Meteorological Society Annual Meeting},
+  year = {2005},
+  __markedentry = {[mfiscato]},
+  file = {:papers/casa-app.pdf:PDF},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{cenceme,
+  author = {Miluzzo, Emiliano and Lane, Nicholas D. and Fodor, Krist\'{o}f and
+	Peterson, Ronald and Lu, Hong and Musolesi, Mirco and Eisenman, Shane
+	B. and Zheng, Xiao and Campbell, Andrew T.},
+  title = {Sensing Meets Mobile Social Networks: the Design, Implementationand
+	Evaluation of the CenceMe Application},
+  booktitle = {Proceedings of the 6th ACM Conference on Embedded Network Sensor
+	Systems (SenSys '08)},
+  year = {2008},
+  pages = {337--350},
+  address = {New York, NY, USA},
+  month = {November},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/1460412.1460445},
+  file = {:papers/cenceme.pdf:PDF},
+  location = {Raleigh, NC, USA},
+  owner = {mfiscato}
+}
+
+@TECHREPORT{stream-babcock,
+  author = {Rajeev Motwani and Jennifer Widom and Arvind Arasu and Brian Babcock
+	and Shivnath Babu and Mayur Datar and Gurmeet Manku and Chris Olston
+	and Justin Rosenstein and Rohit Varma},
+  title = {Query Processing, Resource Management, and Approximation ina Data
+	Stream Management System},
+  institution = {Stanford InfoLab},
+  year = {2002},
+  type = {Technical Report},
+  number = {2002-41},
+  __markedentry = {[mfiscato]},
+  abstract = {This paper describes our ongoing work developing the Stanford Stream
+	Data Manager (STREAM), a system for executing continuous queries
+	over multiple continuous data streams. The STREAM system supports
+	a declarative query language, and it copes with high data rates and
+	query workloads by providing approximate answers when resources are
+	limited. This paper describes specific contributions made so far
+	and enumerates our next steps in developing a general-purpose Data
+	Stream Management System.},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/stream-babcock.pdf:PDF},
+  journal = {CIDR 2003},
+  owner = {mfiscato},
+  publisher = {Stanford InfoLab},
+  timestamp = {2011.10.31},
+  url = {http://ilpubs.stanford.edu:8090/549/}
+}
+
+@INPROCEEDINGS{loadshed-mozafari,
+  author = {Mozafari, B. and Zaniolo, C.},
+  title = {Optimal load shedding with aggregates and mining queries},
+  booktitle = {Data Engineering (ICDE), 2010 IEEE 26th International Conference
+	on},
+  year = {2010},
+  pages = {76 -88},
+  month = {march},
+  __markedentry = {[mfiscato]},
+  doi = {10.1109/ICDE.2010.5447867},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-mozafari.pdf:PDF},
+  keywords = {DSMS;SQL aggregates;aggregate queries;data mining functions;decision
+	trees;extensible system;frequent pattern discovery;high volume data
+	arrivals;k-means;load shedding;mining queries;naive Bayesian classifiers;nonlinear
+	programming algorithms;optimization;penalty functions;quality of
+	service degradation;reciprocal error aggregates;statistical aggregates;user
+	defined aggregates;Bayes methods;data mining;load shedding;nonlinear
+	programming;query processing;},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@ARTICLE{citysense,
+  author = {Murty, R.N. and Mainland, G. and Rose, I. and Chowdhury, A.R. and
+	Gosain, A. and Bers, J. and Welsh, M.},
+  title = {CitySense: An Urban-Scale Wireless Sensor Network and Testbed},
+  journal = {Technologies for Homeland Security, 2008 IEEE Conference on},
+  year = {2008},
+  volume = {1},
+  pages = {583-588},
+  month = {May},
+  doi = {10.1109/THS.2008.4534518},
+  file = {:papers/citysense.pdf:PDF},
+  keywords = {Linux, wireless LAN802.11a/b/g radios, CitySense, Internet, Linux-based
+	embedded PC, urban-scale wireless sensor network, wireless LAN},
+  owner = {mfiscato},
+  timestamp = {2008.11.04}
+}
+
+@BOOK{dependable-is-sensing,
+  title = {Towards a dependable architecture for internet-scale sensing},
+  publisher = {USENIX Association},
+  year = {2006},
+  author = {Rohan Narayana Murty and Matt Welsh},
+  pages = {8--8},
+  address = {Berkeley, CA, USA},
+  __markedentry = {[mfiscato]},
+  booktitle = {HOTDEP'06: Proceedings of the 2nd conference on Hot Topics in System
+	Dependability},
+  file = {:papers/dependable-is-sensing.pdf:PDF},
+  location = {Seattle, WA},
+  owner = {mfiscato},
+  timestamp = {2008.11.03}
+}
+
+@ARTICLE{sensemap,
+  author = {Nath, Suman and Liu, Jie and Zhao, Feng},
+  title = {SensorMap for Wide-Area Sensor Webs},
+  journal = {Computer},
+  year = {2007},
+  volume = {40},
+  pages = {90--93},
+  number = {7},
+  __markedentry = {[mfiscato]},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://dx.doi.org/10.1109/MC.2007.250},
+  file = {:papers/sense_map.pdf:PDF},
+  issn = {0018-9162},
+  publisher = {IEEE Computer Society Press}
+}
+
+@INPROCEEDINGS{correlated-failures,
+  author = {Suman Nath and Haifeng Yu and Phillip B. Gibbons and Srinivasan Seshan},
+  title = {Subtleties in tolerating correlated failures in wide-area storage
+	systems},
+  booktitle = {NSDI'06: Proceedings of the 3rd conference on Networked Systems Design
+	\& Implementation},
+  year = {2006},
+  pages = {17--17},
+  address = {Berkeley, CA, USA},
+  publisher = {USENIX Association},
+  __markedentry = {[mfiscato]},
+  file = {:papers/correlated-failures.pdf:PDF},
+  location = {San Jose, CA},
+  owner = {mfiscato},
+  timestamp = {2008.10.22}
+}
+
+@MISC{neon,
+  author = {{National Ecological Observatory Network}},
+  title = {http://www.neoninc.org},
+  __markedentry = {[mfiscato]},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{adaptive-query-deployment,
+  author = {Olga Papaemmanouil, Sujoy Basu, Sujata Banerjee},
+  title = {Adaptive In-Network Query Deployment for Shared Stream Processing
+	Environments},
+  booktitle = {NetDB 2008},
+  year = {2008},
+  __markedentry = {[mfiscato]},
+  file = {:papers/adaptive-query-deployment.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.01.13}
+}
+
+@TECHREPORT{adaptive-overlays,
+  author = {Papaemmanouil Olga and Basu Sujoy and Banerjee Sujata},
+  title = {Adaptive Overlays for Shared Stream Processing Environments},
+  institution = {HP Laboratories},
+  year = {2007},
+  __markedentry = {[mfiscato]},
+  file = {:papers/adaptive-overlays.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.01.13}
+}
+
+@MISC{testban,
+  author = {Comprehensive Test Ban Treaty Organization},
+  title = {http://www.ctbto.org},
+  owner = {mfiscato},
+  timestamp = {2009.08.17}
+}
+
+@ARTICLE{twitter-sentiment-2,
+  author = {Pak, Alexander and Paroubek, Patrick},
+  title = {Twitter as a Corpus for Sentiment Analysis and Opinion Mining},
+  journal = {Computer},
+  year = {2010},
+  pages = {1320--1326},
+  editor = {Calzolari, Nicoletta and Choukri, Khalid and Maegaard, Bente and
+	Mariani, Joseph and Odijk, Jan and Piperidis, Stelios and Rosner,
+	Mike and Tapias, DanielEditors},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/Twitter-as-a-Corpus-for-Sentiment-Analysis-and-Opinion-Mining.pdf:PDF},
+  publisher = {European Language Resources Association (ELRA)},
+  url = {http://www.lrec-conf.org/proceedings/lrec2010/pdf/385_Paper.pdf}
+}
+
+@INCOLLECTION{social-networks,
+  author = {Pallis, George and Zeinalipour-Yazti, Demetrios and Dikaiakos, Marios},
+  title = {Online Social Networks: Status and Trends},
+  booktitle = {New Directions in Web Data Management 1},
+  publisher = {Springer Berlin / Heidelberg},
+  year = {2011},
+  editor = {Vakali, Athena and Jain, Lakhmi},
+  volume = {331},
+  series = {Studies in Computational Intelligence},
+  pages = {213-234},
+  note = {10.1007/978-3-642-17551-0_8},
+  affiliation = {Department of Computer Science, University of Cyprus, 1678 Nicosia,
+	Cyprus},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/social-networks.pdf:PDF},
+  isbn = {978-3-642-17550-3},
+  keyword = {Engineering},
+  owner = {mfiscato},
+  timestamp = {2011.11.07}
+}
+
+@MISC{dsms-slides,
+  author = {Peter Pietzuch},
+  title = {DSMS slides},
+  file = {:papers/prp-312-part5-stream_processing-4up.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.08.04}
+}
+
+@INPROCEEDINGS{dissp-challanges,
+  author = {Pietzuch, Peter},
+  title = {Challenges in dependable internet-scale stream processing},
+  booktitle = {SDDDM '08: Proceedings of the 2nd workshop on Dependable distributed
+	data management},
+  year = {2008},
+  pages = {25--28},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/1435523.1435528},
+  file = {:papers/dissp-challanges.pdf:PDF},
+  isbn = {978-1-60558-121-7},
+  location = {Glasgow, Scotland},
+  owner = {mfiscato},
+  timestamp = {2009.09.02}
+}
+
+@UNPUBLISHED{dissp00,
+  author = {Peter Pietzuch},
+  title = {DISSP Research Proposal},
+  note = {dissp initial proposal},
+  year = {2008},
+  file = {:dissp_technical.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.10.13}
+}
+
+@INPROCEEDINGS{sbon,
+  author = {Peter Pietzuch and Jonathan Ledlie and Jeffrey Shneidman and Mema
+	Roussopoulos and Matt Welsh and Margo Seltzer},
+  title = {Network-Aware Operator Placement for Stream-Processing Systems},
+  booktitle = {ICDE '06: Proceedings of the 22nd International Conference on Data
+	Engineering},
+  year = {2006},
+  pages = {49},
+  address = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  __markedentry = {[mfiscato]},
+  doi = {http://dx.doi.org/10.1109/ICDE.2006.105},
+  file = {:papers/sbon.pdf:PDF},
+  isbn = {0-7695-2570-9},
+  owner = {mfiscato},
+  timestamp = {2008.10.23}
+}
+
+@ARTICLE{casa-lead,
+  author = {Beth Plale and Dennis Gannon and Jerry Brotzge and Kelvin Droegemeier
+	and Jim Kurose and David McLaughlin and Robert Wilhelmson and Sara
+	Graves and Mohan Ramamurthy and Richard D. Clark and Sepi Yalda and
+	Daniel A. Reed and Everette Joseph and V. Chandrasekar},
+  title = {CASA and LEAD: Adaptive Cyberinfrastructure for Real-Time Multiscale
+	Weather Forecasting},
+  journal = {Computer},
+  year = {2006},
+  volume = {39},
+  pages = {56-64},
+  number = {11},
+  __markedentry = {[mfiscato]},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://doi.ieeecomputersociety.org/10.1109/MC.2006.375},
+  file = {:papers/casa-lead.pdf:PDF},
+  issn = {0018-9162},
+  owner = {mfiscato},
+  publisher = {IEEE Computer Society},
+  timestamp = {2009.05.19}
+}
+
+@INPROCEEDINGS{juggles,
+  author = {Raman, Vijayshankar and Raman, Bhaskaran and Hellerstein, Joseph
+	M.},
+  title = {Online Dynamic Reordering for Interactive Data Processing},
+  booktitle = {Proceedings of the 25th International Conference on Very Large Data
+	Bases},
+  year = {1999},
+  series = {VLDB '99},
+  pages = {709--720},
+  address = {San Francisco, CA, USA},
+  publisher = {Morgan Kaufmann Publishers Inc.},
+  acmid = {671663},
+  file = {:papers/juggles.pdf:PDF},
+  isbn = {1-55860-615-7},
+  numpages = {12},
+  owner = {mfiscato},
+  timestamp = {2009.08.05},
+  url = {http://dl.acm.org/citation.cfm?id=645925.671663}
+}
+
+@INPROCEEDINGS{loadshed-telegraphcq,
+  author = {Reiss, F. and Hellerstein, J.M.},
+  title = {Data Triage: an adaptive architecture for load shedding in TelegraphCQ},
+  booktitle = {Data Engineering, 2005. ICDE 2005. Proceedings. 21st International
+	Conference on},
+  year = {2005},
+  pages = { 155 - 156},
+  month = {april},
+  __markedentry = {[mfiscato]},
+  doi = {10.1109/ICDE.2005.44},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-telegraphcq.pdf:PDF},
+  issn = {1084-4627 },
+  keywords = { Data Triage architecture; TelegraphCQ; load shedding; steady-state
+	data; stream query processing; open systems; query processing;},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@ARTICLE{dec-net-mon,
+  author = {Frederick Reiss and Joseph M. Hellerstein},
+  title = {Declarative Network Monitoring with an Underprovisioned Query Processor},
+  journal = {Data Engineering, International Conference on},
+  year = {2006},
+  volume = {0},
+  pages = {56},
+  __markedentry = {[mfiscato]},
+  address = {Los Alamitos, CA, USA},
+  doi = {http://doi.ieeecomputersociety.org/10.1109/ICDE.2006.46},
+  file = {:papers/dec-net-mon.pdf:PDF},
+  isbn = {0-7695-2570-9},
+  owner = {mfiscato},
+  publisher = {IEEE Computer Society}
+}
+
+@ARTICLE{astrolabe,
+  author = {Robbert Van Renesse and Kenneth P. Birman and Werner Vogels},
+  title = {Astrolabe: A Robust and Scalable Technology for Distributed System
+	Monitoring, Management, and Data Mining},
+  journal = {ACM Transactions on Computer Systems},
+  year = {2001},
+  volume = {21},
+  pages = {2003},
+  __markedentry = {[mfiscato]},
+  file = {:papers/astrolabe.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.18}
+}
+
+@ARTICLE{synergy,
+  author = {Thomas Repantis and Xiaohui Gu and Vana Kalogeraki},
+  title = {Synergy: Sharing-Aware Component Composition for Distributed Stream
+	Processing Systems},
+  journal = {Midlleware 2006},
+  year = {2006},
+  volume = {4290/2006},
+  pages = {322-341},
+  file = {:papers/synergy.pdf:PDF},
+  owner = {mfiscato}
+}
+
+@INPROCEEDINGS{buzztraq,
+  author = {Sastry, Nishanth and Yoneki, Eiko and Crowcroft, Jon},
+  title = {Buzztraq: predicting geographical access patterns of social cascades
+	using social networks},
+  booktitle = {Proceedings of the Second ACM EuroSys Workshop on Social Network
+	Systems},
+  year = {2009},
+  series = {SNS '09},
+  pages = {39--45},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  acmid = {1578009},
+  doi = {http://doi.acm.org/10.1145/1578002.1578009},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/buzztraq.pdf:PDF},
+  isbn = {978-1-60558-463-8},
+  location = {Nuremberg, Germany},
+  numpages = {7},
+  url = {http://doi.acm.org/10.1145/1578002.1578009}
+}
+
+@ARTICLE{aurora-and-medusa,
+  author = {Stan Zdonik Sbz and Stan Zdonik and Michael Stonebraker and Mitch
+	Cherniack and Ugur C Etintemel and Magdalena Balazinska and Hari
+	Balakrishnan},
+  title = {The Aurora and Medusa Projects},
+  journal = {IEEE Data Engineering Bulletin},
+  year = {2003},
+  volume = {26},
+  pages = {3-10},
+  __markedentry = {[mfiscato]},
+  file = {:papers/aurora-medusa.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.06.26}
+}
+
+@INPROCEEDINGS{socialcascade-salvo,
+  author = {Salvatore Scellato and Cecilia Mascolo and Mirco Musolesi and Jon
+	Crowcroft},
+  title = {Track Globally, Deliver Locally: Improving Content Delivery Networks
+	by Tracking Geographic Social Cascades},
+  booktitle = {20th International World Wide Web Conference (WWW2011)},
+  year = {2011},
+  pages = {457},
+  month = {March/April},
+  abstract = {Providers such as YouTube offer easy access to multimedia content
+	to millions, generating high bandwidth and storage demand on the
+	Content Delivery Networks they rely upon. More and more, the diffusion
+	of this content happens on online social networks such as Facebook
+	and Twitter, where social cascades can be observed when users increasingly
+	repost links they have received from others. In this paper we describe
+	how geographic information extracted from social cascades can be
+	exploited to improve caching of multimedia files in a Content Delivery
+	Network. We take advantage of the fact that social cascades can propagate
+	in a geographically limited area to discern whether an item is spreading
+	locally or globally. This informs cache replacement policies, which
+	utilize this information to ensure that content relevant to a cascade
+	is kept close to the users who may be interested in it. We validate
+	our approach by using a novel dataset which combines social interaction
+	data with geographic information: we track social cascades of YouTube
+	links over Twitter and build a proof-of-concept geographic model
+	of a realistic distributed Content Delivery Network. Our performance
+	evaluation shows that we are able to improve cache hits with respect
+	to cache policies without geographic and social information.},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/socialcascading-salvo.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.11.07},
+  url = {http://data.semanticweb.org/conference/www/2011/paper/track-globally-deliver-locally-improving-content-d}
+}
+
+@INPROCEEDINGS{ha_ft_dataflows,
+  author = {Shah, Mehul A. and Hellerstein, Joseph M. and Brewer, Eric},
+  title = {Highly available, fault-tolerant, parallel dataflows},
+  booktitle = {SIGMOD '04: Proceedings of the 2004 ACM SIGMOD international conference
+	on Management of data},
+  year = {2004},
+  pages = {827--838},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/1007568.1007662},
+  file = {:papers/ha_parallel_dataflows.pdf:PDF},
+  isbn = {1-58113-859-8},
+  location = {Paris, France},
+  owner = {mfiscato},
+  timestamp = {2009.08.06}
+}
+
+@INPROCEEDINGS{fluxes,
+  author = {Shah, M.A. and Hellerstein, J.M. and Sirish Chandrasekaran and Franklin,
+	M.J.},
+  title = {Flux: an adaptive partitioning operator for continuous query systems},
+  booktitle = {In 19th International Conference on Data Engineering, 2003. },
+  year = {2003},
+  pages = { 25-36},
+  month = {March},
+  file = {:papers/fluxes.pdf:PDF},
+  keywords = {data flow computing, pipeline processing, query processing, resource
+	allocation adaptive state partitioning, continuous queries system,
+	dataflow processing, flux dataflow operator, long-running nature,
+	memory load, pipelined dataflows, producer-consumer stages, shifting
+	process, static techniques},
+  owner = {mfiscato},
+  timestamp = {2009.08.05}
+}
+
+@INPROCEEDINGS{npc-placement,
+  author = {Srivastava, Utkarsh and Munagala, Kamesh and Widom, Jennifer},
+  title = {Operator placement for in-network stream query processing},
+  booktitle = {PODS '05: Proceedings of the twenty-fourth ACM SIGMOD-SIGACT-SIGART
+	symposium on Principles of database systems},
+  year = {2005},
+  pages = {250--258},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/1065167.1065199},
+  file = {:papers/npc-placement.pdf:PDF},
+  isbn = {1-59593-062-0},
+  location = {Baltimore, Maryland},
+  owner = {mfiscato},
+  timestamp = {2009.08.05}
+}
+
+@INPROCEEDINGS{own-the-internet,
+  author = {Staniford, Stuart and Paxson, Vern and Weaver, Nicholas},
+  title = {How to Own the Internet in Your Spare Time},
+  booktitle = {Proceedings of the 11th USENIX Security Symposium},
+  year = {2002},
+  pages = {149--167},
+  address = {Berkeley, CA, USA},
+  publisher = {USENIX Association},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/cdc.pdf:PDF},
+  isbn = {1-931971-00-5},
+  owner = {mfiscato},
+  timestamp = {2009.07.30}
+}
+
+@INPROCEEDINGS{streamglobe,
+  author = {Stegmaier, Bernhard and Kuntschke, Richard and Kemper, Alfons},
+  title = {StreamGlobe: adaptive query processing and optimization in streaming
+	P2P environments},
+  booktitle = {DMSN '04: Proceeedings of the 1st international workshop on Data
+	management for sensor networks},
+  year = {2004},
+  pages = {88--97},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/1052199.1052214},
+  file = {:papers/streamglobe.pdf:PDF},
+  location = {Toronto, Canada},
+  owner = {mfiscato}
+}
+
+@ARTICLE{8-reqs,
+  author = {Stonebraker, Michael and \c{C}etintemel, U\v{g}ur and Zdonik, Stan},
+  title = {The 8 requirements of real-time stream processing},
+  journal = {SIGMOD Rec.},
+  year = {2005},
+  volume = {34},
+  pages = {42--47},
+  number = {4},
+  __markedentry = {[mfiscato]},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/1107499.1107504},
+  file = {:papers/8req.pdf:PDF},
+  issn = {0163-5808},
+  owner = {mfiscato},
+  publisher = {ACM},
+  timestamp = {2009.06.18}
+}
+
+@MISC{storm,
+  author = {STORM},
+  title = {http://engineering.twitter.com/2011/08/storm-is-coming-more-details-and-plans.html},
+  __markedentry = {[mfiscato]},
+  owner = {mfiscato},
+  timestamp = {2011.10.20}
+}
+
+@TECHREPORT{streambase-algo,
+  author = {Streambase},
+  title = {Real-Time Data Processing with a Stream Processing Engine},
+  institution = {Streambase.com},
+  year = {2008},
+  file = {:papers/streambase-algo.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.08.17}
+}
+
+@MISC{skysurvey,
+  author = {Sloan Digital Sky Survey},
+  title = {http://www.sdss.org},
+  owner = {mfiscato},
+  timestamp = {2009.08.17}
+}
+
+@INPROCEEDINGS{permasense,
+  author = {Talzi, Igor and Hasler, Andreas and Gruber, Stephan and Tschudin,
+	Christian},
+  title = {PermaSense: investigating permafrost with a WSN in the Swiss Alps},
+  booktitle = {EmNets '07: Proceedings of the 4th workshop on Embedded networked
+	sensors},
+  year = {2007},
+  pages = {8--12},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  doi = {http://doi.acm.org/10.1145/1278972.1278974},
+  file = {:papers/permasense.pdf:PDF},
+  isbn = {978-1-59593-694-3},
+  location = {Cork, Ireland},
+  owner = {mfiscato},
+  timestamp = {2009.07.29}
+}
+
+@INPROCEEDINGS{loadshed-tatbul,
+  author = {Tatbul, Nesime and \c{C}etintemel, U\v{g}ur and Zdonik, Stan},
+  title = {Staying FIT: efficient load shedding techniques for distributed stream
+	processing},
+  booktitle = {Proceedings of the 33rd international conference on Very large data
+	bases},
+  year = {2007},
+  series = {VLDB '07},
+  pages = {159--170},
+  publisher = {VLDB Endowment},
+  __markedentry = {[mfiscato]},
+  acmid = {1325873},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-tatbul.pdf:PDF},
+  isbn = {978-1-59593-649-3},
+  location = {Vienna, Austria},
+  numpages = {12},
+  owner = {mfiscato},
+  timestamp = {2011.10.31},
+  url = {http://dl.acm.org/citation.cfm?id=1325851.1325873}
+}
+
+@INPROCEEDINGS{load-shedding,
+  author = {Tatbul, Nesime and \c{C}etintemel, U\u{g}ur and Zdonik, Stan and
+	Cherniack, Mitch and Stonebraker, Michael},
+  title = {Load shedding in a data stream manager},
+  booktitle = {VLDB '2003: Proceedings of the 29th international conference on Very
+	large data bases},
+  year = {2003},
+  pages = {309--320},
+  publisher = {VLDB Endowment},
+  __markedentry = {[mfiscato]},
+  file = {:papers/load-shedding.pdf:PDF},
+  isbn = {0-12-722442-4},
+  location = {Berlin, Germany},
+  owner = {mfiscato},
+  timestamp = {2009.08.04}
+}
+
+@ARTICLE{borealis-load_management,
+  author = {Nesime Tatbul and Yanif Ahmad and U\u{g}ur \c{C}etintemel and Jeong-Hyon
+	Hwang and Ying Xing and Stan Zdonik},
+  title = {Load Management and High Availability in the Borealis Distributed
+	Stream Processing Engine},
+  journal = {GeoSensor Networks: Second International Conference, GSN 2006, Boston,MA,
+	USA, October 1-3, 2006, Revised Selected and Invited Papers},
+  year = {2008},
+  volume = {1},
+  pages = {66--85},
+  __markedentry = {[mfiscato]},
+  address = {Berlin, Heidelberg},
+  book = {GeoSensor Networks: Second International Conference, GSN 2006, Boston,
+	MA, USA, October 1-3, 2006, Revised Selected and Invited Papers},
+  doi = {http://dx.doi.org/10.1007/978-3-540-79996-2_5},
+  file = {:papers/borealis-load_management-ha.pdf:PDF},
+  isbn = {978-3-540-79995-5},
+  owner = {mfiscato},
+  publisher = {Springer-Verlag},
+  timestamp = {2009.01.21}
+}
+
+@INPROCEEDINGS{loadshed-tatbul2,
+  author = {Tatbul, Nesime and Zdonik, Stan},
+  title = {Window-aware load shedding for aggregation queries over data streams},
+  booktitle = {Proceedings of the 32nd international conference on Very large data
+	bases},
+  year = {2006},
+  series = {VLDB '06},
+  pages = {799--810},
+  publisher = {VLDB Endowment},
+  __markedentry = {[mfiscato]},
+  acmid = {1164196},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-tatbul2.pdf:PDF},
+  location = {Seoul, Korea},
+  numpages = {12},
+  owner = {mfiscato},
+  timestamp = {2011.10.31},
+  url = {http://dl.acm.org/citation.cfm?id=1182635.1164196}
+}
+
+@TECHREPORT{gsn-book,
+  author = {The GSN Team},
+  title = {GSN Book},
+  institution = {EPFL},
+  year = {2009},
+  file = {:papers/gsn-book.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.08.21}
+}
+
+@INPROCEEDINGS{histograms,
+  author = {Thaper, Nitin and Guha, Sudipto and Indyk, Piotr and Koudas, Nick},
+  title = {Dynamic multidimensional histograms},
+  booktitle = {SIGMOD '02: Proceedings of the 2002 ACM SIGMOD international conference
+	on Management of data},
+  year = {2002},
+  pages = {428--439},
+  address = {New York, NY, USA},
+  publisher = {ACM},
+  __markedentry = {[mfiscato]},
+  doi = {http://doi.acm.org/10.1145/564691.564741},
+  file = {:papers/app-histograms.pdf:PDF},
+  isbn = {1-58113-497-5},
+  location = {Madison, Wisconsin},
+  owner = {mfiscato},
+  timestamp = {2009.08.04}
+}
+
+@MISC{swissexp,
+  author = {{The Swiss Eperiment}},
+  title = {http://www.swiss-experiment.ch},
+  __markedentry = {[mfiscato]},
+  owner = {mfiscato},
+  timestamp = {2009.07.13}
+}
+
+@INPROCEEDINGS{loadshed-tu,
+  author = {Yi-cheng Tu and Song Liu and Sunil Prabhakar and Bin Yao},
+  title = {Load shedding in stream databases: a control-based approach},
+  booktitle = {In Proc. Int. Conf. on Very Large Data Bases (VLDB},
+  year = {2006},
+  pages = {787--798},
+  __markedentry = {[mfiscato]},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/loadshed-tu.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2011.10.31}
+}
+
+@ARTICLE{punctuation-semantic,
+  author = {Peter A. Tucker and David Maier and Tim Sheard and Leonidas Fegaras},
+  title = {Exploiting punctuation semantics in continuous data streams},
+  journal = {IEEE Transactions on Knowledge and Data Engineering},
+  year = {2003},
+  volume = {15},
+  pages = {2003},
+  file = {:papers/punctuation.pdf:PDF},
+  owner = {mfiscato}
+}
+
+@ARTICLE{design-principles,
+  author = {Deepak S. Turaga and Henrique Andrade and Bugra Gedik and Chitra
+	Venkatramani and Olivier Verscheure and Jeffrey David Harris and
+	John Cox and William Szewczyk and Paul Jones},
+  title = {Design principles for developing stream processing applications},
+  journal = {Softw., Pract. Exper.},
+  year = {2010},
+  volume = {40},
+  pages = {1073-1104},
+  number = {12},
+  __markedentry = {[mfiscato]},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  ee = {http://dx.doi.org/10.1002/spe.993},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/design-princples.pdf:PDF}
+}
+
+@MISC{dependability,
+  author = {Algirdas Avizienis Ucla and Algirdas Avizienis and Jean-claude Laprie
+	and Brian Randell},
+  title = {Fundamental Concepts of Dependability},
+  year = {2001},
+  __markedentry = {[mfiscato]},
+  file = {:papers/dependability.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.09.09}
+}
+
+@MISC{usvo,
+  author = {{US National Virtual Observatory}},
+  title = {http://www.us-vo.org},
+  owner = {mfiscato},
+  timestamp = {2009.08.17}
+}
+
+@TECHREPORT{sequoia,
+  author = {Venugopalan Ramasubramanian, Dahlia Malkhi, Fabian Kuhn, Ittai Abraham,
+	Mahesh Balakrishnan, Archit Gupta and Aditya Akella.},
+  title = {A Unified Network Coordinate System for Bandwidth and Latency},
+  institution = {Microsoft Research},
+  year = {2008},
+  file = {:papers/sequoia.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.11.03}
+}
+
+@ARTICLE{cyclon,
+  author = {Spyros Voulgaris and Daniela Gavidia and Maarten Van Steen},
+  title = {CYCLON: Inexpensive Membership Management for Unstructured P2P Overlays},
+  journal = {Journal of Network and Systems Management},
+  year = {2005},
+  volume = {13},
+  pages = {2005},
+  __markedentry = {[mfiscato]},
+  file = {:papers/cyclon.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2009.09.07}
+}
+
+@INPROCEEDINGS{vicinity,
+  author = {Spyros Voulgaris and Maarten van Steen},
+  title = {Epidemic-Style Management of Semantic Overlays for Content-Based
+	Searching},
+  booktitle = {Euro-Par},
+  year = {2005},
+  pages = {1143-1152},
+  __markedentry = {[mfiscato]},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  ee = {http://dx.doi.org/10.1007/11549468_125},
+  file = {:/home/mfiscato/Dropbox/phd-thesis/bibliography/papers/epidemic_semantic_overlays.pdf:PDF}
+}
+
+@ARTICLE{sophia-distmon,
+  author = {Wawrzoniak, Mike and Peterson, Larry and Roscoe, Timothy},
+  title = {Sophia: an Information Plane for networked systems},
+  journal = {SIGCOMM Comput. Commun. Rev.},
+  year = {2004},
+  volume = {34},
+  pages = {15--20},
+  number = {1},
+  __markedentry = {[mfiscato]},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/972374.972378},
+  file = {:papers/sophia-distmon.pdf:PDF},
+  issn = {0146-4833},
+  owner = {mfiscato},
+  publisher = {ACM}
+}
+
+@MISC{planetlab,
+  author = {www.planet-lab.org},
+  title = {The PlanetLab Distributed Testbed},
+  owner = {mfiscato},
+  timestamp = {2009.06.18},
+  url = {http://www.planet-lab.org/}
+}
+
+@MISC{streambase,
+  author = {www.streambase.com},
+  title = {The StreamBase Event Processing Platform},
+  __markedentry = {[mfiscato]},
+  owner = {mfiscato},
+  timestamp = {2009.06.26}
+}
+
+@INPROCEEDINGS{borealis-load,
+  author = {Xing,, Ying and Hwang,, Jeong-Hyon and \c{C}etintemel,, U\v{g}ur
+	and Zdonik,, Stan},
+  title = {Providing resiliency to load variations in distributed stream processing},
+  booktitle = {VLDB '06: Proceedings of the 32nd international conference on Very
+	large data bases},
+  year = {2006},
+  pages = {775--786},
+  publisher = {VLDB Endowment},
+  __markedentry = {[mfiscato]},
+  file = {:papers/borealis-load_variations.pdf:PDF},
+  location = {Seoul, Korea},
+  owner = {mfiscato},
+  timestamp = {2009.03.23}
+}
+
+@INPROCEEDINGS{borealis-xing_placement,
+  author = {Xing, Ying and Zdonik, Stan and Hwang, Jeong-Hyon},
+  title = {Dynamic Load Distribution in the Borealis Stream Processor},
+  booktitle = {ICDE '05: Proceedings of the 21st International Conference on Data
+	Engineering},
+  year = {2005},
+  pages = {791--802},
+  address = {Washington, DC, USA},
+  publisher = {IEEE Computer Society},
+  __markedentry = {[mfiscato]},
+  doi = {http://dx.doi.org/10.1109/ICDE.2005.53},
+  file = {:papers/borealis-xing_placement.pdf:PDF},
+  isbn = {0-7695-2285-8},
+  owner = {mfiscato},
+  timestamp = {2009.08.05}
+}
+
+@ARTICLE{cosmos-pre,
+  author = {Y. Zhou, B. C. Ooi, K.L. Tan},
+  title = {Disseminating Streaming Data in a Dynamic Environment: an Adaptive
+	and Cost-Based Approach},
+  journal = {The VLDB Journal},
+  year = {Nov 2008},
+  volume = {17},
+  pages = {1465-1483},
+  number = {6},
+  booktitle = {The VLDB Journal},
+  file = {:papers/cosmos-pre.pdf:PDF},
+  owner = {mfiscato},
+  publisher = {Springer},
+  timestamp = {2008.11.17}
+}
+
+@INPROCEEDINGS{cosmos-long,
+  author = {Y. Zhou, K. Aberer, K.-L. Tan},
+  title = {Toward Massive Query Optimization in Large-Scale Distributed Stream
+	Systems},
+  booktitle = {ACM/IFIP/USENIX 9th International Middleware Conference},
+  year = {2008},
+  file = {:papers/cosmos-long.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.11.17}
+}
+
+@ARTICLE{sdims,
+  author = {Yalagandula, Praveen and Dahlin, Mike},
+  title = {A scalable distributed information management system},
+  journal = {SIGCOMM Comput. Commun. Rev.},
+  year = {2004},
+  volume = {34},
+  pages = {379--390},
+  number = {4},
+  __markedentry = {[mfiscato]},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/1030194.1015509},
+  file = {:papers/sdims.pdf:PDF},
+  issn = {0146-4833},
+  owner = {mfiscato},
+  publisher = {ACM},
+  timestamp = {2009.06.18}
+}
+
+@ARTICLE{coguar,
+  author = {Yao, Yong and Gehrke, Johannes},
+  title = {The cougar approach to in-network query processing in sensor networks},
+  journal = {SIGMOD Rec.},
+  year = {2002},
+  volume = {31},
+  pages = {9--18},
+  number = {3},
+  __markedentry = {[mfiscato]},
+  address = {New York, NY, USA},
+  doi = {http://doi.acm.org/10.1145/601858.601861},
+  file = {:papers/coguar.pdf:PDF},
+  issn = {0163-5808},
+  owner = {mfiscato},
+  publisher = {ACM}
+}
+
+@INPROCEEDINGS{placement-ying,
+  author = {Lei Ying and Zhen Liu and Donald F. Towsley and Cathy H. Xia},
+  title = {Distributed Operator Placement and Data Caching in Large-Scale Sensor
+	Networks.},
+  booktitle = {INFOCOM},
+  year = {2008},
+  pages = {977-985},
+  publisher = {IEEE},
+  __markedentry = {[mfiscato]},
+  date = {2009-03-20},
+  ee = {http://dx.doi.org/10.1109/INFOCOM.2008.151},
+  file = {:papers/placement-ying.pdf:PDF},
+  interhash = {b0276c87bfdd18d41d02840e64c85b96},
+  intrahash = {f94cf9596db7315332c302a9d296f04a},
+  owner = {mfiscato},
+  timestamp = {2009.08.05},
+  url = {http://dblp.uni-trier.de/db/conf/infocom/infocom2008.html#YingLTX08}
+}
+
+@INPROCEEDINGS{cosmos-short,
+  author = {Y. Zhou and K. Aberer and A. Salehi and K.L. Tan},
+  title = {Rethinking the Design of Distributed Stream Processing Systems},
+  booktitle = {The Fourth International Workshop on Networking Meets Databases (NetDB),co-located
+	with IEEE ICDE 2008},
+  year = {2008},
+  file = {:papers/cosmos-short.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.11.17}
+}
+
+@INPROCEEDINGS{adaptive-tree-reorganization,
+  author = {Y. Zhou and B. C. Ooi and K. L. Tan and F. Yu},
+  title = {Adaptive Reorganization of Coherency-Preserving Dissemination Tree
+	for Streaming Data},
+  booktitle = {International Conference on Data Engineering 2006 (ICDE'2006)},
+  year = {2006},
+  __markedentry = {[mfiscato]},
+  file = {:papers/adaptive-tree-reorganization.pdf:PDF},
+  owner = {mfiscato},
+  timestamp = {2008.11.17}
+}
+
+@INPROCEEDINGS{placement-zhou,
+  author = {Zhou, Yongluan and Ooi, Beng Chin and Tan, Kian-Lee and Wu, Ji},
+  title = {Efficient {D}ynamic {O}perator {P}lacement in a {L}ocally {D}istributed
+	{C}ontinuous {Q}uery {S}ystem},
+  booktitle = {International {C}onference on {C}ooperative {I}nformation {S}ystems},
+  year = {2006},
+  series = { },
+  pages = {54--71},
+  publisher = { },
+  __markedentry = {[mfiscato]},
+  details = {http://infoscience.epfl.ch/record/117419},
+  doi = { },
+  file = {:papers/placement-zhou.pdf:PDF},
+  location = {Montpellier, France},
+  oai-id = {oai:infoscience.epfl.ch:117419},
+  oai-set = {conf},
+  owner = {mfiscato},
+  review = {REVIEWED},
+  status = {PUBLISHED},
+  timestamp = {2009.08.05},
+  unit = {LSIR},
+  url = { }
+}
+
+@INPROCEEDINGS{statstream,
+  author = {Zhu, Yunyue and Shasha, Dennis},
+  title = {StatStream: statistical monitoring of thousands of data streams in
+	real time},
+  booktitle = {VLDB '02: Proceedings of the 28th international conference on Very
+	Large Data Bases},
+  year = {2002},
+  pages = {358--369},
+  publisher = {VLDB Endowment},
+  __markedentry = {[mfiscato]},
+  file = {:papers/statstream.pdf:PDF},
+  location = {Hong Kong, China},
+  owner = {mfiscato},
+  timestamp = {2009.08.10}
+}
+
+@INPROCEEDINGS{meteo-dcas,
+  author = {Zink, M. and Lyons, E. and Westbrook, D. and Pepyne, D. and Pilips,
+	B. and Kurose, J. and Chandrasekar, V.},
+  title = {Meteorological Command \& Control: Architecture and Performance Evaluation},
+  booktitle = {Geoscience and Remote Sensing Symposium, 2008. IGARSS 2008. IEEE
+	International},
+  year = {2008},
+  volume = {5},
+  pages = {V -152-V -155},
+  month = {July},
+  __markedentry = {[mfiscato]},
+  file = {:papers/meteo-dcas.pdf:PDF},
+  keywords = {meteorological instruments, meteorological radar, weather forecastingCASA
+	radar sensor network, IP1 prototype, MC&,C, Meteorological Command
+	and Control, meteorology, southwestern Oklahoma, weather},
+  owner = {mfiscato}
+}
+

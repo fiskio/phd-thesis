@@ -1,0 +1,29 @@
+%\mnote{new title}
+%\mnote{4.0 provides a general introduction to chapter}
+This chapter introduces the \emph{DISSP stream processing system}, a prototype developed to implement and
+evaluate the quality-centric data model described in the previous chapter. 
+It describes some of the novel features of its design and their implementation.
+It shows how the system employs the Source Information Content (\sic) metric to \emph{perform efficiently
+under overload} and to \emph{provide feedback} to the user about the achieved quality of processing of queries.
+
+The system has been designed from the ground up to be distributed, allowing the processing of queries to
+span onto many computing nodes.
+It was particularly targeted at environments with a \emph{constrained amount of resources} that can not
+easily be scaled. Examples of such deployment settings include, for example, \emph{federated resource
+pools} with different authorities administering different processing sites; or \emph{cloud deployments}
+where the resources are rented and it may be more cost effective to voluntarily reduce the amount of
+processing resources, trading an acceptable reduction in the correctness of results for a substantial 
+reduction of the operational costs. 
+
+\emph{Overload} is assumed to be the normal condition of operation of the system and not a transient,
+rare event. 
+%The system assumes \emph{overload} to be normal condition of operation and not a transient condition. 
+The \sic values of tuples are used as a hint to their importance, so that the system can perform an 
+\emph{intelligent selection} of the tuples to shed. This allows the creation of \emph{flexible shedding
+policies}, as it will be illustrated in the next chapter.
+This chapter describes the implementation choices made to provide a reliable and efficient
+processing of queries in such an hostile environment.
+It also presents and overview of the different system-wide components and their interaction to deploy and
+run queries. 
+
+\pagebreak

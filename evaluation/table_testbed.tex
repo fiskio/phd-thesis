@@ -1,0 +1,53 @@
+
+%% --- TABLE TESTBED ----
+\begin{table}[b!]
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|m{3cm}|p{12cm}|} 
+  \hline
+  \multicolumn{2}{|c|}{\bf Local Testbed} \\ 
+  
+    \hline\hline
+	Physical configuration
+	& 
+	3 machines with 1.8~Ghz CPUs and 4~GB of memory running Ubuntu Linux 2.6.27-17-server and connected
+	over 1~Gbps network. \\
+    \hline
+	
+	System layout
+	&
+	1 machine: oracle node; 1 machine: source data generation and query submission; 1 machine: \sys
+	processing node. \\
+    \hline
+	
+	Data sources
+	&
+	400~tuples/sec in 5~batches/sec of 80~tuples/batch. 
+	\\
+    \hline\hline
+    
+    \multicolumn{2}{|c|}{\bf Emulab Testbed} \\ 
+    \hline\hline
+	Physical layout
+	&	
+	pc3000-type machines connected over a 1~Gbps LAN network. Each machine has a 3~Ghz CPU, 2~GB of
+	memory and runs the FBSD410+RHL90-STD Emulab-configured Linux image.
+	\\
+    \hline
+	System layout
+	&
+	1 machine: 1 oracle node;
+	3 machines: source data generation; 
+	3 machines: query submission;
+	18 machines: 18 \sys processing nodes. \\
+    \hline
+	
+	Data sources
+	& 
+	150~tuples/sec in 3~batches/sec of 50~tuples/batch. \\
+	
+    \hline\hline 
+  \end{tabular}
+  \caption{Testbed configurations for experiments. }
+  \label{table:machines}
+\end{table}

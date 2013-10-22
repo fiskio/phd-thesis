@@ -1,0 +1,194 @@
+\section{Overload Reduction}
+
+When the rate of input data exceeds the processing capabilities of a node, the system becomes overloaded
+and needs to take action. The rate of input data can vary rapidly, sometimes growing by orders of
+magnitude, and the resource provisioning of the system thus quickly becomes inadequate. Scaling the
+processing resources is not always feasible or cost effective. In order to overcome an overload
+condition, it is possible to employ either \emph{\mbox{load-shedding}} (\ie the deliberate discarding of
+a fraction of the input data), or \emph{approximate operators}, which produce a semantically similar
+output but with a lower CPU or memory footprint. Next we describe each of these two approaches in turn.
+
+\subsection*{Load-Shedding}
+
+The discarding of a certain amount of input data is referred to as
+\emph{load-shedding}~\cite{load-shedding}. The need to shed load comes from the inability of the system
+to process all the incoming data tuples in a timely fashion. If the system is not able to sustain the
+incoming rate of data with its processing throughput, the internal buffers holding the tuples awaiting
+to be processed grow in size, leading to an increased latency of the result tuples and eventually to an
+exhaustion of buffer memory. The most important choices that a system faces when overloaded are about (a)
+the amount of tuples to discard, (b) where to discard tuples in order to maximise the impact of the
+shedding and (c) what tuples to discard.
+%--------------------------------------------------------------------------------------------------------
+\subsubsection*{Overload Detection} 
+In order to detect an overload condition, the system has to continuously monitor its input rate and the
+size of its internal buffers. This periodic self-inspection has to be performed frequently enough so that
+the system can promptly react to a sudden variation of input rates, while avoiding an excessive overhead
+from the monitoring process.
+
+Aurora~\cite{load-shedding} evaluates load based on a calculation that takes into account the
+processing cost of operators and their selectivity. It assumes a query network $N$, a set of input
+streams $I$ with certain data arrival rates and a processing capacity $C$ for the system that executes
+$N$.
+Let $N(I)$ denote the load as a fraction of the total capacity $C$ that network $N$ exerts on the
+system.
+An overload condition is detected when $Load(N(I)) > H \times C$, where $H$ is constant called the
+\emph{headroom factor}. The total load calculation is a summation of the individual load
+of all network inputs. Each input has an associated \emph{load coefficient}, which represents the number
+of CPU cycles required to transfer a single tuple across the entire local operator graph. By observing
+the input rates, it is possible to calculate if the current load leads to an overload condition and
+trigger the \mbox{load-shedding} mechanism when needed. 
+%--------------------------------------------------------------------------------------------------------
+% 
+% \subsubsection**{\mbox{load-shedding} Amount}
+% When the system detects an overload condition, it first have to estimate what is the percentage of the
+% current input that it needs to discard. It has to estimate what is the maximum sustainable throughput
+% without an excessive increase in latency and without exhausting all the memory resources.
+% 
+% In STREAM~\cite{stream} the load of the processing node is constantly monitored by the \emph{StreaMon}
+% component. 
+% 
+% 
+% In Aurora~\cite{\mbox{load-shedding}} 
+% 
+% \gap
+% %--------------------------------------------------------------------------------------------------------
+
+\subsubsection*{\mbox{Load-Shedding} Location}
+
+After an overload condition has been detected, the system has to choose the location, at which it is best
+to discard the input data. In general, it is better to shed tuples before they are processed so that no
+CPU cycles are wasted processing data that will be discarded. For some classes of
+applications though, it may be better to perform the load-shedding at different locations, as explained
+below.
+
+Babcock et al.~\cite{loadshed-babcock} propose random drop operators, carefully inserted along a
+query plan, such that the aggregate results degrade gracefully.
+If there is no sharing of operators among queries, the optimal solution is to introduce a \mbox{load-shedding}
+operator before the first operator in the query path for each query. Introducing load-shedding as early
+in the query path as possible reduces the effective input rate for all downstream operators and conforms
+to the general query optimization principle of ``pushing selection conditions down''.
+In the case of shared streams among queries, the authors provide an algorithm that chooses the location
+and the sampling rate of the \mbox{load-shedding} operators in an optimal way.
+
+Tatbul et al.~\cite{loadshed-tatbul2} show that arbitrary tuple-based load-shedding can cause
+inconsistencies when windowed aggregation is used. They propose a new operator called \emph{WinDrop}
+that discards entire windows. The idea behind this approach is that
+placing a tuple-based \mbox{load-shedding} operator before an aggregate does not reduce the load for the
+downstream operators because the aggregate still produces tuples at the same rate. Placing the \mbox{load-shedding}
+operator after the aggregate, instead, is not effective in reducing the system load, either because all
+tuples are still processed and aggregate values are computed just to be discarded. Following this
+reasoning, the WinDrop operator is designed to operate on the window of tuples to be sent to the
+aggregate operator and discards or forwards this set of tuples as a whole.
+%--------------------------------------------------------------------------------------------------------
+\subsubsection*{\mbox{Load-Shedding} Selection}
+Another important aspect of load-shedding is the correct selection of tuples to be discarded. The
+simplest approach is to discard the required amount of tuples at random, avoiding a selection step in
+the load-shedding algorithm. In contrast, choosing a specific set of tuples according to some
+criteria allows the implementation of \emph{semantic shedding strategies} that can improve the quality of
+the computed results. Such approaches have been used, for example, in the context of aggregate
+queries and streams presenting irregular frequency patterns.
+	
+Mozafari et al.~\cite{loadshed-mozafari} propose an algorithm for optimal \mbox{load-shedding} for
+aggregate queries when queries have different processing costs, different priorities and, importantly,
+the users provide their own error functions. \mbox{Load-shedding} is treated as an optimisation problem,
+in which users state their needs in term of quality-of-service requirements, \eg the maximum error
+tolerated. The system then implements a shedding policy that meets those requirements. If the minimum
+quality of the results cannot be achieved for a query with the available resources, all inputs for that
+query are discarded, and the freed resources are allocated to the other remaining queries. Using this
+approach, the user has to choose among \emph{approximate} and \emph{intermittent} results. The most
+demanding queries in terms of processing capacity tend to deliver intermittent results because all their
+data is discarded frequently; small lightweight queries tend to deliver approximate results due to
+a partial loss of their input data.
+
+Chang et al.~\cite{loadshed-chang} propose an adaptive \mbox{load-shedding} technique based on the
+frequency of input tuples. 
+In many data stream processing applications, such as web analysis and network monitoring,
+where the aim is to mine frequent patterns, a frequent tuple in the data stream can be considered
+more significant compared to an infrequent one. 
+Based on this observation, frequent tuples are more likely to be selected for processing while
+infrequent tuples are more likely to be discarded.
+The proposed technique can also support a flexible trade-off between the frequencies of the
+selected tuples and the latency defined as the delay between the generation and processing time.
+One of the proposed algorithms, in fact, buffers tuples for a certain amount of time so that the
+\mbox{load-shedding} decision can be made based on the frequency of tuples over multiple time slots.
+
+\subsubsection*{Distributed \mbox{Load-Shedding}}
+In a distributed stream processing system, every node acts as an input provider for its downstream nodes.
+The reduction of load at a node thus also reduces the amount of load on all other nodes hosting the
+subsequent operators in the query graph. This makes the problem of identifying the correct
+\mbox{load-shedding} plan more challenging than in a centralised environment. 
+
+In the Borealis system~\cite{borealis_load_management}, the \mbox{load-shedding} problem is solved using
+linear optimisation.
+The goal is to maximise the output rate at the query end-points. The system inserts a number of
+\mbox{load-shedding} operators and chooses their drop selectivities, the percentage of tuples to be
+discarded, so that the total throughput is maximised. The solution of the \mbox{load-shedding} problem is broken down into
+four steps: (i) advanced planning; (ii) load monitoring; (iii) plan selection; and
+(iv) plan implementation. In the first step, a series of \mbox{load-shedding} plan is computed, one for each
+predicted overload condition. Then, during the lifetime of the query, the load is monitored at
+each node. When an overload condition is detected, one of the previously computed shedding plans is
+selected and implemented at the various nodes, adding the corresponding set of \mbox{load-shedding}
+operators. The idea is to prepare the system against all possible overload conditions beforehand and to
+modify the query at run-time depending on the expected overload scenario. This general approach has been
+implemented in two ways: in a \emph{centralised} and in a \emph{distributed} fashion.
+
+\paragraph{Centralised Coordination.} In the centralised approach, a central server called the
+\emph{coordinator} is used to calculate all the \mbox{load-shedding} plans. It uses information obtained from all processing nodes
+about the operators they are hosting, their input rates and their selectivities. Based on this
+information, it generates a number of \mbox{load-shedding} plans to address various overload scenarios.
+Once the plans are generated, they are passed to the processing nodes. The
+coordinator then starts monitoring the processing load at each node. If an overload condition is
+detected, the coordinator selects the most suitable plan to address it and triggers its execution at the
+processing node.
+
+\paragraph{Distributed Coordination.} In the distributed approach, the four \mbox{load-shedding} steps
+are performed cooperatively by all the processing nodes, without the help of a centralised coordinator. All nodes
+communicate with their neighbours and propagate information about their input rates and processing
+capabilities. Each node identifies a feasible input load for itself and all its downstream neighbours.
+This information is used to compute a \emph{Feasibility Input Table (FIT)}, a table containing
+the input rate combinations that are feasible (\ie not causing overload) for that node.
+Once a node has calculated its FIT table, it is propagated to its parent nodes. The parent node
+aggregates the FITs of all children and eliminates those that are infeasible for itself. The propagation
+continues until the input nodes receive the FITs of all their downstream nodes. At this point, when an
+overload conditions arises, every node is able to select a \mbox{load-shedding} plan among those
+contained in its FIT, reducing the load for itself and all its downstream nodes.
+% 
+% 			\incite{borealis-load}
+% 			\incite{borealis-load_management}
+% 			\incite{\mbox{load-shedding}}
+% 			\incite{loadshed-babcock}		AGGREGATE
+% 			\incite{loadshed-chang}		S	FREQUENCY BASED
+% 			\incite{loadshed-chi}		S	CLASSIFICATION
+% 			\incite{loadshed-dash}		S	XML
+% 			\incite{loadshed-gedik}		S	non-uniformly regulated sifters, 
+% 			
+% 			\incite{loadshed-gedik2}
+% 			\incite{loadshed-grubjoin}
+% 			\incite{loadshed-kendai}	S similar to aurora, drop around the mean
+% 			\incite{loadshed-mozafari}
+% 			\incite{loadshed-tatbul}
+% 			\incite{loadshed-tatbul2}
+% 			\incite{loadshed-telegraphcq}
+% 			\incite{loadshed-tu}
+\subsection*{Approximate Operators} 
+Overload can also occurs when the total state of all running operators exceeds the available memory. 
+In this case, the system has to reduce the memory usage by reducing the state kept by operators. 
+In general, the system can try to minimise its memory footprint through a number
+of techniques.
+For example, it can exploit constraints on streams to reduce state either by letting the user specify
+them or by inferring them at run-time. It can also \emph{share state} among operators when they materialise nearly
+identical relations.
+It can also schedule operators intelligently in order to minimise the length of queues in
+memory~\cite{stream-chains}.
+While these techniques do not lower the quality of the processing, the memory usage may still exceed the
+limits of the systems. In such situations, the internal state of operators can be approximated. In the
+case of aggregation and join operators, the state can be reduced by employing sampling techniques, such
+as using \emph{histograms}~\cite{histograms}. These are approximations to data sets, achieved by
+partitioning the data into subsets, which are in turn summarised by aggregate functions. Every column in the histogram is a compact
+representation of one of these subsets. Another summarising technique that can be employed makes use of
+wavelet synopses~\cite{wavelets}. For set difference, set intersection and duplicate
+elimination operators, Bloom filters can be employed~\cite{bloom}. These are compact set representations
+that provide a fast way of testing whether an element is a member of a set. All these techniques trade
+memory usage against precision and can greatly help the system overcome or avoid memory-induced overload
+conditions.
+

@@ -1,0 +1,10 @@
+\subsection*{Gigascope}
+\label{sec:gigascope}
+
+\begin{structure}
+	\item System Description
+	\item ...
+	\item Considerations
+\end{structure}
+
+Gigascope: a stream database for network applications \cite{gigascope}

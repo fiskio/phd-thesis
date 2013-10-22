@@ -1,0 +1,48 @@
+\documentclass[a4paper,11pt,twoside]{report}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+\include{thesis_preamble}
+
+
+\begin{document}
+
+\title{\LARGE {\bf DISSP: Dependable Internet-Scale Stream Processing}\\
+ \vspace*{6mm}
+}
+
+\author{Marco Fiscato}
+\submitdate{April 2012}
+
+  
+\normallinespacing
+\maketitle
+%\listoffigures
+%\preface
+%\input{abstract/abstract}
+%\input{acknowledgements/acknowledgements}
+%\input{dedication/dedication}
+%\input{quotes/quotes}
+
+\body
+\input{abstract/abstract}
+\input{introduction/introduction}
+\input{background/background}
+\input{data_model/data_model}
+\input{design/design}
+\input{load_shedding/load_shedding}
+\input{evaluation/evaluation}
+\input{conclusion/conclusion}
+
+%\appendix
+% appendices come here
+
+
+%\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{alpha}
+%\bibliographystyle{unsrt}
+%\bibliographystyle{natbib}
+%\bibliographystyle{inlinebib}
+
+\bibliography{bibliography/dissp}
+
+\end{document}

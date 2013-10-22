@@ -1,0 +1,21 @@
+\section{Stream-based applications}
+%	\pages{5}
+
+Before starting the description of the details about the function of a stream processing system I will
+give some examples of stream-based applications. Traditionally stream processing has been applied to
+application domains that require very low tolerance of failure. These applications are able to produce
+meaningful results only when the processing is carried out without any loss of data or approximation. 
+
+Financial algorithmic trading~\cite{streambase-algo} is an example of such an application.  Investment
+banks, trading on the stock market need to process a great deal of financial events in real-time. Complex
+algorithms are used to capture the current situation of the market and give hints on profitable trades
+exploiting temporary arbitrage conditions. For these applications the focus is on efficiency: being able
+to make a trade even a split second before a competitor is the key to achieve maximum profits. In this
+scope the necessity of processing all the available information is evident, as a wrong choice based on
+approximate data could mean the loss of large amounts of money.
+
+On the other hand, there are some classes of applications which are able to operate correctly even not
+all the data can be correctly process~\cite{phi}. In many cases a certain degree of failure in the system
+is tolerable and does not hinder the application from producing meaningful results. In the following
+sections I will describe two examples of such applications.
+

@@ -1,0 +1,18 @@
+\section{Summary}
+
+This chapter presented the experiments performed to evaluate the advantages of employing the \sic quality
+metric in a stream processing system. All experiments were carried out using the \sys prototype
+system described in Chapter~\ref{ch:system_design}.  
+The first set of experiments looked at the correlation between \sic values and the correctness of
+results.
+Even though the \sic quality metric was not designed as a direct measure of the accuracy of results,
+our experiments showed that, for many classes of queries, there is a good correlation, confirming that a
+high value of the \sic metric indicates a high confidence in the correctness of results.
+The second set of experiments focused on the evaluation of the fair shedding policy, designed to
+exploit the \sic metadata to allocate resources among queries evenly and compares its performance with
+that of a random shedder. Our results showed that employing the fair shedding policy leads to a more even
+distribution of \sic values for the delivered output tuples.
+Finally, a set of experiments was devised to investigate the correlation between resource cost and
+the processing quality of the results. 
+They showed that it is possible to strike a balance between the achieved \sic values
+of the results and a reduced resource cost for the processing infrastructure.

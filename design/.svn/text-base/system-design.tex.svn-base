@@ -1,0 +1,17 @@
+\section{System Design}
+\label{sec:system-design}
+
+	\subsection{Node Architecture}
+	\label{sec:node-arch}
+	
+	  \subsubsection*{Operator Runner}
+	  \subsubsection*{Network Infrastructure} 
+	  \subsubsection*{Load Shedder}
+	  \subsubsection*{Statistics Manager}
+
+	\subsection{System Architecture}
+	\label{sec:system-arch}	
+	 	\subsubsection*{Node}
+	 	\subsubsection*{Oracle}
+	 	\subsubsection*{Coordinator}
+		\subsubsection*{Submitter}

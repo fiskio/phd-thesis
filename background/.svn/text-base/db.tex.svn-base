@@ -1,0 +1,6 @@
+%\subsection{Database Oriented}
+%\label{sec:db-oriented}
+
+\input{background/db-centralized}
+
+\input{background/db-distributed}

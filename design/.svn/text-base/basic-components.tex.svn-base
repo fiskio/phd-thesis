@@ -1,0 +1,217 @@
+\section{Basic Components}
+
+This section introduces the basic building blocks of our system. It will explain how the theorectical
+entities presented in the description the data model in Chapter~\ref{ch:data_model} have been
+actually implemented. It will start describing the basic containers for data, such as \textit{tuples} and
+\textit{batches}. Then it will cover the \textit{operators}, providing a taxonomy and
+describing some details about the implementation of the most common ones. Finally \textit{queries} will
+be described, showing how they serve as a logical container for operators and can be partitioned in
+smaller entities for distribution.
+
+% --------------------------------   TUPLES/BATCHES 	--------------------------------
+\subsection{Data Containers}
+
+All the information flowing through a stream processing system is encapsulated in two main data 
+containers: \textit{tuples} and \textit{batches}. Tuples contain a single piece of information and are
+manipulated by operators during the processing of a query. Batches are logical containers that represent
+a single unit of input or output of operators. 
+
+\subsubsection*{Tuples}
+\label{sec:tuples}
+
+Tuples represent the simplest unit of information processed by a stream processing system. As described
+in Section~\ref{sec:definitions}, they are modeled after a \textit{schema}, describing the number, the
+name and the type of the values they carry. They are also associated with a timestamp, which contains
+information about their time of creation. Tuples are also associate with an individual \sic value, but in
+our implementation this is not attached to every single tuple, but to the containing batch instead. This
+reduces the overhead of transporting a \texttt{double} for each tuple, exploiting the consideration that
+all tuples within a batch have the same \sic value.
+
+In our system  they are implemented as compiled POJO objects. A tuple \textit{template} is completed with
+the information contained in the XML file describing the query producing a new .java file, which is then
+compiled to bytecode by a run-time compiler. 
+
+\paragraph{Templates} are semi-complete \textrm{.java} files, representing the schelethon a class. 
+They are used for the efficient instantiation of customised \textit{tuples} and \textit{operators}.
+They contain a number of place holders, which are all capital keywords preceded by a dollar sign, in the
+form ``\texttt{\$PLACEHOLDER}''. They are meant to be completed using the information provided in the XML
+file describing the query and the compiled into actual POJO objects with the desired charactheristics. For
+this transformation the system employs a \textit{CharSequenceCompiler}, which takes in input a string
+containing the content of a completed .template file and produces an instance of the customised object.
+This allows the system to operate always on compiled bytecode, granting the maximum performance of
+execution together with the flexibility of working with customised versions of tuples and operators
+taylored to the specific query requirements.
+
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fixed,
+  showstringspaces=false,
+  commentstyle=\color{white}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  %morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{BrickRed},
+  identifierstyle=\color{NavyBlue},
+  keywordstyle=\color{ForestGreen}, 
+  morekeywords={type,name}% list your attributes here
+}
+\begin{lstlisting}[language=XML,label=lst:tuplexml,caption=XML description of a Tuple]
+	<schema name="simpleSchemaONE">
+	    <field type="long"   name="ts"  />
+	    <field type="double" name="idx" />
+	    <field type="double" name="tmp" />  
+	</schema>
+\end{lstlisting}
+
+
+Listing~\ref{lst:tuplexml} shows the XML description of a Tuple object with 3 fields: one \texttt{long}
+for the timestamp named \emph{ts}, and two \texttt{double}, one with a numerical identifier \emph{idx}
+and the other carrying a temperature reading \emph{tmp}. These values will be inserted in the tuple
+.template in correspondance with the ``\texttt{\$FIELD}'' placeholder, transforming it into a complete
+.java source file. The compiled object will contain 3 public fields with the type and name specified in
+ the XML listing.
+		
+\subsubsection*{Batches}
+\label{sec:batches}
+		
+Batches logically group tuples with the same \sic value. Instead of associating an individual value to
+each tuple, the system uses batches as containers with a single \sic value which is considered to
+be assigned to all the tuples contained in that batch.
+
+Batches are the input an output units of operators. The output of an operator is usually composed of
+several tuples, which are encapsulated within a batch. The operator calculates a \sic value to be
+assigned to all tuples in the batch based on the \sic values of its inputs. The newly produced batch is
+delivered in input to another operator or is returned as a result to the user.
+
+Batches are an implementation of CQL concept of \emph{relation} described in Section~\ref{sec:cql}. They
+represent a finite snapshot of a stream, which allows operator process a possibly infinite
+continuous stream of tuples in consecutive discrete steps.
+
+In our system batches are simple objects, which contains a list of tuples, a \sic value and some other
+metadata. They also contain the logic for converting to and from their network representation.
+
+
+% --------------------------------   OPERATORS 	--------------------------------	
+\subsection{Operators}
+\label{sec:operators}
+
+Operators are the basic unit of computation within a stream processing system. They implement a
+\emph{function} that transforms one or more input batches into one output batch. A set of operators
+linked together in directed acyclic graph takes the name of \emph{query}.
+
+Operators can be classified as \emph{blocking} or \emph{non-blocking} based on their behaviour when
+dealing with input data. Many operators can be configured to work in either mode. 
+\emph{Blocking operators} need at least one input batch on every input channel before they can
+produce an output, while \emph{non-blocking operators} execute every time a new batch of tuples is
+delivered on either input. The system implements the logic described in Section~\ref{sec:definitions}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/tesi/operator2.eps} 
+	\caption{An operator with its internal structure.}
+	\label{fig:op2}
+\end{figure}    			
+
+Figure~\ref{fig:op2} shows the internal structure of an operator, with its two main components: the
+\textit{buffer pool} and the \textit{semantic module}. Every operator is equipped with a pool of internal
+buffers, one per input. These are used to stage tuples before they are processed. Every time an operator
+triggers for execution, it first moves one or more batches of tuples into the buffer pool. Every buffer
+might still contained some tuples from the previous execution, in this case the new batch is merged with
+the left over tuples.
+
+After the input data has been staged, the operators executes the logic contained in the \textit{semantic 
+module}. This is what really characterizes an operator, where its processing logic is described.
+From the implementation point of wiew, an operator is an abstract class with an unimplemented
+\texttt{execute()} method. Every concrete operator has to provide the code for this method, specifying a
+processing semantic. Once done processing, this method return a batch of tuples which is delivered in
+output. 
+
+From the standpoint of a user implementing a new custom operator boils down to the definition of
+a new java class, extending either the \emph{BlockingOperator} or the \emph{NonBlockingOperator} class,
+which implements the \texttt{execute()} method. To make this class generic it is then necessary to
+convert it into a \emph{template} file. This is done by replacing some fields with a generic placeholder
+which will then be specified in the XML description of this operator.
+
+Listing~\ref{lst:opxml} shows the XML description of an \emph{Average} operator. In the first line the
+operator is characterized as being an instance of class ``Average'', described in the correspondant
+.template file, and it is given the name of ``MyAvgCpu'. Then there is the declaration of a \emph{next}
+operator, this means that this is not a terminal operator and thus its output should be delivered to a
+single local operator named ``MyOutput''. Next are 3 parameter definitions, in the form $\langle name,
+value \rangle$. The system will look for the ``\$NAME'' placeholder and will replace it with the string
+given by ``value''. Once the substitution has taken place, the .template file becomes a complete .java
+source file and is then compiled by the \emph{CharSequenceCompiler}.
+		 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fixed,
+  showstringspaces=false,
+  commentstyle=\color{white}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  %morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{BrickRed},
+  identifierstyle=\color{NavyBlue},
+  keywordstyle=\color{ForestGreen}, 
+  morekeywords={type,name}% list your attributes here
+}
+\noindent\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=XML,label=lst:opxml,caption=XML description of an Average operator]
+	<operator name="MyAvgCpu" type="Average">
+	    <next name="MyOutput"/>
+	    <parameter name="tuple"    value="simpleSchemaONE" />
+	    <parameter name="field"    value="cpu"/>
+	    <parameter name="groupby"  value="idx"/>
+	<operator>
+\end{lstlisting}
+\end{minipage}
+
+
+
+
+	
+		\subsubsection{Window Operators}
+		\label{sec:window-op}
+			\paragraph{Count Window}
+			\paragraph{Time Window}
+			\paragraph{Field Window}
+			
+		\subsubsection*{Input Operators}
+		\label{sec:input-op}
+			\paragraph{Source Input Device}
+			\paragraph{Output Device}
+		
+		\subsubsection*{Network Operators}
+		\label{sec:network-op}	
+			\paragraph{Remote Sender}
+			\paragraph{Remote Receiver}
+		
+		\subsubsection*{Data Manipulation Operators}
+		\label{sec:data-op}		
+			
+			\paragraph{Filter}
+			\paragraph{Average}
+			\paragraph{Covariance}
+			\paragraph{Join}
+			\paragraph{TopK}
+			\paragraph{Union}
+			\paragraph{Min}
+			\paragraph{Max}
+
+% --------------------------------   QUERIES 	--------------------------------		
+	\subsection{Queries}
+	\label{sec:queries}
+		Logically group a number of operators, in sequence to perform calculations on a stream.
+		
+		\subsubsection*{Subqueries}
+		\label{sec:subq}
+			Pieces of query, deployed on a node
+			

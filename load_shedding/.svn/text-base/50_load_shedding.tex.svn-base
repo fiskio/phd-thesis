@@ -1,0 +1,29 @@
+\chapter{Load Shedding}
+\label{ch:load_shedding}
+
+\timest{4}
+\\\\
+\pages{$\sim$25}
+
+\section{Overcoming overload conditions}
+
+\section{Semantic Vs Random approaches}
+
+\section{Efficient intelligent shedding}
+
+\section{Fair Shedding}
+\label{sec:fair-shedding}
+
+\section{Evaluation}
+
+
+%algorithm + approach implementing it
+\begin{enumerate}
+        \item Need to discard some input
+        \item Random shed Vs Intelligent shedding
+        \item The design of an efficient and intelligent shedder
+        \item Evaluation of different strategies in different scenarios
+        \item ...
+\end{enumerate}
+\mnote{For this chapter I think it's better to work on it until is over. The time here will be spent mostly measuring performance and writing about it, since I already have a good understanding of the shedding process.}
+

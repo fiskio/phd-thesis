@@ -1,0 +1,33 @@
+\subsection{Gossip-based Aggregates}
+\label{gossip-agg}
+
+\emph{Gossip-based} (or \emph{epidemic}) protocols can be used to calculate imperfect aggregate functions in large scale
+distributed systems~\cite{gossip-aggregates, gossip-aggregates-large}. In these systems, every node periodically contact 
+one or a few nodes and exchanges information with them. Usually the noes chosen for this information exchange are
+chosen at random~\cite{cyclon}, but for certain application they get selected among a group of similar nodes, according
+to a given metric~\cite{vicinity}. The dynamics of information spread resemble the way information spread within a
+group, hence the use of the word \emph{gossip}, or can be seen as similar to the spread of an epidemic in a population. 
+The use of these protocols lead to high fault-tolerance and ``self-stabilization'', thus making them particularly useful
+in the scope of large-scale distributed systems. 
+
+Gossip-based protocols produce results which are \emph{probabilistic} in nature, but are able to produce results even
+when the system is subject to instability and can gracefully scale to a large number of participants. Also, they do not
+require error recovery mechanisms, as the system is able to self-organise and to regain balance. For these reasons they
+are particularly suitable for peer-to-peer system, where there is no hierarchy and nodes join and leave frequently.
+While not producing ``perfect results'', they are able to obtain good estimates without the overhead of other
+deterministic approaches, such as the construction of aggregation trees. The total cost of computing these aggregates
+is low and be approximated as $O(n\mathrm{log}n)$ messages and $O(\mathrm{log}n)$
+rounds~\cite{gossip-aggregates-dipietro}. The precision of the estimate can be arbitrarily low, depending
+on the number of rounds used~\cite{gossip-aggregates-large}.
+
+By employing gossip-based protocols it is possible to calculate a large number of aggregate values in a system. 
+The most common examples are \emph{sums} and \emph{averages}, but can also be used to calculate
+quantiles~\cite{gossip-aggregates}. Also, it has been shown that they can be employed to calculate wide range of
+functions such as counting, generalised means, minimums and maximums, products and also
+rankings~\cite{gossip-aggregates-large}.
+These protocols can be employed, for instance, to the calculation of the total
+number of nodes in the system, or the average load. It is possible to calculate aggregates of any numerical
+value held by a node, usually representing a fairly stable property (calculation based on dynamic properties is
+possible, but make little sense as an aggregate). For all this reasons, gossip-based aggregates appear to be the best
+option to calculate aggregate functions in a large-scale distributed system, and I plan to employ this methods in my
+future research.

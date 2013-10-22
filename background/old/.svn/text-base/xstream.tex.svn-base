@@ -1,0 +1,25 @@
+\subsection*{XStream}
+\label{sec:xstream}
+
+\paragraph{Overview}
+XStream~\cite{xstream} is a stream processing engine specifically designed to be employed in applications requiring the
+processing of hight-rates data streams. Many classes of sensors are nowadays able to produce measurement
+at a very high rate, sensing phenomena tens to hundreds of times per seconds. In particular it focuses on the efficient
+processing of \textit{isochronous} data, or regularly sampled in time. Tuples in a data stream contain chunks of sampled
+data, called \textit{signal segments} or SigSeg. These are a new abstract data type introduced by XStream and 
+encapsulates a finite sequence of isochronous samples into an array-like data structure with associated timing metadata.
+Because of this property of the data, per tuple timestamps are not necessary. SigSegs make it possible to pass windows
+of data between operators as first class objects. This allows operators to not define their own input
+windows as SigSegs already carry a window of data. SigSegs are very beneficial, for instance, in the scope of temporal
+joins. These operators usually incur in a large computational overhead for large windows, due to the sheer number of
+comparisons that must be made. XStream also introduce a new kind of scheduler, that dispatches tuples to operators in a
+mostly depth-first traversal of the query plan. This also schedules SigSegs instead of single tuples, greately reducing
+the overhead derived by the manipulation of a great number of individuals tuples. For specific applications dealing with
+high-rate isochronous data, XStreams achieves incredible 1000x performace gains over traditional stream processing engines.
+
+\paragraph{Considerations}
+Differently than conventional stream processing engines which aim at being as general purpose as possible, XStreams is
+optimized for a well defined class of input data, where tuples in a stream are separated by an equal amount of time. 
+Because of this assumption on the incoming data streams, the system has been highly optimized and obtain an amazing
+performance increase for some applications. The idea of employing array-like structure of isochronous data, or SigSegs,
+as the basic computational unit is interesting, it is an optimization that could also be used by other DSPSs.

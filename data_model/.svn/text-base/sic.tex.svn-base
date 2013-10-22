@@ -1,0 +1,128 @@
+\section{Source Information Content}
+\label{sec:sic}
+
+In the previous section I showed how the previously stated assumptions about the quality-centric data
+model can be applied to some generic queries. The goal was to provide an intuitive description about how
+the \sic values are calculated for different query types. In this section I will provide a formal
+definition about \sic calculation.
+
+\subsection{Data Model Formalisation}
+
+\begin{definition}[Source Information Content] {
+The sum of the source information content (\sic) of all result tuple for query $q$, 
+denoted as $t_{R}^{SIC}$, measures the contribution of source tuples, belonging to its Source Information Tuple Set
+ denoted as $\mathcal{T}^{S}$, processed for its generation. Its values are calculated by: 
+  
+\begin{align} 
+		\sum_{t_R \in \mathbb{T}^R_q } t_{R}^{SIC} = \sum_{t_{src} \in \mathcal{T}^{S}} t_{src}^{SIC}, 
+\end{align}
+
+where $t_{src}$ denotes a source tuple in $\mathcal{T}^{S}$ used for the calculation of the
+result tuple. In particular, $t_{src}^{SIC}$ shows the contribution of a source tuple coming from 
+source ${src\in\xspace S}$ to the perfect result and is quantified by:
+
+\begin{align}
+		t^{SIC}_{src} = \frac{1}{|\mathcal{T}_{src}^{\mathcal{S}}||\mathbb{S}|}
+\end{align} 
+
+where $|\mathcal{T}_{src}^{\mathcal{S}}|$ is the total number of tuples in the Source Information Tuple
+Set of source $\mathcal{S}$, and $|\mathbb{S}|$ is the total number of sources for the query. }
+\end{definition}
+
+Equation~(3.1) states that the total \sic value of all result tuples for a certain query, is equal to the
+sum of the \sic values of all tuples in its Source Information Tuple Set. It aggregates all the \sic
+values of all source tuples that contributed to its creation. 
+Because a query can have multiple terminal operators, each potentially producing more than one result
+tuple at the time, we consider the \emph{sum} of all the result tuples produced by all terminal
+operators.
+If all tuples where correcly processed, the
+resulting \sic value is 1, a lower value indicates that some information loss happen during the query execution. 
+
+
+Equation~(3.2) describe how source tuples are assigned their individual \sic value. First a value of 1 is
+assigned to the totality of the tuples produced by a source in its Source Tuple Information Set. This
+means that all sources are considered to equally contribute to the final result, regardless of the amount
+of tuples they produces during the same interval.
+Beacuse every tuple in this set is considered to contain the same amount of information, this value is
+then divided by the number of tuples produced by the source during the interval.
+Thus, the \sic value of an individual source tuple $t^s$ is inversely proportional to the number of
+tuples in $|\mathcal{T}_{s}^{S}|$. Furthermore it is necessary to normalise to the number of sources
+$|\mathbb{S}|$ connected to a query by dividing the initial \sic values to the number of sources. 
+In this way all final \sic values lie in the interval $[0,1]$, making possible to compare the
+performance of different queries.
+
+\subsubsection*{\sic propagation from source to result tuples}
+So far, we considered queries as black-boxes and discussed only the relation of \sic values between
+source and result tuples. In order for the formal description to be complete, it is important to
+understand how intermediate \sic values are calculated at the individual operators and how these
+propagate within the system.
+
+Source tuples from $\mathcal{T}^{S}$ are processed by the query operators in set $\mathcal{O}$, these
+produce new derived tuples that flow to the next downstream operator, until they reach a terminal
+operator that outputs result tuples.
+
+More formally, for a given intermediate derived tuple $t^{R}_o$ and for any operator $o \in \mathcal{O}$,
+we define $\mathcal{T}_{in}^{o}$ to be the set of all input tuples to the operator $o$ required for the
+generation of $t^{R}_o$.
+Similarly, $\mathcal{T}_{out}^{o}$ denotes the set of derived tuples produced by operator $o$ after the processing on $\mathcal{T}_{in}^{o}$.
+
+The \sic value of a derived tuple $t$, processed by operator $o$, \ie $t \in \mathcal{T}_{out}^{o}$, is: 
+\begin{align} 
+	t_{SIC} = \frac{\displaystyle\sum_{t \in \mathcal{T}_{in}^{o}}{t_{SIC}}}{|\mathcal{T}_{out}^{o}|}.
+\end{align}
+
+This means that the set of derived tuple produced by an operator contains all the information contained
+by the set of input tuples that the operator processed. This information is considered to be equally
+distributed over all the output tuples and so the total value is divided by the number of output tuples.
+
+The way \sic values are calculated is somehow recurvise, as it is the same if we considered a single
+operator or a complete query seen as a complex black box operator. The sum of the information in input
+is always propagated to the output tuples and equally divided among them. 
+
+\subsubsection*{\sic relation to query performance} 
+The \sic values of the result tuple lie in the $[0,1]$ interval : \\
+(a) A value equal to $1$ means that the complete set of $\mathcal{T}^{S}$ tuples is
+used and the result is perfect. \\
+(b) A $0$ value means that all source tuples from $\mathcal{T}^{S}$
+have been discarded or lost during the processing. \\  
+(c) A value in $(0,1)$ indicates a degraded resuslt, meaning that only a subset of the tuples contained
+in the Source Tuple Information Set has been used for the computation. A small value indicated a large
+information loss, while a value close to 1 indicates an almost perfect result. \\
+
+\subsubsection*{Model Applications}
+
+\textbf{Query Performance:} Even though \sic values give a good estimate about the quality of the
+processing, it should be noted that this value is not directly linked to the absolute error of the query
+results. In general it is not possible to compute error bars on the delivered results based on this
+metric.
+\sic values are an indication to the user about the amount of failure that occurred during the generation
+of a query result. It is then up to the user to decide if the delivered answer should be considered valid
+of should be instead discarded. 
+
+Nevertheless \sic values are a good hint about the quality of the results delivered by a query. The
+knowledge of the query semantics might allow the user to correlate \sic values and actual absolute error
+of the results. The simpler the query semantic, the easier it is to establish such a correlation. 
+
+\textbf{Completness of Results:} using \sic values it is possible to compare the results of the same
+query at different times to evaluate the quality of the delivered results in terms of information
+completness. A result tuple $t^R_1$ delivered a time $t_1$, compared to another result tuple $t^R_2$
+delivered at time $t_2$, contains more information iff $t^{SIC}_1 > t^{SIC}_2$.
+
+A user can monitor the status of a computation by observing the changes in \sic values delivered by a
+query at different times. A sharp decrease in \sic values means that a lot more information is been
+discarded and there might be the need to act upon it. Reasons for a sudden reduction could be:\\
+1) the failure of one or more processing nodes, requiring the migration of some operators and
+maintainance of the failed infrastructure,\\
+2) a sharp increase in input rates, requiring the increase of processing resources to maintain the
+delivered \sic value with acceptable boundaries.\\
+
+\textbf{Fair resource allocation:} using \sic values it is possible to compare the quality of service
+achieved by different queries running concurrently on a shared processing platform. A fair system would
+try to equalise the quality of service of running queries, allocating resources in such a way so that all
+queries delivered results with similar \sic values. 
+
+When the system experiences \emph{overload} and needs to discard a certain amount of tuples, it can use
+\sic values to determine which tuples to drop and which tuples to spare aiming at the equalisation of
+result \sic values among all queries. This process takes the name of \emph{fair-shedding} and will be
+further explored in Section~\ref{sec:fair-shedding}.
+
