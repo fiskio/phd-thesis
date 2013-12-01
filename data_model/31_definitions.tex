@@ -161,8 +161,8 @@ We can divide operators based on their behaviour when handling input streams int
 
 Blocking operators need to have at least one input batch available on each of their input
 streams. For example, if there are two inputs to an operator, one containing two input
-batches while the other one is currently empty, the operator blocks until an input batch arrives
-on the second input stream. When this happens, the first batch of each input is removed and processed,
+batches while the other one being currently empty, the operator blocks until an
+input batch arrives on the second input stream. When this happens, the first batch of each input is removed and processed,
 producing one derived batch. Assuming no other batch has arrived on the second input, the operator
 blocks again, as only the first input contains data to be processed.
 
