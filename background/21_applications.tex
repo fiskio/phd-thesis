@@ -270,9 +270,12 @@ More formally, a user \emph{Bob} is reached by a social cascade when he receives
 The diffusion of links through Twitter can be used to understand better what a social cascading tree
 looks like. Twitter is a micro-blogging website on which users can share a short message of maximum 140
 characters with other users called ``followers''. In this particular social network, it is also possible
-to characterise cascades further into two main groups: L-cascades and RT-cascades~\cite{outweeting}.
+to characterise cascades further into two main groups: R-cascades, for which the
+flow of URLs is constrained to the follower graph and
+RT-cascades~\cite{outweeting}, for which the follower graph is disregarded and
+the who-credits-whom data from the retweets is used.
 
-L-cascades occur when a certain content is shared by direct followers. More formally, we can
+R-cascades occur when a certain content is shared by direct followers. More formally, we can
 say that an L-cascade is the graph of all users who tweeted about a certain content \emph{c}. A cascade
 link is formed when (1) Users \emph{Alice} and \emph{Bob} shared content \emph{c}, (2) User
 \emph{Alice} posted \emph{c} before user \emph{Bob}, and (3) User \emph{Bob} is a follower of user
