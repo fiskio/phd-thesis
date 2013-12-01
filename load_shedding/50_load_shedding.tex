@@ -303,7 +303,7 @@ changes of the incoming tuple rate.
 Figure~\ref{fig:tuple_cost} shows the two time intervals, $\delta$ and $t$ used to calculate the cost of
 a tuple and the average time needed to process an arbitrary tuple, respectively. Let us assume a shedding
 interval $\delta$ of 250 milliseconds. In practice, the \emph{overload detector} triggers with a small
-delay, \eg after a time $t$ of 300 milliseconds. During this time, the system process 5000 tuples.
+delay, \eg after a time $t$ of 300 milliseconds. During this time, the system processes 5000 tuples.
 Therefore, every tuple has a cost $C_T$ of $0.06$~ms/tuple. The system thus predicts that in the next $\delta$ interval it will
 have the processing capacity $N_{keep}$ of approximately  $4100$ tuples. Tthis value is
 smoothed by a sliding average.
