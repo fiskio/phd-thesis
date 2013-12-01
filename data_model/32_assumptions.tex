@@ -157,7 +157,7 @@ Furthermore, it is common for stream processing systems to be extensible, allowi
 their own custom operators, whose processing semantics are unknown a priori.
 	
 Let us consider the different impact that the loss of a tuple can have on operator results.
-An average operator, that inputs a set of $100$ tuples with integer values uniformly distributed in the
+An average operator that inputs a set of $100$ tuples with integer values uniformly distributed in the
 range $[0,1]$, produces a single output tuple with a value close to $0.5$.
 If we assume that $50\%$ of the input tuples are discarded due to overload, the operator still produces a
 single tuple with a value close to $0.5$. In this scenario, the loss of half of the input tuples has
