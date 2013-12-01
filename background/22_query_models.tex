@@ -60,7 +60,8 @@ detects that a room is too hot, it switches on the air conditioning unit in that
 The two core data types manipulated by CQL are \textit{streams} and \textit{relations}.
 
 \begin{definition}[Stream]{A stream S is a potentially infinite bag (multiset) of elements $\langle s,
-\tau \rangle$, where $s$ is a tuple belonging to the schema of $S$ and $τ ∈ T$ is the timestamp of the element.}
+\tau \rangle$, where $s$ is a tuple belonging to the schema of $S$ and $\tau
+\in T$ is the timestamp of the element.}
 \end{definition}
 
 Timestamps are not part of the schema of a stream, and there can be zero, one or more elements with
@@ -74,8 +75,9 @@ streams}, which are intermediate streams produced by operators.
 with a schema: \textsc{RoomTmpStr(RoomID, RoomTmp)}. Attribute \textsc{RoomID} identifies the room where
 the sensor is located, while \textsc{RoomTmp} contains the current detected temperature. 
 
-\begin{definition}[Relation]{A relation R is a mapping from each time instant T to a finite but
-unbounded bag (multiset) of tuples belonging to the schema of R.}
+\begin{definition}[Relation]{A relation R is a mapping from each time instant
+$\tau$ to a finite but unbounded bag (multiset) of tuples belonging to the
+schema of R.}
 \end{definition}
 
 A relation $R$ defines an unordered multi-set of tuples at any instant in time $\tau \in T$,
