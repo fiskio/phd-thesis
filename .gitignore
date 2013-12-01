@@ -1,3 +1,7 @@
+.texlipse
+*.aux
+*.log
+*.dvi
 *.acn
 *.acr
 *.alg
