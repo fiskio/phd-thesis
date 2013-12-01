@@ -341,7 +341,7 @@ The handling of sockets is based on the Java NIO library and is completely async
 low communication overhead and allows one thread to handle all the I/O requests. This many-to-one
 design, in which one thread is responsible for all sockets, is preferable to a one-to-one approach,
 with one thread for each open socket, due to its simplicity and efficiency. It only employs one CPU
-core to handle network communication. Empirical evidence shows that, even under heavy load and the
+core to handle network communication. Empirical evidence, based on my experience, shows that, even under heavy load and the
 presence of a large number of connections, the NioConnector thread never becomes a performance
 bottleneck because it only reads or writes network data.
 As soon as an incoming message was fully read, it is placed in a queue of pending messages, waiting
