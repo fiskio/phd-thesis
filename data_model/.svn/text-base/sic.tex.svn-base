@@ -1,4 +1,4 @@
-\section{Source Information Content}
+\section{Source Coverage Ratio}
 \label{sec:sic}
 
 In the previous section I showed how the previously stated assumptions about the quality-centric data
@@ -8,7 +8,7 @@ definition about \sic calculation.
 
 \subsection{Data Model Formalisation}
 
-\begin{definition}[Source Information Content] {
+\begin{definition}[Source Coverage Ratio] {
 The sum of the source information content (\sic) of all result tuple for query $q$, 
 denoted as $t_{R}^{SIC}$, measures the contribution of source tuples, belonging to its Source Information Tuple Set
  denoted as $\mathcal{T}^{S}$, processed for its generation. Its values are calculated by: 

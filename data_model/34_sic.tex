@@ -1,4 +1,4 @@
-\section{Source Information Content}
+\section{Source Coverage Ratio}
 \label{sec:sic}
 
 %n the previous section I showed how the previously stated assumptions about the quality-centric data
@@ -6,7 +6,7 @@
 %the \sic values are calculated for different query types. In this section I will provide a formal
 %definition about \sic calculation.
 
-This section provides the definition of a new quality metric called \emph{Source Information Content
+This section provides the definition of a new quality metric called \emph{Source Coverage Ratio
 (\sic)}. A complete set of equations is derived for
 its calculation, following the reasoning expressed in the assumptions presented in
 Section~\ref{sec:assumptions}. The section finishes with a discussion of the benefits of the \sic metric
@@ -17,7 +17,7 @@ when employed by a stream processing system.
 Typically a stream processing system does not have global knowledge if all the
 available data was processed correctly. 
 Therefore, we propose that the impact of failure should be monitored and accounted for. 
-In our model, we augment streams with a new metric called \textit{Source Information Content}
+In our model, we augment streams with a new metric called \textit{Source Coverage Ratio}
 (\sic), which quantifies the amount of information in a tuple, thus recording its
 importance for the current query results. The \sic metric is added to streams in the form of metadata,
 whose value is calculated by the query operators and is inversely proportional to the level of failure.
@@ -25,7 +25,7 @@ whose value is calculated by the query operators and is inversely proportional t
 A tuple should convey information about the amount of failure experienced during its creation. There
 should be a way to indicate if the data carried by a tuple includes all the available
 information, making it 100\% accurate, or if some information was lost in the process, thus reducing
-its quality. \textit{Source Information Content} tries to achieve
+its quality. \textit{Source Coverage Ratio} tries to achieve
 this goal by measuring the amount of lost information.
 
 The system can use the \sic metric to evaluate the importance of a tuple towards the final query result. 
@@ -86,14 +86,14 @@ $\mathcal{T}^{S}$ that contributed to its creation. We consider a query as a bla
 function} $f_Q$ that maps source tuples to result tuples. The \textit{source information tuple set} of a
 result tuple is the set of all source tuples. 
 
-This concept is central to the definition of the \textit{Source Information Content} (\sic) quality
+This concept is central to the definition of the \textit{Source Coverage Ratio} (\sic) quality
 centric metric. The intuition behind it is that a result tuple is considered to be perfect when no
 information from the sources was lost, meaning that all tuples in its source information tuple set (and
 any derived tuples) were processed correctly. If one of the tuples is lost, either due to failure or
 deliberate load-shedding, the information contained in the result tuple is not perfect, and its \sic
 value is decreased accordingly.
 
-\begin{definition}[Source Information Content] {
+\begin{definition}[Source Coverage Ratio] {
 The source information content (\sic) of all result tuples for query $Q$, 
 denoted as $\sic_Q$, measures the contribution of all source tuples, belonging to the source
 information tuple set $\mathcal{T}^{S}$, in the result tuple set $\mathcal{T}^R$. It is calculated as: 

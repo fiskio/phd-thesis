@@ -198,7 +198,7 @@ This thesis proposes a new quality metric to quantify the amount of information 
 thus tracking the degradation of processing quality due to overload.
 
 % To address these challenges, this work proposes two main contributions: the introduction of a
-% quality-metric called \emph{Source Information Content (\sic)} and its use for the implementation of a
+% quality-metric called \emph{Source Coverage Ratio (\sic)} and its use for the implementation of a
 % \emph{semantic shedding policy} with a fair allocation of resources.s crucial
 The choice of what tuples should be discarded and what should be kept affects the quality of the
 results. A federated stream processing system has to decide which tuples are more important for the
@@ -216,7 +216,7 @@ the quality of tuples and retains the most valuable tuples for the computation.
 \vspace{-3pt}
 \paragraph{SIC quality metadata metric.}
 In order to allow the system to reason about the achieved quality of processing, this thesis
-proposes a quality metric called \emph{Source Information Content (\sic)}. 
+proposes a quality metric called \emph{Source Coverage Ratio (\sic)}. 
 It provides an estimate of the amount of information contained in a tuple and
 thus its importance for the query results. 
 It is added to streams in the form of metadata and its value is calculated by the query operators.

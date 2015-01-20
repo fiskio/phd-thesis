@@ -1,4 +1,4 @@
-\section{Use Cases for Source Information Content}
+\section{Use Cases for Source Coverage Ratio}
 \label{sec:apps}
 
 This section returns to the sample queries for Section~\ref{sec:qtypes} to illustrate the
@@ -14,7 +14,7 @@ there was no loss of information during processing). In the case of failure, its
 would be reduced by the amount of information contained in the lost tuples.\\
 \begin{figure}[h!] \centering \includegraphics[width=0.35\textwidth]{img/tesi/query_fanin} \caption{An
 example of fan-in query. Input values for each source are first averaged over a certain time window, and
-then the maximum value is selected. Source Information Content values are shown for each tuple.}
+then the maximum value is selected. Source Coverage Ratio values are shown for each tuple.}
 	\label{fig:query_fanin2}
 \end{figure}
 
@@ -76,7 +76,7 @@ highest coefficients. Each output tuple has a \sic value of 1/10, for a total fi
 	\centering 
 	\includegraphics[width=0.5\textwidth]{img/tesi/fan-out_mr} 
 	\caption{An example of a fan-out query processing Twitter data. 
-	The Source Information Content values are shown for each tuple.}
+	The Source Coverage Ratio values are shown for each tuple.}
 	\label{fig:fanout_mr}
 \end{figure}
 \vspace{15pt}

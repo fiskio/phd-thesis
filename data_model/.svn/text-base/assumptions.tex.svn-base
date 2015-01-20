@@ -3,16 +3,16 @@
 In this section I will start presenting the \textit{quality-centric data model} we have developed, with
 the aim of increasing the system \textit{dependability} and to reason about the achieved
 \textit{quality-of-service}.
-I will first describe a novel metric called \textit{Source Information Content} (\sic), which is a
+I will first describe a novel metric called \textit{Source Coverage Ratio} (\sic), which is a
 metadata value associated with data streams. Then I will provide some foundation assumptions we made in
 the design of it and the reasoning behind these decisions.
 
-\subsection{Source Information Content}
+\subsection{Source Coverage Ratio}
 
 In a traditional stream processing system streams only contain data associated with
 timestamps, they do not carry information about the failure experienced by the system. In our model we
 propose to augment streams so that failure is recorded and accounted for. In order to do so we introduce
-a new metric called \textit{Source Information Content} (\sic) that gives a hint about the amount of
+a new metric called \textit{Source Coverage Ratio} (\sic) that gives a hint about the amount of
 information contained in a tuple and thus to its importance for the current query results. This is added
 to streams in the form metadata, whose value is calculated by the query operators and is inversly
 proportional to the occurrence of failure.
@@ -20,7 +20,7 @@ proportional to the occurrence of failure.
 A tuple should convey information about the amount of failure experienced during its creation. There
 should be a way to indicate if the data carried by a tuple was created using all the available
 information, and is then 100\% accurate, or if some information was lost in the process, thus reducing
-the dependability of that data. \textit{Source Information Content} tries to do achieve
+the dependability of that data. \textit{Source Coverage Ratio} tries to do achieve
 this goal, by measuring the amount of lost information in the creation of a tuple.
 
 The system can use this value to make decision about the importance of a tuple towards the creation of

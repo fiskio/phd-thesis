@@ -23,7 +23,7 @@ is collected and processed to produce a single output.
 	\centering
 	\includegraphics[width=0.6\textwidth]{img/tesi/query_fanin} 
 	\caption{An example of fan-in query, input values for each source are first averaged over a certain
-	time window, then the maximum is selected. Source Information Content values are shown for each tuple.}
+	time window, then the maximum is selected. Source Coverage Ratio values are shown for each tuple.}
 	\label{fig:query_fanin}
 \end{figure}
 
