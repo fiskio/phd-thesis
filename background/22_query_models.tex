@@ -97,7 +97,7 @@ minute. The concept of windows over streams will be explained in the next paragr
 \end{figure}
 CQL employs three classes of operators to process stream data. First is the \textit{Stream-to-Relation}
 operator, which creates a snapshot of a stream. After a finite bag of tuples has been
-obtained, it employs \textit{Relation-to-Stream} operators, which are equivalent to the ones employed in
+obtained, it employs \textit{Relation-to-Relation} operators, which are equivalent to the ones employed in
 a traditional DBMS. Finally, there are \textit{Relation-to-Stream} operators to create streams from
 newly computed relations. Figure~\ref{fig:cql_ops} shows the interaction between these classes of
 operators. 
@@ -172,7 +172,7 @@ relation-to-relation operator. Formally, the output of \textit{RStream} applied 
 contains a stream element $\langle s, \tau \rangle$ whenever tuple $s$ is in $R$ at time $\tau$.
 
 \begin{center}
-	$RStream(R) = \bigcup_{\tau>=0}\Big[(R(\tau)\times\{\tau\}\Big]$ %fix union
+	$RStream(R) = \bigcup_{\tau>=0}\Big[R(\tau)\times\{\tau\}\Big]$ %fix union
 \end{center}	
 
 \begin{figure}[b]
@@ -250,7 +250,7 @@ conditions. They reduce the load of an operator by discarding a portion of its i
 WindowDrop. \emph{RandomDrop} randomly discards a certain fraction of a stream. Every time the operator
 is scheduled, it discards a number of tuples on its input window at random according to specified
 dropping parameters. \emph{WindowDrop} allows for a more sophisticated specification of the windowing
-parameters. Once a window has been computed, it choose probabilistically if it should be kept or
+parameters. Once a window has been computed, it chooses probabilistically if it should be kept or
 discarded as a whole according to a dropping parameter.\\
 
 % In Borealis, some other operators have been introduced to deal with fault-tolerance~\cite{revision-processing}. 

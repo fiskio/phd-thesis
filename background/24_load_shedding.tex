@@ -75,7 +75,7 @@ inconsistencies when windowed aggregation is used. They propose a new operator c
 that discards entire windows. The idea behind this approach is that
 placing a tuple-based \mbox{load-shedding} operator before an aggregate does not reduce the load for the
 downstream operators because the aggregate still produces tuples at the same rate. Placing the \mbox{load-shedding}
-operator after the aggregate, instead, is not effective in reducing the system load, either because all
+operator after the aggregate, instead, is not effective in reducing the system load either, because all
 tuples are still processed and aggregate values are computed just to be discarded. Following this
 reasoning, the WinDrop operator is designed to operate on the window of tuples to be sent to the
 aggregate operator and discards or forwards this set of tuples as a whole.
@@ -124,7 +124,7 @@ The goal is to maximise the output rate at the query end-points. The system inse
 \mbox{load-shedding} operators and chooses their drop selectivities, the percentage of tuples to be
 discarded, so that the total throughput is maximised. The solution of the \mbox{load-shedding} problem is broken down into
 four steps: (i) advanced planning; (ii) load monitoring; (iii) plan selection; and
-(iv) plan implementation. In the first step, a series of \mbox{load-shedding} plan is computed, one for each
+(iv) plan implementation. In the first step, a series of \mbox{load-shedding} plans is computed, one for each
 predicted overload condition. Then, during the lifetime of the query, the load is monitored at
 each node. When an overload condition is detected, one of the previously computed shedding plans is
 selected and implemented at the various nodes, adding the corresponding set of \mbox{load-shedding}
@@ -171,7 +171,7 @@ contained in its FIT, reducing the load for itself and all its downstream nodes.
 % 			\incite{loadshed-telegraphcq}
 % 			\incite{loadshed-tu}
 \subsection*{Approximate Operators} 
-Overload can also occurs when the total state of all running operators exceeds the available memory. 
+Overload can also occur when the total state of all running operators exceeds the available memory. 
 In this case, the system has to reduce the memory usage by reducing the state kept by operators. 
 In general, the system can try to minimise its memory footprint through a number
 of techniques.

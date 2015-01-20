@@ -111,7 +111,7 @@ different standpoint on failure by not considering it as an infrequent event but
 of the system. In this case, maintaining consistency among replicas becomes even harder. The
 authors claim that it is better to ignore this requirement and to employ \textit{free-running} operators
 instead.
-Operator are permitted to update their internal states independently as incoming tuples arrive. In case
+Operators are permitted to update their internal states independently as incoming tuples arrive. In case
 of recovery from failure, for example, an operator restarts, without any knowledge of its
 previous state. However, this means that an operator's state can diverge from its replicas due to
 missing tuples.

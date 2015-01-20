@@ -53,7 +53,7 @@ Query plans are composed of \textit{operators}, which perform the actual process
 which buffer tuples as they move between operators, and \textit{synopses}, which store operator state.
 All queries are expressed in CQL and then converted into an actual query plan which consists of these
 basic elements.
-In contrast, Aurora~\cite{aurora}, introduced the boxes-and-arrows model for queries. Operators are
+In contrast Aurora~\cite{aurora} introduced the boxes-and-arrows model for queries. Operators are
 regarded as boxes, with an input, an output and a specific processing semantic. They are linked
 together by arrows representing the stream of tuples flowing between them.
 			
@@ -140,7 +140,7 @@ among processing nodes. It then adapts to the changes in the data and workload w
 et al.~\cite{placement-ying} propose to account for the state of operators when performing migration
 decisions. When the resources are administered by multiple authorities, the degree of trust and
 collaboration among them must be taken into account.
-The algorithm from Balazinska et al.~\cite{medusa-load} achieve this by means of pre-negotiated
+The algorithm from Balazinska et al.~\cite{medusa-load} achieves this by means of pre-negotiated
 load-exchange contracts between nodes.
 % \subsection*{Resource Allocation}  \subsubsection*{Cluster} \incite{placement-ying}
 % \incite{placement-zhou} \incite{borealis-xing_placement} \incite{borealis-load_management}
