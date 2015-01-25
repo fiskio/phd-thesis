@@ -81,16 +81,16 @@ generated from a data source representing a single input to the system; a \texti
 contains the final results of the processing, which are delivered to the user together with the \qm
 value.
 
-\underline{\textsc{Example}}: Figure~\ref{fig:tuple} shows a simple tuple with its relational schema.
-It shows a \emph{timestamp} expressed as POSIX time, a \emph{quality metric} value and a \emph{payload}
-with three fields carrying information about the CPU load and uptime of a machine monitored by the system.
-We discuss the implementation of tuples in Section~\ref{sec:tuples}.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/tesi/tuple}
 	\caption{A simple tuple with the relational schema.}
-	\label{fig:tuple}
+	\label{fig:stuple}
 \end{figure}
+\underline{\textsc{Example}}: Figure~\ref{fig:stuple} shows a simple tuple with its relational schema.
+It shows a \emph{timestamp} expressed as POSIX time, a \emph{quality metric} value and a \emph{payload}
+with three fields carrying information about the CPU load and uptime of a machine monitored by the system.
+We discuss the implementation of tuples in Section~\ref{sec:tuples}.
 %--------------------------------------------------------------------------------------------------------
 \vspace{-10pt}
 \subsection*{Stream}

@@ -5,6 +5,7 @@ thesis:
 	biber phd-thesis
 	pdflatex -interaction=batchmode phd-thesis.tex
 	pdflatex -interaction=batchmode phd-thesis.tex
+	pdflatex -interaction=batchmode phd-thesis.tex
 
 view:
 	evince phd-thesis.pdf &
