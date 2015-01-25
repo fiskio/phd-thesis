@@ -419,7 +419,7 @@ class representing a future job to be processed. It is submitted to a ThreadPool
 a pending queue until one of the threads in the pool becomes available and executes it. The work unit
 contains the logic to deserialise, route and process the tuples contained in the message that it was
 assigned. The last operator of the subquery graph is a RemoteSender. It takes the result of
-the subquery computation and send it to the next processing node through the network layer. Once a work
+the subquery computation and sends it to the next processing node through the network layer. Once a work
 unit has terminated its execution, it frees its execution thread so that a new work unit
 can be processed.
 \vspace{-10pt}
@@ -537,7 +537,7 @@ oracle. The following is a list of the most important metrics and their function
 \textbf{Average SIC.} \emph{The average \sic value achieved by queries hosted at this node.}\\
 Every subquery is aware of its global \sic value because this value is propagated from the coordinator to
 all the processing nodes. This metric is sent to the oracle and can be used during the deployment of
-a new query. For of a fair deployment strategy, a node already hosting parts of queries
+a new query. For a fair deployment strategy, a node already hosting parts of queries
 achieving a low global \sic value should not be chosen to host a new subquery. Adding further load
 to the node may lead to an overload condition, thus further reducing the processing performance of the
 currently running queries. 
