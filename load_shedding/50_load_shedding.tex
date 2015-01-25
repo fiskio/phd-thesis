@@ -305,7 +305,7 @@ a tuple and the average time needed to process an arbitrary tuple, respectively.
 interval $\delta$ of 250 milliseconds. In practice, the \emph{overload detector} triggers with a small
 delay, \eg after a time $t$ of 300 milliseconds. During this time, the system processes 5000 tuples.
 Therefore, every tuple has a cost $C_T$ of $0.06$~ms/tuple. The system thus predicts that in the next $\delta$ interval it will
-have the processing capacity $N_{keep}$ of approximately  $4100$ tuples. Tthis value is
+have the processing capacity $N_{keep}$ of approximately  $4100$ tuples. This value is
 smoothed by a sliding average.
 
 More complex cost models were proposed in the past~\cite{expensivepredicatejoin07,
@@ -392,7 +392,7 @@ and simultaneously builds the required priority queues for the next part of the 
 A priority queue of queries is also created, ordered by increasing \sic values, so that the head of the
 queue is always the query with the worst projected \sic value~(line~$7$).
 
-Next, the shedder considers which tuples to admit from each query to achieve fairness~lines~$10$--$15$). 
+Next, the shedder considers which tuples to admit from each query to achieve fairness~lines~($10$--$15$). 
 It first selects the query that would be penalised the most (\ie the one with the
 lowest projected \sic value)~(line~$11$). It then selects the
 batch with the highest \sic value for this query~(line~$12$).
