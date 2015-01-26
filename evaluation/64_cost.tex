@@ -4,7 +4,7 @@ When the user is willing to accept approximate results, it is possible to use th
 a trade-off between the quality of processing and resource cost. 
 If we maintain a stable amount of processing resources, increasing the number of deployed queries
 leads to a reduction of the resource cost per query. 
-When the percentage of cost reduction is greater than the reduction in processing quality (\ie SIC
+When the percentage of cost reduction is greater than the reduction in processing quality (\ie SCR
 values) there is a cost advantage by adding more queries. 
 
 The difference in cost, $\Delta(cost)$, is calculated as:
@@ -30,14 +30,14 @@ The deployment of new queries is considered to be advantageous when:
 \centering 
 \includegraphics[width=0.6\textwidth]{img/tesi/cost2}  
 \caption{Trade-off between the reduction of resource cost per query and the reduction in quality of
-processing, as expressed by mean SIC values.}
+processing, as expressed by mean SCR values.}
 \label{fig:tradeoff-mean}
 \end{figure}
 The difference between the reduction in cost and quality of processing is inversely proportional to the
 number of queries. The more queries are added, the lower the cost advantage, until a point is reached,
 at which increasing the number of queries is no longer beneficial.
 % A user can keep adding new queries until this point is reached, until the difference goes under a certain
-% threshold, or until a minimum SIC values is reached.
+% threshold, or until a minimum SCR values is reached.
 A user may add more queries until this point is reached or the difference is below a given threshold or
 minimal \sic value.
 
@@ -63,7 +63,7 @@ benefit.
 % \begin{figure}[h!]
 % \centering
 % \includegraphics[width=0.6\textwidth]{img/tesi/tradeoff-q95} 
-% \caption{Trade-off between the reduction of cost per query and redution in Qos expressed as Q.95-Q.05 SIC
+% \caption{Trade-off between the reduction of cost per query and redution in Qos expressed as Q.95-Q.05 SCR
 % values.}
 % \label{fig:tradeoff-q95}
 % \end{figure}

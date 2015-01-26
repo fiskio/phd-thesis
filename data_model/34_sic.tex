@@ -98,14 +98,14 @@ The source information content (\sic) of all result tuples for query $Q$,
 denoted as $\sic_Q$, measures the contribution of all source tuples, belonging to the source
 information tuple set $\mathcal{T}^{S}$, in the result tuple set $\mathcal{T}^R$. It is calculated as: 
 \begin{align} 
-		\sic_Q = \sum_{t_R \in \mathcal{T}^R} t_{R}^{SIC} = \sum_{t_{src} \in \mathcal{T}^{S}}
-		t_{src}^{SIC},
+		\sic_Q = \sum_{t_R \in \mathcal{T}^R} t_{R}^{SCR} = \sum_{t_{src} \in \mathcal{T}^{S}}
+		t_{src}^{SCR},
 \end{align}
 where $t_{src}$ are source tuples in $\mathcal{T}^{S}$ used for the calculation of the
-result tuples $t_{R}$. In particular, $t_{src}^{SIC}$ shows the contribution of a source tuple from 
+result tuples $t_{R}$. In particular, $t_{src}^{SCR}$ shows the contribution of a source tuple from 
 source ${src\in\xspace S}$ to the perfect result and is defined by:
 \begin{align}
-		t^{SIC}_{src} = \frac{1}{|\mathcal{T}_{src}^{\mathcal{S}}||\mathbb{S}|}
+		t^{SCR}_{src} = \frac{1}{|\mathcal{T}_{src}^{\mathcal{S}}||\mathbb{S}|}
 \end{align} 
 where $|\mathcal{T}_{src}^{\mathcal{S}}|$ is the total number of tuples in the Source Information Tuple
 Set of source $src$, and $|\mathbb{S}|$ is the total number of sources in the query. }
@@ -150,12 +150,12 @@ Similarly, $\mathcal{T}_{out}^{o}$ denotes the set of derived tuples produced by
 processing of $\mathcal{T}_{in}^{o}$.
 
 The \sic value of a derived tuple $t$, processed by operator $o$, (\ie $t \in \mathcal{T}_{out}^{o}$) is:
-% \begin{align} t_{SIC} = \frac{\displaystyle\sum_{t \in
-% \mathcal{T}_{in}^{o}}{t_{SIC}}}{|\mathcal{T}_{out}^{o}|}.
+% \begin{align} t_{SCR} = \frac{\displaystyle\sum_{t \in
+% \mathcal{T}_{in}^{o}}{t_{SCR}}}{|\mathcal{T}_{out}^{o}|}.
 % \end{align}
 \begin{align} 
-	t^{SIC}_{out} = \frac{1}{|\mathcal{T}_{out}^{o}|} \cdot \displaystyle\sum_{t_{in} \in
-	\mathcal{T}_{in}^{o}}{t^{SIC}_{in}}
+	t^{SCR}_{out} = \frac{1}{|\mathcal{T}_{out}^{o}|} \cdot \displaystyle\sum_{t_{in} \in
+	\mathcal{T}_{in}^{o}}{t^{SCR}_{in}}
 \end{align}
 This means that the set of derived tuples produced by an operator contains all the information from the
 input tuples that the operator processed. This information is considered to be distributed equally over
@@ -191,7 +191,7 @@ The simpler the query semantic, the easier it is to establish such a correlation
 \textbf{Completeness of Results.} Using \sic values, it is possible to compare the results of the same
 query at different times to evaluate the quality of the results in terms of information
 completeness. A result tuple $t^R_1$ delivered a time $t_1$, compared to another result tuple $t^R_2$
-delivered at time $t_2$, contains more information if and only if $t^{SIC}_1 > t^{SIC}_2$.
+delivered at time $t_2$, contains more information if and only if $t^{SCR}_1 > t^{SCR}_2$.
 
 A user can monitor the status of a computation by observing the changes in \sic values of a
 query at different times. A decrease in \sic values means that more information was

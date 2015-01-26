@@ -14,12 +14,12 @@ We compare the fair shedding to a random shedding policy.
 % Section~\ref{sec:fairness-algo}.
 % The goal of this policy is to achieve fairness in the resource allocation for all queries running into
 % the system.
-% The policy strives to equalise the SIC values achieved by the result tuples of all queries.
+% The policy strives to equalise the SCR values achieved by the result tuples of all queries.
 
 \subsection*{Fairness Comparison}
 This section compares the random and the fair load-shedding policies. 
 The fair shedder selects the tuples to be discarded in a way that equalises the processing
-degradation of all queries so that their normalised (\ie in the [0,1] interval) result SIC values are numerically
+degradation of all queries so that their normalised (\ie in the [0,1] interval) result SCR values are numerically
 close.
 The random shedder, instead, picks the tuples to be discarded at random.
 Our results shows that the fair shedder always outperforms the random shedder,
@@ -220,7 +220,7 @@ quality of results in terms of \sic values and the resource cost per query.
 % of the quality-of-service when increasing the processing load.
 % % 
 % \mnote{106: What else: try to be more verbose here as this is the main result.
-% That using the SIC metric the fair shedder is able to use source data
+% That using the SCR metric the fair shedder is able to use source data
 % across queries more efficiently than the random. That similar result
 % hold for different partitions. That the mixed is the most important result.}
 

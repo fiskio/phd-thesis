@@ -227,7 +227,7 @@ fair shedding policy, providing a detailed explanation of the involved steps.
 % %depending on whether other nodes discard tuples of a multi-part query.
 % 
 % To consider query partitioning in shedding decisions, the shedder calculates
-% the projected result \sic, $\hat{q}_{SIC}$, as the difference between the result \sic value
+% the projected result \sic, $\hat{q}_{SCR}$, as the difference between the result \sic value
 % of the query and the total \sic contributions of batches predicated to be
 % discarded from the IB queue, as shown in line~$9$ of Algorithm~\ref{alg:distributedFairness}.
 % 
@@ -347,26 +347,26 @@ iterations and thus the associated overhead.
         lock IB\\
 	\ForEach{query $\in$ node}
 	{
-		update $Q_{SIC}$ of $query$
+		update $Q_{SCR}$ of $query$
 	}
         \ForEach{batch $\in$ IB}
         {
 		find query $Q$ such that $batch \in Q$ \\
-		update ${Q}_{SIC}$ as if $batch$ was discarded \\
-  		move $batch$ to priority queue of queries (increasing ${Q}_{SIC}$) and for each query keep batches in
+		update ${Q}_{SCR}$ as if $batch$ was discarded \\
+  		move $batch$ to priority queue of queries (increasing ${Q}_{SCR}$) and for each query keep batches in
   		descending \sic order\\
 		remove $batch$ from IB\\
         }
 	$n_{\mathrm{tuples}}^{\prime} = 0$\\
         \While{ $N_{keep}^{\prime} < N_{keep}$ } {
-                Q := pick query with the least ${Q}_{SIC}$ \\
+                Q := pick query with the least ${Q}_{SCR}$ \\
                 b := pick batch from Q with highest \sic \\
         	add b to IB\\
 		update ordered list of queries\\
 		Add tuples in b to $N_{keep}^{\prime}$ \\
         }
         unlock IB\\
-\caption{Tuple shedding with SIC fairness}
+\caption{Tuple shedding with SCR fairness}
 \label{alg:distributedFairness}
 \end{algorithm}
 

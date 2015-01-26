@@ -1,5 +1,5 @@
 \vspace{-10pt}
-\section{SIC Values and Correctness}
+\section{SCR Values and Correctness}
 
 First, we evaluate the correlation between the \sic values of the output tuples and the correctness of
 the computed results across a representative range of \emph{aggregate} and \emph{top-k} classes of
@@ -10,9 +10,9 @@ The experiments use the synthetic workload as well as real load measurements col
 % metric between two time-series data of real numbers which is widely used in statistics and scientific processing to measure the correlation between two variable.
 % \mnote{What are these time-series and where are they used? Probably there should be a citation.}
 % 
-% When using the SIC metric to provide feedback on processing quality to users,
+% When using the SCR metric to provide feedback on processing quality to users,
 % it is important that performance of the result of the query output is 
-% \emph{strictly increasing} to the SIC values: \ie as the SIC values increase,
+% \emph{strictly increasing} to the SCR values: \ie as the SCR values increase,
 % the query result output is getting \emph{closer} to the perfect result 
 % without shedding or it does not change. 
 % \mnote{This text is from the paper. I agree on the ``stictly increasing'' argument.}
@@ -26,9 +26,9 @@ The experiment is repeated for every query class and for each of the five differ
 \vspace{-10pt}
 \subsection*{Correlation Metrics}
 
-We compare the results of a query with degraded processing (\ie with result SIC values of less
+We compare the results of a query with degraded processing (\ie with result SCR values of less
 than~1) against the result of a query with perfect processing. Each query, degraded and perfect, runs
-for 5~minutes and the error in the results is measured every second as a function of the achieved SIC
+for 5~minutes and the error in the results is measured every second as a function of the achieved SCR
 value. For each query class, the experiment is repeated for all the different input data sets.
 
 %For the \textnormal{AVG}, \textnormal{COUNT} and \textnormal{MAX} aggregate 
@@ -73,7 +73,7 @@ measurements from the different runs of the experiment, one for each input data~
 For the \textnormal{AVG} queries (see Figure~\ref{fig:agg-avg}), the graph shows a small error even
 under heavy overload. This is due to the particular nature of the average operation. Since the
 load-shedder discards tuples at random, the distribution of the data is not significantly affected. 
-However, we observe that, as the amount of \mbox{load-shedding} diminishes and the SIC values increase,
+However, we observe that, as the amount of \mbox{load-shedding} diminishes and the SCR values increase,
 the degraded values are closer to the perfect ones.
 
 The \textnormal{COUNT} query (see Figure~\ref{fig:agg-count}) shows a different behaviour. The error
@@ -92,7 +92,7 @@ reduces the total output value (\ie the final count) and thus increases the erro
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.55\textwidth]{img/tesi/avg1}
-\caption{Correlation of SIC values with the query output quality for \emph{average} queries.}
+\caption{Correlation of SCR values with the query output quality for \emph{average} queries.}
 \label{fig:agg-avg}
 \end{figure} 
 \clearpage
@@ -101,7 +101,7 @@ reduces the total output value (\ie the final count) and thus increases the erro
 \begin{figure}
 \centering
 \includegraphics[width=0.55\textwidth]{img/tesi/count1}
-\caption{Correlation of SIC values with the query output quality for \emph{count} queries.}
+\caption{Correlation of SCR values with the query output quality for \emph{count} queries.}
 \label{fig:agg-count}
 \end{figure}
 % % ---- MAX FIGURE -----
@@ -109,7 +109,7 @@ reduces the total output value (\ie the final count) and thus increases the erro
 % \centering
 % \label{fig:max}
 % \includegraphics[width=0.6\textwidth]{img/tesi/max1}
-% \caption{Correlation of SIC values with the query output performance for \emph{Max} queries.}
+% \caption{Correlation of SCR values with the query output performance for \emph{Max} queries.}
 % \label{fig:agg-max}
 % \end{figure}
 %--------------------------------------------------------------------------------------------------------
@@ -136,7 +136,7 @@ computed results.
 \begin{figure}[h!]
 \centering 
 \includegraphics[width=0.55\textwidth]{img/tesi/topK-distance}
-\caption{Correlation of the SIC values with the query output quality for \emph{top-5} queries.}
+\caption{Correlation of the SCR values with the query output quality for \emph{top-5} queries.}
 \label{fig:top5}
 \end{figure}
 \clearpage
@@ -144,11 +144,11 @@ computed results.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.55\textwidth]{img/tesi/cov}
-\caption{Correlation of the SIC values with the query output quality for \emph{covariance} queries.}
+\caption{Correlation of the SCR values with the query output quality for \emph{covariance} queries.}
 \label{fig:cov}
 \end{figure}% The results show that there in most cases there is a strictly increasing 
-% correlation between the result SIC values and the distance/error to the perfect result: 
-% the more the SIC values increase, the smaller the error. The degree of correlation 
+% correlation between the result SCR values and the distance/error to the perfect result: 
+% the more the SCR values increase, the smaller the error. The degree of correlation 
 % depends on the type of query and the source data
 % distribution. When tuples are discarded randomly, tuples with values across the
 % range of the initial distributions are chosen at random. The distribution of

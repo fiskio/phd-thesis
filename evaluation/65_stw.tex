@@ -16,14 +16,14 @@ node---thus increasing the network latency---while we keep the time-window
 fixed to 10~seconds. Overall, we perform six
 experiments (\ie one for each number of query fragments) and for each we deploy
 10 queries from each type of the complex workload mix. In all cases, \sys performs
-perfect processing and the average result SIC is shown in Table~\ref{table:time-window}.
+perfect processing and the average result SCR is shown in Table~\ref{table:time-window}.
 Results show a very low fluctuation of values, well within the expected range, thus meaning that the STW
 approximation implemented in the \sys system correctly captures perfect processing in all cases.
 \begin{table}[h]
   \centering
   \begin{tabular}{c|c||c|c}
     \hline
-        fragments & SIC$\pm$std & fragments & SIC$\pm$std \\ \hline
+        fragments & SCR$\pm$std & fragments & SCR$\pm$std \\ \hline
 	1 & 1.032$\pm$0.008 & 2 & 1.036$\pm$0.011 \\ \hline
 	3 & 1.020$\pm$0.066 & 4 & 1.018$\pm$0.069 \\ \hline
 	5 & 1.036$\pm$0.034 & 6 & 1.009$\pm$0.063 \\ \hline

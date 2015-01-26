@@ -313,8 +313,8 @@ the result streams.
 
 Using these new tuple sets, the definition of the result \sic value of a query becomes:
 \begin{align} 
-		\sic_Q = \sum_{t_R \in \mathcal{T}^R_{STW}} t_{R}^{SIC} = \sum_{t_{src} \in \mathcal{T}^{S}_{STW}}
-		t_{src}^{SIC},
+		\sic_Q = \sum_{t_R \in \mathcal{T}^R_{STW}} t_{R}^{SCR} = \sum_{t_{src} \in \mathcal{T}^{S}_{STW}}
+		t_{src}^{SCR},
 \end{align}
 
 This definition states that, in the absence of failure, the sum of all \sic values of tuples in a source
@@ -326,12 +326,12 @@ the result streams.
 % 
 % The \sic value of a derived tuple $t$ processed by operator $o$, \ie $t \in \mathcal{T}_{out}^{o}$, is: 
 % % \begin{align} 
-% % 	t_{SIC} = \displaystyle\sum_{t \in \mathcal{T}_{in}^{o}}{t_{SIC}} \cdot
+% % 	t_{SCR} = \displaystyle\sum_{t \in \mathcal{T}_{in}^{o}}{t_{SCR}} \cdot
 % % 	\frac{1}{|\mathcal{T}_{out}^{o}|}
 % % \end{align}
 % \begin{align} 
-% 	t_{SIC} =
-% 	\frac{1}{|\mathcal{T}_{out}^{o}|} \cdot \displaystyle\sum_{t \in \mathcal{T}_{in}^{o}}{t_{SIC}} 
+% 	t_{SCR} =
+% 	\frac{1}{|\mathcal{T}_{out}^{o}|} \cdot \displaystyle\sum_{t \in \mathcal{T}_{in}^{o}}{t_{SCR}} 
 % \end{align}
 % By using the STW, we no longer require the precise definition of the $\mathcal{T}_{in}^{o}$ and
 % $\mathcal{T}_{out}^{o}$ sets. Rather, we can use two new sets for each operator $o$:
