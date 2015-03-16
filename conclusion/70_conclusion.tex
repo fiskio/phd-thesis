@@ -1,6 +1,5 @@
-\chapter{Conclusion}
-\label{ch:conclusion}
-
+\chapter{Conclusion} \label{ch:conclusion}
+\vspace{-15pt}
 In a world in which the production of data continues to grow, data stream processing systems (DSPSs) play
 an important role by allowing the computation of continuous queries over streams of data in real-time.
 Their applications include, among others, the processing of environmental sensor data, allowing
@@ -29,7 +28,7 @@ Instead of discarding tuples at random, we propose an intelligent load-shedding
 policy which selects tuples in a way so that all queries are penalised equally.
 
 \subsection*{Quality-Aware Stream Processing Under Overload.}
-\vspace{-25pt}
+%\vspace{-15pt}
 This thesis presented a novel quality-centric data model for stream processing. It augments
 data streams with a quality metric called Source Coverage Ratio (\sic). 
 The definition of this metric follows the reasoning outlined in a set of
@@ -128,7 +127,7 @@ capturing the amount of failure that occurred during the creation of tuples, it 
 select the correct output to deliver by choosing the one with the highest quality of processing (\ie
 that has the higher \sic value) and thus is closer to what would have been produced in absence of
 failure.
-
+\vspace{-10pt}
 \paragraph{Custom Error Functions.}
 A design choice that was made for the quality-centric data model is to ignore the processing semantics of
 the individual operators. Being operator agnostic allows the model to be applicable to any type of

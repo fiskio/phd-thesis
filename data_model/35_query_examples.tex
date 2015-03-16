@@ -1,8 +1,8 @@
 \section{Use Cases for Source Coverage Ratio}
 \label{sec:apps}
 
-This section returns to the sample queries for Section~\ref{sec:qtypes} to illustrate the
-calculation of \sic values.
+This section returns to the sample queries of Section~\ref{sec:qtypes} to illustrate the
+calculation of \sic.
 \vspace{-10pt}
 \subsection*{Fan-in Queries}
 
@@ -11,12 +11,7 @@ equal to the number of input sources.
 This follows from Assumption $8$ (Total Information Content). To simplify the exposition, we show
 absolute values (\ie not scaled to the $[0,1]$ interval for comparison). It is also a perfect value (\ie
 there was no loss of information during processing). In the case of failure, its value
-would be reduced by the amount of information contained in the lost tuples.\\
-\begin{figure}[h!] \centering \includegraphics[width=0.35\textwidth]{img/tesi/query_fanin} \caption{An
-example of fan-in query. Input values for each source are first averaged over a certain time window, and
-then the maximum value is selected. Source Coverage Ratio values are shown for each tuple.}
-	\label{fig:query_fanin2}
-\end{figure}
+would be reduced by the amount of information contained in the lost tuples.
 
 According to Assumption $4$ (Source Equality), all sources contribute equally to the creation of the
 final result.
@@ -29,6 +24,10 @@ that the individual \sic values are different according to the number of tuples 
 example, the first source produces only 2 tuples and thus the individual \sic value is $1/2$; the second
 source produces 4 tuples with an individual value of $1/4$; and the third 3 tuples, each with a value of
 $1/3$.
+\begin{figure}[h] \centering \includegraphics[width=0.35\textwidth]{img/tesi/query_fanin} \caption{An example of fan-in query. Input values for each source are first averaged over a certain time window, and
+then the maximum value is selected. Source Coverage Ratio values are shown for each tuple.}
+\label{fig:query_fanin2}
+\end{figure}
 
 The \textit{average} operator takes in input a batch of tuples of size 2, 3 and 4, respectively, and
 outputs a single tuple. Assumption 6 (Conservation of Information) requires that the amount of

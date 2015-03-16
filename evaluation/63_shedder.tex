@@ -15,8 +15,9 @@ We compare the fair shedding to a random shedding policy.
 % The goal of this policy is to achieve fairness in the resource allocation for all queries running into
 % the system.
 % The policy strives to equalise the SCR values achieved by the result tuples of all queries.
-
+\vspace{-15pt}
 \subsection*{Fairness Comparison}
+\vspace{-5pt}
 This section compares the random and the fair load-shedding policies. 
 The fair shedder selects the tuples to be discarded in a way that equalises the processing
 degradation of all queries so that their normalised (\ie in the [0,1] interval) result SCR values are numerically
@@ -91,10 +92,7 @@ of the majority of the data values and captures a larger set of values than the 
 % can be found by arranging all the observations from lowest value to highest value and picking the middle
 % one. If there is an even number of observations, then there is no single middle value; the median is then
 % usually defined to be the mean of the two middle values.
-
-
 \subsubsection*{Experimental Results} 
-\vspace{-10pt}
 The first graph, in Figure~\ref{fig:mean} shows the comparison
 between the random and the fair shedding policies in terms of average quality of the delivered results.
 In all the experiments, the fair shedder outperforms the random one, achieving on average results
@@ -104,27 +102,21 @@ between the random and the fair shedding policies in terms of variability. For a
 measures used, the fair shedder achieves a lower value compared to the random shedder. This means that
 the fair shedder chooses a better set of tuples to be discarded, leading to a higher mean \sic value
 and a lower dispersion~of~\sic~values. 
-All experiments show the impact of breaking the queries into more partitions for all the analysed
-measures. This is due to the higher cost of inter-node communication. A larger number of subqueries
-provides a better load distribution among all the processing nodes but it also increases the total load
-imposed on the system. The \emph{mean} \sic value is higher in the case of two partitions and decreases
-as the number of partitions increases. The \emph{dispersion} metrics, instead, have lower values for two
-partitions. Their value increases when increasing the number of subqueries.
-\begin{figure}[h!]
+\vspace{-10pt}
+\begin{figure}[b]
 \centering
 \includegraphics[width=0.55\textwidth]{img/tesi/mean}
 \caption{Comparison of fair and random load shedders (MEAN).}
 \label{fig:mean}
 \end{figure}
 \clearpage
-\begin{figure}[h!]
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.55\textwidth]{img/tesi/iqr}
 \caption{Comparison of fair and random load shedders (IQR).}
 \label{fig:iqr}
 \end{figure}
-
-\begin{figure}[h!]
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.55\textwidth]{img/tesi/std}
 \caption{Comparison of fair and random load shedders (Standard Deviation). }
@@ -136,7 +128,13 @@ partitions. Their value increases when increasing the number of subqueries.
 \caption{Comparison of fair and random load shedders (Q0.5-Q0.95).}
 \label{fig:qq}
 \end{figure}
-
+\clearpage
+All experiments show a performance impact for breaking the queries into more partitions for all the analysed
+measures. This is due to the higher cost of inter-node communication. A larger number of subqueries
+provides a better load distribution among all the processing nodes but it also increases the total load
+imposed on the system. The \emph{mean} \sic value is higher in the case of two partitions and decreases
+as the number of partitions increases. The \emph{dispersion} metrics, instead, have lower values for two
+partitions. Their value increases when increasing the number of subqueries.
 %\clearpage
 
 %\clearpage
@@ -212,7 +210,7 @@ quality of results in terms of \sic values and the resource cost per query.
 \caption{Fairness for an increasing number of queries.}
 \label{fig:scalability:queries}
 \end{figure}
-\clearpage
+%\clearpage
 % To better analyse the 
 % Figure~\ref{fig:scalability:risk} shows the \emph{signal-to-noise} ratio, defined as the ratio between
 % the mean \sic value and the standard deviation of the sample for all experimental runs. 

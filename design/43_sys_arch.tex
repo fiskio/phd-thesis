@@ -130,9 +130,7 @@ about the query performance in terms of achieved quality of processing). \\
 A number of data \emph{sources} provide input to the processing nodes. A system-wide \emph{oracle} is
 used to obtain a global view of the system. It is aware of all queries and their performance, allowing
 to monitor the behaviour of the system as a whole, and is used during query deployment by the
-coordinator to provide a list of processing nodes suitable for the deployment of a new query. Finally,
-there is also a \emph{submitter}, which provides the user interface to submit one or more queries
-for execution. 
+coordinator to provide a list of processing nodes suitable for the deployment of a new query. Finally, a \emph{submitter} provides the user interface to submit one or more queries for execution. 
 
 Figure~\ref{fig:sys} provides a high-level overview of the DISSP system. Many \emph{processing
 nodes} can be deployed in a cloud environment, while some \emph{sources} provide the input data to be
@@ -353,11 +351,10 @@ inter-node communication in the system takes place through \emph{messages}.
 The chosen format for messages is UTF-8 text, with
 binary chunks expressed in Base64 encoding. This simple format allows
 for easy debugging, even though a binary representation would be more efficient.
-The initial task performed by the RequestHandler thread is to interpret the beginning of the message to
+The task performed by the RequestHandler thread is to interpret the beginning of the message, to
 categorise it and process it accordingly. A message can be of three kinds: it can be a message
 containing \emph{tuples} to be delivered to some subquery for processing; it can contain a \emph{command
-message} that triggers the execution of a remote procedure call; or it can be the request to
-access the \emph{web interface}.
+message} that triggers the execution of a remote procedure call; or it can be a request to the \emph{web interface}.
 \vspace{-10pt}
 \paragraph{Tuple Handling.}
 If a message contains a tuple payload, it is directly passed to the

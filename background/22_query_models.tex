@@ -14,8 +14,7 @@ most adopted is the \textit{relational streaming model}. It comes from the DBMS 
 usually implemented as an SQL-like language. It provides the syntax to express windows over data streams,
 similarly to the extensions introduced in SQL-99. A query describes the results in a declarative way,
 giving the system the flexibility of selecting an optimal evaluation procedure for producing the desired
-answer. Examples of languages employing this model are CQL~\cite{cql}, StreamSQL~\cite{streamsql} and
-SPACE~\cite{ss-spade}. 
+answer. Examples of languages employing this model are CQL~\cite{cql}, StreamSQL~\cite{streamsq} and SPADE~\cite{ss-spade}. 
 
 Another method for expressing queries is through \textit{procedural streaming languages}. In this
 paradigm, the user constructs queries in a graphical way, having maximum control over the exact series of
@@ -90,10 +89,10 @@ minute. The concept of windows over streams will be explained in the next paragr
 
 \subsubsection*{Operator Classes}
 \begin{figure}[b]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/tesi/cql_ops} 
-	\caption{Interaction among the three classes of operators in CQL.}
-	\label{fig:cql_ops}
+\centering
+\includegraphics[width=0.8\textwidth]{img/tesi/cql_ops} 
+\caption{Interaction among the three classes of operators in CQL.}
+\label{fig:cql_ops}
 \end{figure}
 CQL employs three classes of operators to process stream data. First is the \textit{Stream-to-Relation}
 operator, which creates a snapshot of a stream. After a finite bag of tuples has been
@@ -130,7 +129,7 @@ perform the bulk of the data manipulation and are equivalent to canonical SQL op
 category, we find, for example, \textsc{Select, Project} and other familiar operators. A stream is
 converted into a relation by a window operator, then processed by a relation-to-relation operator and finally output by
 a relation-to-stream operator.
-			
+      
 \underline{\textsc{Example}}: Consider the following query for our temperature monitoring scenario:
 
 \tab \textsc{Select *} \\
@@ -190,14 +189,12 @@ is applied to it to obtain a snapshot that contains only fresh measurements gene
 minutes. Once this relation has been created, a conditional \textsc{Select} is used to filter
 out all tuples with a temperature value lower than 30~degrees. Finally, a new stream called
 \textsc{HotRoomsStr} is created by an \textsc{IStream} relation-to-stream operator, containing tuples
-from overheated rooms, which are then sent to control the air conditioning subsystem.
-\vspace{15pt}
-
+from overheated rooms, which are then sent to control the air conditioning subsystem.\\
 \tab \textsc{Select IStream(*)} \\
 \tab \textsc{From RoomTmpStr[Range 5 Min]} \\
 \tab \textsc{Where Tmp > 30} \\
-
-\clearpage
+%\clearpage
+\vspace{-25pt}
 %BOXES AND ARROWS
 \subsection*{Boxes-and-Arrows Model}
 \label{boxes_and_arrows}
@@ -213,7 +210,6 @@ Aurora employs its own set of primitive operators, even though many of these hav
 traditional relational query model.
 In this model, we can divide operators into two main categories: stateless and
 stateful~\cite{borealis-app-manual}.
-
 \paragraph{Stateless operators.} Steteless operators do not need to store any information about previous
 tuples in order to execute.
 \emph{Map} is an example of such an operator. It transforms some attributes of a tuple by applying a
@@ -244,7 +240,7 @@ relational~counterpart.\\
 A special kind of stateful operators are synchronisation operators. This class includes \emph{Lock,
 Unlock} and \emph{WaitFor}. These are used to buffer tuples temporarily until a certain condition is
 reached.
-
+\vsp
 \paragraph{\mbox{Load-shedding} operators.} Load-shedding operators are used to overcome overload
 conditions. They reduce the load of an operator by discarding a portion of its input. This category includes RandomDrop and
 WindowDrop. \emph{RandomDrop} randomly discards a certain fraction of a stream. Every time the operator
@@ -258,16 +254,16 @@ discarded as a whole according to a dropping parameter.\\
 % it will try to replay some tuples and eventually correct its previously tentative results. \emph{RevisionJoin, RevisionAggregate} and \emph{RevisionFilter} are examples of operators used for this operations. Furthermore, replication can be employed to improve the dependability of the system. This means that
 % some subsets of the query plan, called replica sets, are run in parallel at different sites, so that if a crash should happen at the processing node hosting a set of replicated operators, the system can continue to operate using the output of another replica set. When working with replication, some of the operators have to be substituted by their deterministic version, which only forward tuples coming from one replica set, usually the first ones to arrive. These operators have the same name as their traditional counterparts, with the difference of an initial $S$, for instance \emph{SUnion, SFilter} and \emph{SJoin}. 
 % When employing these operators, replicas are actively competing to deliver results as soon as possible, improving non only enhancing the availability of the system but also improving its performance in terms of end-to-end latency~\cite{borealis-fast_and_reliable, borealis-fast_and_ha}.
-
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/tesi/baa-example}
+    \caption{Temperature monitoring query example, expressed in the boxes-and-arrows model.}
+    \label{fig:baa-example}
+\end{figure}
 \underline{Example:}\\
 In the boxes-and-arrows model, implementing our temperature monitoring query is simple. 
 Figure~\ref{fig:baa-example} shows the graphical representation of this query.
 In this case, the query plan is composed only of a \emph{Filter} operator. It receives the stream of 
 readings as input and outputs all tuples satisfying the predicate T $\geq$ 30. 
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/tesi/baa-example}
-    \caption{Temperature monitoring query example, expressed in the boxes-and-arrows model.}
-    \label{fig:baa-example}
-\end{figure}
+

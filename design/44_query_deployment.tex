@@ -40,8 +40,10 @@ Figure~\ref{fig:qdep} shows the steps involved in the deployment of a query.
 	\label{fig:qdep}
 \end{figure} 
 % ---------- SUBMISSION -----------------
+\vspace{-15pt}
 \subsection{Submission of Queries}
 \label{sec:qsub}
+\vspace{-5pt}
 %\mnote{should include ``compilation'' of tuples and ops }
 The life cycle of a query begins with the submission of its query plan by a user. This is done through
 the \emph{submitter} component. It interprets the XML query specification and compiles a set of custom
@@ -184,7 +186,7 @@ complete Java source file and is compiled by the \textit{CharSequenceCompiler}.
 	<operator>
 \end{lstlisting}
 \end{minipage}	
-\clearpage
+%\clearpage
 The DISSP system provides a number of general-purpose operator templates: \textit{window operators}
 provide transformations over windows, holding the input of an operator until a certain condition is
 reached; \textit{I/O operators} act as gateways to the system and provide the conversion from
