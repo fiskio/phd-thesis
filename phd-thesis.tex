@@ -12,31 +12,22 @@
 }
 
 \author{Marco Fiscato}
-\submitdate{October 2012}
+%\submitdate{October 2012}
 
-  
 \normallinespacing
 \maketitle
-
-%\preface
-%\input{abstract/abstract}
-%\input{acknowledgements/acknowledgements}
-%\input{dedication/dedication}
-%\input{quotes/quotes}
 
 \input{originality}
 \cleardoublepage
 \input{abstract/abstract}
-
-\body
-\begingroup
-\setcounter{tocdepth}{2}
-\listoffigures\pagestyle{empty}
-\listoftables
-\endgroup
 \pagestyle{empty}
+\tableofcontents
+\setcounter{tocdepth}{2}
+\listoffigures
+\listoftables
+\clearpage
 \cleardoublepage
-
+\pagestyle{uheadings}
 \input{introduction/10_introduction}
 \input{background/20_background}
 \input{data_model/30_data_model}
@@ -44,9 +35,6 @@
 \input{load_shedding/50_load_shedding}
 \input{evaluation/60_evaluation}
 \input{conclusion/70_conclusion}
-
-%\appendix
-% appendices come here
 \printbibliography
 
 \end{document}
