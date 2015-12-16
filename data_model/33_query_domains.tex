@@ -20,8 +20,10 @@ The following sections provides more detail on these two types of queries.
 \subsection*{Fan-in Queries}
 \label{sec:fan-in}
 
-\begin{figure}[t]
-	\centering
+\DIFdelbegin %DIFDELCMD < \begin{figure}[b!]
+%DIFDELCMD < 	%%%
+\DIFdelendFL \DIFaddbeginFL \begin{figure}[t]
+	\DIFaddendFL \centering
 	\includegraphics[width=0.35\textwidth]{img/tesi/query_fanin_senza} 
 	\caption{An example of a fan-in query. Input values from each source are first averaged over a certain
 	time window, and then the maximum is selected.}
@@ -45,16 +47,20 @@ sources are collected and processed to produce a single output.
 \subsection*{Fan-out Queries} 
 \label{sec:fan-out}
 
-\begin{figure}[t]
-	\centering
+\DIFdelbegin %DIFDELCMD < \begin{figure}[b!]
+%DIFDELCMD < 	%%%
+\DIFdelendFL \DIFaddbeginFL \begin{figure}[t]
+	\DIFaddendFL \centering
 	\includegraphics[width=0.45\textwidth]{img/tesi/fan-out_mr_senza} 
 	\caption{An example of fan-out query. It processes Twitter data by counting the top-rated messages on a
 	certain topic.}
 % 	It calculates a value to each tuple based on a natural language processing operator. Due to the heavy
 % 	computational cost of these operators, the data is split onto 3 nodes and processed separately. Finally
 % 	a max operator determines the message with the highest value.
-	\label{fig:fanout_mr2}
-\end{figure}
+	\DIFdelbeginFL %DIFDELCMD < \label{fig:fanout_mr}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \label{fig:fanout_mr2}
+\DIFaddendFL \end{figure}
 
 The second class of queries that we consider are \textit{fan-out} queries. There one or more operators
 send their output to \textit{more than one} downstream operators.
@@ -71,21 +77,25 @@ copies are composed of the same set of operators but process only a subset of th
 Splitting the computation allows the system to spread the processing cost of a set of operators over
 multiple nodes and thus overcome an overload condition at a single hosting node. 
 
-\ex Figure~\ref{fig:fanout_mr2} shows a query processing Twitter data in
+\ex Figure~\DIFdelbegin \DIFdel{\ref{fig:query_fanout} }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:fanout_mr2} }\DIFaddend shows a query processing Twitter data in
 real-time. A stream of Twitter messages can be analysed to calculate the ``top rated'' status updates.
 In addition to the message text itself, every message contains information about the location where it
 was sent and the author.
-\begin{figure}[t]
-	\centering
+\DIFdelbegin %DIFDELCMD < \begin{figure}[b!]
+%DIFDELCMD < 	%%%
+\DIFdelendFL \DIFaddbeginFL \begin{figure}[t]
+	\DIFaddendFL \centering
 	\includegraphics[width=0.4\textwidth]{img/tesi/fan-out_2_senza} 
 	\caption{An example of a fan-out query for processing Twitter data. It counts the occurrence of positive
 	and negative mentions of a certain keyword and calculates their ratio.}
-	\label{fig:query_fanouts3}
-\end{figure}
+	\DIFdelbeginFL %DIFDELCMD < \label{fig:query_fanout}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \label{fig:query_fanouts3}
+\DIFaddendFL \end{figure}
 A single stream of Twitter messages is split and scattered over three different processing nodes, each
 hosting a Natural Language Processing (NLP) operator that calculates some coefficient for each message,
 for example, its ``rating''. The output of these NLP operators is collected by a single Top-10
-operator preceded by a one minute time-window. The query then outputs then the ten ``top-rated'' Twitter
+operator preceded by a one minute time-window. The query then outputs the ten ``top-rated'' Twitter
 messages posted every minute. 
 
 \textbf{Multiple Result Queries.} Some queries produce several outputs from the same set of
@@ -97,7 +107,7 @@ simpler than having to design and submit several almost identical queries. It di
 processing redundancy by reusing a number of streams and operators.
 
 
-\underline{\textsc{Example}}:~Figure~\ref{fig:query_fanouts3} shows a query that calculates the occurrence
+\underline{\textsc{Example}}:~Figure~\DIFdelbegin \DIFdel{\ref{fig:query_fanout} }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:query_fanouts3} }\DIFaddend shows a query that calculates the occurrence
 of positive and negative statements about particular keywords on Twitter. 
 The original stream contains an unsorted stream of messages. First, a filter eliminates all the
 messages that do not contain a keyword of interest. After that, the output stream is multiplexed over
@@ -108,9 +118,10 @@ a given keyword. The resulting streams from the counter operators are sent to a 
 calculates the ratio between them, resulting in an indication of the general feeling about a
 keyword. In this query, a single input source is processed to produce~three~different~results.
 
-% The next section will describe the \emph{Source Coverage Ratio} (\sic) quality metric developed in
+%DIF <  The next section will describe the \emph{Source Information Content} (\sic) quality metric developed in
+%DIF >  The next section will describe the \emph{Source Coverage Ratio} (\sic) quality metric developed in
 % the scope of this project, derived following the reasoning of all the model assumptions made in
 % Section~\ref{sec:assumptions}.
 % In Section~\ref{sec:apps} there will be a further analysis of these sample queries, which will be used as
 % running examples of real-world applications of the \sic metric.
- 
+
