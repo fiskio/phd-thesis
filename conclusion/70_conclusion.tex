@@ -121,7 +121,7 @@ the lack of resources.\\
 We propose instead to adopt a more relaxed consistency model, in which operators continue processing
 without any attempt of reconcile the internal state of a failed replica.
 If this relaxed consistency model is employed, the DSPS system must choose among the different outputs
-produced by the replicas, deciding which one that to deliver to the user. In this situation, the \sic
+produced by the replicas, deciding which one to deliver to the user. In this situation, the \sic
 metric offers a valuable indication about the quality of the output computed by the replicas. By
 capturing the amount of failure that occurred during the creation of tuples, it allows the system to
 select the correct output to deliver by choosing the one with the highest quality of processing (\ie
