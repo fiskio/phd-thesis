@@ -1,8 +1,8 @@
-\section{Use Cases for Source Coverage Ratio}
+\section{Use Cases for Source \DIFdelbegin \DIFdel{Information Content}\DIFdelend \DIFaddbegin \DIFadd{Coverage Ratio}\DIFaddend }
 \label{sec:apps}
 
-This section returns to the sample queries of Section~\ref{sec:qtypes} to illustrate the
-calculation of \sic.
+This section returns to the sample queries \DIFdelbegin \DIFdel{for }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend Section~\ref{sec:qtypes} to illustrate the
+calculation of \sic\DIFdelbegin \DIFdel{values}\DIFdelend .
 \vspace{-10pt}
 \subsection*{Fan-in Queries}
 
@@ -12,6 +12,18 @@ This follows from Assumption $8$ (Total Information Content). To simplify the ex
 absolute values (\ie not scaled to the $[0,1]$ interval for comparison). It is also a perfect value (\ie
 there was no loss of information during processing). In the case of failure, its value
 would be reduced by the amount of information contained in the lost tuples.
+\DIFdelbegin %DIFDELCMD < \\
+%DIFDELCMD < \begin{figure}[h!] \centering \includegraphics[width=0.35\textwidth]{img/tesi/query_fanin} %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{An
+example of fan-in query. Input values for each source are first averaged over a certain time window, and
+then the maximum value is selected. Source Information Content values are shown for each tuple.}}
+	%DIFAUXCMD
+%DIFDELCMD < \label{fig:query_fanin2}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < %%%
+\DIFdelend 
 
 According to Assumption $4$ (Source Equality), all sources contribute equally to the creation of the
 final result.
@@ -24,10 +36,11 @@ that the individual \sic values are different according to the number of tuples 
 example, the first source produces only 2 tuples and thus the individual \sic value is $1/2$; the second
 source produces 4 tuples with an individual value of $1/4$; and the third 3 tuples, each with a value of
 $1/3$.
-\begin{figure}[h] \centering \includegraphics[width=0.35\textwidth]{img/tesi/query_fanin} \caption{An example of fan-in query. Input values for each source are first averaged over a certain time window, and
-then the maximum value is selected. Source Coverage Ratio values are shown for each tuple.}
+\DIFaddbegin \begin{figure}[h] \centering \includegraphics[width=0.35\textwidth]{img/tesi/query_fanin} \caption{\DIFaddFL{An example of fan-in query. Input values for each source are first averaged over a certain time window, and
+then the maximum value is selected. Source Coverage Ratio values are shown for each tuple.}}
 \label{fig:query_fanin2}
 \end{figure}
+\DIFaddend 
 
 The \textit{average} operator takes in input a batch of tuples of size 2, 3 and 4, respectively, and
 outputs a single tuple. Assumption 6 (Conservation of Information) requires that the amount of
@@ -74,8 +87,8 @@ highest coefficients. Each output tuple has a \sic value of 1/10, for a total fi
 \begin{figure}[t!]
 	\centering 
 	\includegraphics[width=0.5\textwidth]{img/tesi/fan-out_mr} 
-	\caption{An example of a fan-out query processing Twitter data. 
-	The Source Coverage Ratio values are shown for each tuple.}
+	\caption{An example of a fan-out query processing Twitter data, split over three processing nodes. 
+	The Source \DIFdelbeginFL \DIFdelFL{Information Content }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Coverage Ratio }\DIFaddendFL values are shown for each tuple.}
 	\label{fig:fanout_mr}
 \end{figure}
 \vspace{15pt}
@@ -91,8 +104,10 @@ At this point, the output of the filter operator is multiplexed over two differe
 one that filters only messages with positive references to the keyword and one filtering negative
 references.
 \clearpage
-\begin{figure}[t]
-	\centering
+\DIFdelbegin %DIFDELCMD < \begin{figure}[b!]
+%DIFDELCMD < 	%%%
+\DIFdelendFL \DIFaddbeginFL \begin{figure}[t]
+	\DIFaddendFL \centering
 	\includegraphics[width=0.45\textwidth]{img/tesi/fan-out_2} 
 	\caption{An example of fan-out query processing Twitter data. It counts the occurrences of positive and
 	negative mentions of a given keyword. The numbers shown on tuples are their individual \sic values.}
